@@ -1,14 +1,12 @@
 extends Node
 
 var obstacles_dict = {}
-var n = 0
 var direction_vectors = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
+var god
 
-func init(inp_n, obstacles_arr):
-	if obstacles_arr == null:
-		obstacles_arr = []
-	n = inp_n
-	obstacles_dict = obstacle_array_to_dict(obstacles_arr)
+func init(par_god):
+	god = par_god
+	obstacles_dict = obstacle_array_to_dict(god.get_obstacle_locations())
 
 func get_reachable(start, dist):
 	var explored = {start: 0}
@@ -49,7 +47,7 @@ func get_neighbours(a):
 	return possible_neighbours
 	
 func tile_exists(a):
-	return (0 <= a.x  and a.x <= n - 1) and (0 <= a.y and a.y <= n - 1)
+	return god.cell_exists(a)
 
 func tile_is_blocked(a):
 	return a in obstacles_dict

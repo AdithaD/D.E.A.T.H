@@ -41,6 +41,16 @@ func get_obstacle_tilemap():
 func get_obstacle_locations():
 	return get_obstacle_tilemap().get_used_cells()
 
+func world_to_grid(world):
+	return floor_tile_map.world_to_map(world)
+
+func grid_to_world(grid):
+	return floor_tile_map.map_to_world(grid)
+	
+func cell_exists(grid):
+	return floor_tile_map.get_cellv(grid) != -1
+	
+
 func new_turn():
 	emit_signal("new_turn")
 

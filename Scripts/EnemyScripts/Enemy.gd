@@ -8,7 +8,7 @@ export (bool) var can_cover = true
 var health
 var abilities = []
 var ai
-var grid_position = Vector2(0, 0)
+var grid_position
 var god
 
 func _ready():
@@ -17,12 +17,17 @@ func _ready():
 	ai = $AI
 	god = get_tree().root.get_child(0)
 	
+	# temp
+	yield(get_tree(), "idle_frame")
+	grid_position = god.world_to_grid(position)
+	
 
 func new_turn():
 	if(ai.has_method("get_move")):
 		var move = ai.get_move()
 		grid_position = move[-1]
-		position = god.get_obstacle_tilemap().map_to_world(grid_position)
+		print(grid_position)
+		position = god.grid_to_world(grid_position)
 		
 func die():
 	pass
