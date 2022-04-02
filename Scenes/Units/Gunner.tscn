@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/player.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Abilities/GunShoot.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Units/PlayerUI.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Sprites/shoot_icon.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -14,7 +13,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Marksman" type="Node2D" groups=["player_unit"]]
+[node name="Gunner" type="Node2D" groups=["player_unit"]]
 position = Vector2( 271, 136 )
 script = ExtResource( 1 )
 max_health = 10
@@ -23,16 +22,13 @@ tilesPerMove = 5
 
 [node name="Abilities" type="Node2D" parent="."]
 
-[node name="SniperShot" type="Node2D" parent="Abilities"]
+[node name="RainHell" type="Node2D" parent="Abilities"]
 script = ExtResource( 3 )
-ability_name = "Sniper Shot"
-ability_description = "Take a high-powered shot with your rifle"
-icon = ExtResource( 5 )
-damage = 4
-penetration = 1
+ability_name = "Rain Hell"
+ability_description = "Fire your machine gun at the enemy"
+damage = 2
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 
 [node name="Healthbar" type="Control" parent="."]

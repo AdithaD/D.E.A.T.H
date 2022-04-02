@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Scripts/Controller/God.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/BaseEnemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/UserCamera.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Abilities Bar.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -35,10 +37,13 @@ script = ExtResource( 3 )
 tile_set = ExtResource( 2 )
 texture_offset = Vector2( 0, -32 )
 
+[node name="Marksman" parent="." instance=ExtResource( 10 )]
+position = Vector2( 128, -16 )
+
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 8 )
 default_zoom = 0.5
 focus_zoom = 0.3
@@ -55,3 +60,26 @@ texture = ExtResource( 5 )
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
 position = Vector2( 16, 24 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Abilities Bar" type="HBoxContainer" parent="UI/HUD"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -153.0
+margin_top = -76.0
+margin_right = 153.0
+margin_bottom = -36.0
+script = ExtResource( 9 )
+
+[node name="TextureButton" type="TextureButton" parent="UI/HUD/Abilities Bar"]
+margin_bottom = 40.0
+
+[connection signal="on_deselect" from="UserCamera/Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
+[connection signal="on_select_player" from="UserCamera/Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]

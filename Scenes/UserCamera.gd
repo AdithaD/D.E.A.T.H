@@ -2,6 +2,7 @@ extends Camera2D
 
 export (float) var default_zoom = 2;
 export (float) var focus_zoom = 2.5;
+
 func _ready():
 	zoom = Vector2(default_zoom, default_zoom)
 

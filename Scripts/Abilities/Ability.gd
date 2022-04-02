@@ -3,6 +3,7 @@ class_name Ability
 
 export (String) var ability_name = "Ability"
 export (String) var ability_description = "Ability Description"
+export (Texture) var icon
 
 export (int) var action_cost = 1
 export (int) var cooldownDuration = 1
