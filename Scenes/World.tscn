@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://Scripts/UI/UserCamera.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/UI/Ability UI/AbilitiesBar.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/TurnManager.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/AbilityLifecycleManager.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/AbilityDescription.gd" type="Script" id=12]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -76,12 +77,48 @@ margin_right = 153.0
 margin_bottom = -36.0
 script = ExtResource( 9 )
 
-[node name="TurnManager" type="Node" parent="."]
+[node name="Ability Prompt" type="Panel" parent="UI/HUD"]
+margin_left = 21.0
+margin_top = 352.0
+margin_right = 240.0
+margin_bottom = 575.0
+script = ExtResource( 12 )
+
+[node name="NameText" type="Label" parent="UI/HUD/Ability Prompt"]
+margin_left = 5.0
+margin_top = 6.0
+margin_right = 211.0
+margin_bottom = 43.0
+text = "asdf"
+valign = 1
+
+[node name="DescriptionText" type="Label" parent="UI/HUD/Ability Prompt"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -103.5
+margin_top = -173.0
+margin_right = 101.5
+margin_bottom = -13.0
+text = "asdfasdfasdf"
+autowrap = true
+
+[node name="Button" type="Button" parent="UI/HUD/Ability Prompt"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -29.0
+margin_right = -16.0
+margin_bottom = -9.0
+text = "Confirm"
+
+[node name="AbilityLifecycleManager" type="Node" parent="."]
 script = ExtResource( 11 )
 selector_path = NodePath("../Selector")
 ability_lifecyle_scene = ExtResource( 5 )
-
-[node name="AbilityLifecycles" type="Node" parent="TurnManager"]
+ability_prompt_path = NodePath("../UI/HUD/Ability Prompt")
 
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
