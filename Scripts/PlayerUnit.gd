@@ -4,14 +4,15 @@ class_name PlayerUnit
 export (int) var max_health
 export (int) var actionPointsPerTurn
 export (int) var tilesPerMove
-export (int) var cooldown
 
-var health = max_health
+var health
 var actionPoints = actionPointsPerTurn
 
 var abilities = [] 
 
 var grid_position = Vector2(0, 0)
+
+signal update_attr
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,7 @@ func _ready():
 	abilities = $Abilities.get_children()
 			
 	new_turn()
+	emit_signal('update_attr')
 	pass # Replace with function body.
 
 func new_turn():
@@ -32,3 +34,7 @@ func spendActionPoint(action_cost: int):
 
 func moveTo(x: int, y: int):
 	pass
+
+
+func _on_PlayerUnit_took_damage():
+	pass # Replace with function body.
