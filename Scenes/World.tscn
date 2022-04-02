@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
 [ext_resource path="res://Scenes/FLOOR TILES.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Selector.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Sprites/selector.png" type="Texture" id=5]
 
 [node name="World" type="Node2D"]
 
@@ -26,3 +28,17 @@ tile_data = PoolIntArray( -458739, 0, 0, -131080, 2, 0, -131074, 2, 0, -65544, 0
 script = ExtResource( 3 )
 tile_set = ExtResource( 2 )
 texture_offset = Vector2( 0, -32 )
+
+[node name="UserCamera" type="Camera2D" parent="."]
+position = Vector2( 0, -1 )
+current = true
+
+[node name="Control" type="Control" parent="UserCamera"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+
+[node name="Selector" type="Node2D" parent="UserCamera"]
+
+[node name="Sprite" type="Sprite" parent="UserCamera/Selector"]
+texture = ExtResource( 5 )

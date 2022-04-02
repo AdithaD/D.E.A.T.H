@@ -13,7 +13,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Marksman" type="Node2D"]
+[node name="Marksman" type="Node2D" groups=["player_unit"]]
 position = Vector2( 271, 136 )
 script = ExtResource( 1 )
 max_health = 10
