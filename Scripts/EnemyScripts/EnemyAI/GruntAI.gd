@@ -26,17 +26,28 @@ func get_move():
 	return bfs.find_path(enemy.grid_position, best[0])
 
 func evaluate_tile(pos):
-	return 1/max(get_dist_to_closest_player(pos), 1)
+	return float(1)/max(get_move_dist_to_closest_player(pos), 1)
 			
 func get_dist_to_closest_player(pos):
 	var player_locations = god.get_player_locations()
-	var closest = [null, 9999]
+	var closest = 9999
 	for loc in player_locations:
-		var dist = bfs.grid_distance(enemy.grid_position, loc)
-		if  dist < closest[1]:
-			closest = [loc, dist]
+		var dist = bfs.grid_distance(pos, loc)
+		if  dist < closest:
+			closest = dist
 	
-	return bfs.grid_distance(closest[0], pos)
+	return closest
+
+func get_move_dist_to_closest_player(pos):
+	var player_locations = god.get_player_locations()
+	var closest = 9999
+	for loc in player_locations:
+		var path = bfs.find_path(pos, loc)
+		if(path and (len(path) - 1 < closest)):
+			closest = len(path) - 1
+	
+	print("closest", closest, " ", pos)
+	return closest
 	
 #func get_action(enemy: enemy):
 	
