@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resource/test.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/Controller/God.gd" type="Script" id=2]
-[ext_resource path="res://Assets/PlayerUnit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/BaseEnemy.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
+obstacle_map_path = NodePath("TileMap2")
 
 [node name="TileMap" type="TileMap" parent="."]
 mode = 1
@@ -29,3 +31,6 @@ format = 1
 
 [node name="PlayerUnit" parent="." instance=ExtResource( 3 )]
 position = Vector2( 306, 62 )
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 189, 59 )
