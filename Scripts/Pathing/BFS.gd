@@ -23,6 +23,8 @@ func get_reachable(start, dist):
 	return explored.keys()
 
 func find_path(start, goal):
+	if start == goal:
+		return [start]
 	var explored = {start: null}
 	var queue = [start]
 	while len(queue) != 0:

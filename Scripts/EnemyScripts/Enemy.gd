@@ -2,7 +2,7 @@ extends Node2D
 class_name Enemy
 
 export (int) var max_health
-export (int) var tiles_per_move
+export (int) var tiles_per_move = 5
 
 export (int) var can_attack
 export (int) var attack_range
@@ -22,7 +22,7 @@ func _ready():
 func new_turn():
 	var move = [grid_position]
 	if(ai.has_method("get_move")):
-		move = ai.get_move(self)
+		move = ai.get_move()
 	print(move)
 
 
