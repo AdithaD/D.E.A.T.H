@@ -33,12 +33,8 @@ _global_script_class_icons={
 [application]
 
 config/name="D. E. A. T. H"
-run/main_scene="res://trial map.tscn"
+run/main_scene="res://Scenes/Units/Marksman.tscn"
 config/icon="res://icon.png"
-
-[autoload]
-
-GoldenGadget="*res://Extensions/goldenGadget/GoldenGadget.gd"
 
 [physics]
 
