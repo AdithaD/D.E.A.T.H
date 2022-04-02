@@ -9,19 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "Enemy",
+"base": "Node",
+"class": "Ability",
 "language": "GDScript",
-"path": "res://Scripts/EnemyScripts/Enemy.gd"
+"path": "res://Scripts/Abilities/Ability.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerUnit",
+"language": "GDScript",
+"path": "res://Scripts/PlayerUnit.gd"
 } ]
 _global_script_class_icons={
-"Enemy": ""
+"Ability": "",
+"PlayerUnit": ""
 }
 
 [application]
 
 config/name="D. E. A. T. H"
-run/main_scene="res://trial map.tscn"
+run/main_scene="res://Scenes/Units/Marksman.tscn"
 config/icon="res://icon.png"
 
 [autoload]

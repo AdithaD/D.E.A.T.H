@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/PlayerUnit.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/player.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Abilities/GunShoot.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Marksman" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Abilities" type="Node2D" parent="."]
+
+[node name="SniperShot" type="Node2D" parent="Abilities"]
+script = ExtResource( 3 )
+ability_name = "Sniper Shot"
+ability_description = "Take a high-powered shot with your rifle"
+damage = 4
+penetration = 1
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
