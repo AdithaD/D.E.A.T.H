@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PlayerUnit",
 "language": "GDScript",
-"path": "res://Scripts/PlayerUnit.gd"
+"path": "res://Scripts/PlayerUnits/PlayerUnit.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
