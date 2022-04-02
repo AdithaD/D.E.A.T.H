@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/Sprites/selector.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Controller/God.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/BaseEnemy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/UserCamera.gd" type="Script" id=8]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -38,7 +38,10 @@ texture_offset = Vector2( 0, -32 )
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 2, 2 )
+script = ExtResource( 8 )
+default_zoom = 0.5
+focus_zoom = 0.3
 
 [node name="Selector" type="Node2D" parent="UserCamera"]
 script = ExtResource( 4 )
@@ -48,10 +51,7 @@ floor_map_path = NodePath("../../FLOOR TILES")
 [node name="Sprite" type="Sprite" parent="UserCamera/Selector"]
 texture = ExtResource( 5 )
 
+[node name="Tween" type="Tween" parent="UserCamera"]
+
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
-position = Vector2( 54, -4 )
-
-[node name="Marksman" parent="." instance=ExtResource( 8 )]
-position = Vector2( 270, 104 )
-
-[connection signal="new_turn" from="." to="Enemy" method="_on_World_new_turn"]
+position = Vector2( 16, 24 )
