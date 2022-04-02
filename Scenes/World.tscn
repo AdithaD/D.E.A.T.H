@@ -53,3 +53,5 @@ position = Vector2( 54, -4 )
 
 [node name="Marksman" parent="." instance=ExtResource( 8 )]
 position = Vector2( 270, 104 )
+
+[connection signal="new_turn" from="." to="Enemy" method="_on_World_new_turn"]

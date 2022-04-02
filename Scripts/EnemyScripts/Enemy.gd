@@ -18,13 +18,6 @@ func _ready():
 	abilities = $Abilities.get_children()
 	ai = $AI
 	
-	# todo: remove, shouldnt be called from here for tesing 
-	set_process_input(true)
-
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		new_turn()
-	
 
 func new_turn():
 	var move = [grid_position]
@@ -32,3 +25,7 @@ func new_turn():
 		move = ai.get_move(self)
 	print(move)
 
+
+
+func _on_World_new_turn():
+	new_turn()
