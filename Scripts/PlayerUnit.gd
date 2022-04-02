@@ -39,6 +39,10 @@ func spendActionPoint(action_cost: int):
 
 func moveTo(x: int, y: int):
 	pass
+	
+func take_damage(dmg):
+	health -= dmg
+	emit_signal("update_attr")
 
 
 func _on_PlayerUnit_took_damage():

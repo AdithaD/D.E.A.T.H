@@ -9,6 +9,7 @@ var bfs
 var enemy
 
 func _ready():
+#	randomize()
 	god = get_tree().root.get_child(0)
 	bfs = bfs_class.new()
 	enemy = get_parent()
@@ -37,6 +38,13 @@ func get_dist_to_closest_player(pos):
 			closest = dist
 	
 	return closest
+	
+func get_players_in_range(ability_range, pos):
+	var in_range = []
+	for player in god.get_player_nodes():
+		if bfs.grid_distance(player.grid_position, pos) <= ability_range:
+			in_range.append(player)
+	return in_range
 
 func get_move_dist_to_closest_player(pos):
 	var player_locations = god.get_player_locations()
@@ -46,8 +54,14 @@ func get_move_dist_to_closest_player(pos):
 		if(path and (len(path) - 1 < closest)):
 			closest = len(path) - 1
 	
-	print("closest", closest, " ", pos)
 	return closest
 	
-#func get_action(enemy: enemy):
+func get_action():
+	var ability_range = enemy.get_ability("shoot").ability_range
+	var in_range = get_players_in_range(ability_range, enemy.grid_position)
+	if len(in_range) == 0:
+		return null
+	
+	return {"action": "shoot", "target" : in_range[randi() % in_range.size()]}
+	
 	
