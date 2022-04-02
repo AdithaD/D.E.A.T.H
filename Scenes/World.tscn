@@ -3,21 +3,21 @@
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
 [ext_resource path="res://Scripts/Utilities/FLOOR TILES.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/UI/Selector.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Sprites/selector.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/UI/Selector.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/ScriptInstances/AbilityLifecycle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Controller/God.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/BaseEnemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/UI/UserCamera.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/UI/Ability UI/AbilitiesBar.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scripts/UI/Ability UI/AbilityButton.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/TurnManager.gd" type="Script" id=11]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
-obstacle_map_path = NodePath("BUILDINGS")
-floor_map_path = NodePath("FLOOR TILES")
+obstacle_map_path = NodePath("Cover")
+floor_map_path = NodePath("Tiles")
 
-[node name="FLOOR TILES" type="TileMap" parent="."]
+[node name="Tiles" type="TileMap" parent="."]
 mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 16 )
@@ -27,7 +27,7 @@ script = ExtResource( 3 )
 tile_set = ExtResource( 1 )
 texture_offset = Vector2( 0, -32 )
 
-[node name="BUILDINGS" type="TileMap" parent="."]
+[node name="Cover" type="TileMap" parent="."]
 position = Vector2( 0, -1 )
 mode = 1
 tile_set = ExtResource( 2 )
@@ -49,18 +49,15 @@ script = ExtResource( 8 )
 default_zoom = 0.5
 focus_zoom = 0.3
 
-[node name="Selector" type="Node2D" parent="UserCamera"]
-script = ExtResource( 4 )
-obstacle_map_path = NodePath("../../BUILDINGS")
-floor_map_path = NodePath("../../FLOOR TILES")
-
-[node name="Sprite" type="Sprite" parent="UserCamera/Selector"]
-texture = ExtResource( 5 )
-
 [node name="Tween" type="Tween" parent="UserCamera"]
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
 position = Vector2( 16, 24 )
+
+[node name="Selector" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -1 )
+obstacle_map_path = NodePath("../Cover")
+floor_map_path = NodePath("../Tiles")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -79,9 +76,12 @@ margin_right = 153.0
 margin_bottom = -36.0
 script = ExtResource( 9 )
 
-[node name="TextureButton" type="TextureButton" parent="UI/HUD/Abilities Bar"]
-margin_bottom = 40.0
+[node name="TurnManager" type="Node" parent="."]
 script = ExtResource( 11 )
+selector_path = NodePath("../Selector")
+ability_lifecyle_scene = ExtResource( 5 )
 
-[connection signal="on_deselect" from="UserCamera/Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
-[connection signal="on_select_player" from="UserCamera/Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
+[node name="AbilityLifecycles" type="Node" parent="TurnManager"]
+
+[connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
+[connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]

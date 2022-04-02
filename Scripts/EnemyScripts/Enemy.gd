@@ -32,3 +32,6 @@ func new_turn():
 		move = ai.get_move(self)
 	print(move)
 
+func take_damage(damage):
+	health -= damage
+	print('oof ouch oowie i took %s damage' % damage )

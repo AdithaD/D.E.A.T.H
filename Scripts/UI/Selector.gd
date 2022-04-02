@@ -1,25 +1,34 @@
 extends Node2D
-
 export (NodePath) var obstacle_map_path
 export (NodePath) var floor_map_path
-onready var obstacle_tile_map : TileMap = get_node(obstacle_map_path)
-onready var floor_tile_map : TileMap = get_node(floor_map_path)
+export (Texture) var selector_image
+onready var obstacle_tile_map : TileMap
+onready var floor_tile_map : TileMap
 
-enum TARGET_TYPE { player, enemy, cover, tile }
-export(TARGET_TYPE) var target_type = TARGET_TYPE.player
+export(Ability.TARGET_TYPE) var target_type = Ability.TARGET_TYPE.player
 
 var selection
+var listen_to_input = true
 
-onready var camera = get_parent()
+onready var camera = get_node("/root/World/UserCamera")
 
 signal on_select_player(selected_player)
 signal on_select_enemy(selected_enemy)
 signal on_select_tile(selected_tile)
 signal on_select_cover(selected_cover)
 signal on_deselect()
+signal on_quit_selection()
 
 func _ready():
-	
+	$Sprite.texture = selector_image
+	var god = get_node("/root/World")
+	print(god)
+	if obstacle_map_path != "":
+		obstacle_tile_map = get_node(obstacle_map_path)
+
+	if floor_map_path != "":
+		floor_tile_map = get_node(floor_map_path)
+		
 	pass # Replace with function body.
 
 
@@ -28,12 +37,18 @@ func deselect():
 	camera.unfocus()
 	emit_signal("on_deselect")
 
-func _process(delta):
+func _process(_delta):
+	
 	if selection != null:
-		if(Input.is_action_just_pressed("unselect")):
-			deselect()
+		if(Input.is_action_just_pressed("deselect") && listen_to_input):
+			if(selection != null):
+				deselect()
+				
 
 	else:
+		if Input.is_action_just_pressed("deselect"):
+			quit_selection()
+		
 		var mouse_pos = get_global_mouse_position()
 		var tile = floor_tile_map.world_to_map(mouse_pos)
 		var snapped_pos = floor_tile_map.map_to_world(tile)
@@ -41,15 +56,15 @@ func _process(delta):
 		var new_pos = Vector2(snapped_pos.x, snapped_pos.y + 8)
 		$Sprite.global_position = new_pos
 	
-	if(Input.is_action_just_pressed("select")):
+	if(Input.is_action_just_pressed("select") && listen_to_input && selection == null):
 		match (target_type):
-			TARGET_TYPE.player:	
+			Ability.TARGET_TYPE.player:	
 				select_player()
-			TARGET_TYPE.enemy:
+			Ability.TARGET_TYPE.enemy:
 				select_enemy()
-			TARGET_TYPE.cover:
+			Ability.TARGET_TYPE.cover:
 				select_cover()
-			TARGET_TYPE.tile:
+			Ability.TARGET_TYPE.tile:
 				select_tile()	
 		
 		if(selection):
@@ -110,3 +125,7 @@ func select_tile():
 func set_select_mode(new_type):
 	target_type = new_type
 	deselect()
+
+func quit_selection():
+	print('quit seleciton')
+	emit_signal("on_quit_selection")

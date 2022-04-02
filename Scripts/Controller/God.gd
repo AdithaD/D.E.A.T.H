@@ -30,8 +30,15 @@ func get_player_locations():
 
 func get_obstacle_tilemap():
 	return obstacle_tile_map
+
+func get_floor_tilemap():
+	return floor_tile_map
 	
 func get_obstacle_locations():
 	return get_obstacle_tilemap().get_used_cells()
 
-
+func get_new_selector(scene):
+	var new_selector = scene.instance()
+	new_selector.obstacle_tile_map = obstacle_tile_map
+	new_selector.floor_tile_map = floor_tile_map
+	return new_selector

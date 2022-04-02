@@ -35,6 +35,7 @@ func spendActionPoint(action_cost: int):
 func moveTo(x: int, y: int):
 	pass
 
-
+func use_ability(index):
+	abilities[index].use_ability(self)
 func _on_PlayerUnit_took_damage():
 	pass # Replace with function body.
