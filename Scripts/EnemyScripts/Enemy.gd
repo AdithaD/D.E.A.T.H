@@ -11,7 +11,7 @@ export (int) var attack_dmg
 var health
 var abilities = []
 var ai
-var tile_pos
+var grid_position
 
 func _ready():
 	health = max_health
@@ -19,7 +19,7 @@ func _ready():
 	ai = $AI
 
 func new_turn():
-	var move = [tile_pos]
+	var move = [grid_position]
 	if(ai.has_method("get_move")):
 		move = ai.get_move(self)
 	pass
