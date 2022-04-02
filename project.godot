@@ -15,20 +15,30 @@ _global_script_classes=[ {
 "path": "res://Scripts/Abilities/Ability.gd"
 }, {
 "base": "Node2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Scripts/EnemyScripts/Enemy.gd"
+}, {
+"base": "Node2D",
 "class": "PlayerUnit",
 "language": "GDScript",
 "path": "res://Scripts/PlayerUnit.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
+"Enemy": "",
 "PlayerUnit": ""
 }
 
 [application]
 
 config/name="D. E. A. T. H"
-run/main_scene="res://Scenes/Units/Marksman.tscn"
+run/main_scene="res://trial map.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GoldenGadget="*res://Extensions/goldenGadget/GoldenGadget.gd"
 
 [physics]
 
