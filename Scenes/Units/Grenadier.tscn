@@ -1,0 +1,35 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://RocketLauncher.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Units/PlayerUnit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren top left.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren top right.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom left.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom right.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/rocket_launcher.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Abilities/AoESelector.tscn" type="PackedScene" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Grenadier" instance=ExtResource( 2 )]
+
+[node name="RocketLauncher" type="Node" parent="Abilities" index="1"]
+script = ExtResource( 1 )
+ability_name = "Rocket Launcher"
+ability_description = "Destroy cover and deal damage in an area."
+icon = ExtResource( 7 )
+voice_lines = [ "Watch the back blast!", "Going explosive!" ]
+action_cost = 2
+cooldownDuration = 3
+selector = ExtResource( 8 )
+target_type = 3
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
+position = Vector2( 2, -20 )
+frames = SubResource( 1 )
