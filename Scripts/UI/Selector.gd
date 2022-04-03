@@ -99,6 +99,7 @@ func select_enemy():
 		if enemy.global_position == snapped_pos:
 			selection = enemy
 			camera.focusOn(enemy.global_position)
+			emit_signal("on_select_enemy", selection)
 			break			
 			
 	

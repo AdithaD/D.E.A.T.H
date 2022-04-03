@@ -6,7 +6,7 @@ export (int) var actionPointsPerTurn
 export (int) var tilesPerMove
 
 var health
-var actionPoints = actionPointsPerTurn
+var action_points = actionPointsPerTurn
 
 var abilities = [] 
 
@@ -30,11 +30,12 @@ func _ready():
 	grid_position = god.world_to_grid(position)
 
 func new_turn():
-	actionPoints = actionPointsPerTurn
+	action_points = actionPointsPerTurn
 	pass
 
-func spendActionPoint(action_cost: int):
-	actionPoints -= 1
+func spend_action_points(action_cost: int):
+	action_points -= 1
+	emit_signal('update_attr')
 	pass
 
 func moveTo(x: int, y: int):

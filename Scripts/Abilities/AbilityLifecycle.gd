@@ -13,6 +13,7 @@ var player
 var target
 
 signal selecting
+signal selected
 signal doing 
 signal cancel
 signal completed 
@@ -26,21 +27,22 @@ func _ready():
 	secondary_selector.connect("on_select_enemy", self, "_on_Secondary_Selector_select")
 	secondary_selector.connect("on_select_tile", self, "_on_Secondary_Selector_select")
 	secondary_selector.connect("on_select_cover", self, "_on_Secondary_Selector_select")
+	secondary_selector.connect("on_deselect", self, "_on_Secondary_Selector_deselect")
 	secondary_selector.connect("on_quit_selection", self, "_on_Secondary_Selector_quit_selection")
 
 
 	secondary_selector.listen_to_input = false
 	pass # Replace with function body.
 
-func init(new_primary_selector):
+func init(casting_player, ability_index, new_primary_selector):
 	primary_selector = new_primary_selector
 	primary_selector.connect("on_deselect", self, "_on_Selector_unselect")
-
-func start(casting_player, ability_index):
-	print('starting lifecycle')
+	
 	player = casting_player
-
 	active_ability = player.abilities[ability_index]
+		
+func start():
+	print('starting lifecycle')
 	state = LIFECYCLE.selecting
 
 	primary_selector.listen_to_input = false
@@ -51,9 +53,9 @@ func start(casting_player, ability_index):
 	emit_signal('selecting')
 	
 func _on_Secondary_Selector_select(selected):
-	if(LIFECYCLE.selecting):
+	if(state == LIFECYCLE.selecting):
 		target = selected
-		move_to_doing()
+		emit_signal('selected')
 	pass
 
 func move_to_doing():
@@ -62,8 +64,12 @@ func move_to_doing():
 	state = LIFECYCLE.doing
 	active_ability.use_ability(player, target)
 	state = LIFECYCLE.complete
+	primary_selector.listen_to_input = true
 	queue_free()
 
+func _on_Secondary_Selector_deselect():
+	emit_signal('selecting')
+	
 func _on_Secondary_Selector_quit_selection():
 	primary_selector.listen_to_input = true
 	emit_signal('cancel')
