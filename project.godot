@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="D. E. A. T. H"
-run/main_scene="res://Scenes/Units/Marksman.tscn"
+run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
 [input]
