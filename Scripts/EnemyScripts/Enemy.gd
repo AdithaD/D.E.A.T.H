@@ -12,11 +12,14 @@ var ai
 var grid_position
 var god
 
+signal update_attr
+
 func _ready():
 	health = max_health
 	abilities = $Abilities.get_children()
 	ai = $AI
 	god = get_tree().root.get_child(0)
+	emit_signal('update_attr')
 	
 	# temp
 	yield(get_tree(), "idle_frame")
@@ -67,3 +70,4 @@ func take_damage(dmg):
 	health -= dmg
 	if health <= 0:
 		die()
+	emit_signal('update_attr')
