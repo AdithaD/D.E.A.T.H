@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/EnemyScripts/Enemy.gd"
 }, {
 "base": "Node2D",
+"class": "EnemyUnit",
+"language": "GDScript",
+"path": "res://Scenes/Enemies/EnemyUnit.gd"
+}, {
+"base": "Node2D",
 "class": "PlayerUnit",
 "language": "GDScript",
 "path": "res://Scripts/PlayerUnits/PlayerUnit.gd"
@@ -49,6 +54,7 @@ _global_script_class_icons={
 "AbilityButton": "",
 "AbilityLifecycle": "",
 "Enemy": "",
+"EnemyUnit": "",
 "PlayerUnit": "",
 "Selector": "",
 "TurnManager": ""
