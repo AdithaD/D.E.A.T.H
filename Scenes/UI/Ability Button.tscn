@@ -5,3 +5,6 @@
 [node name="Ability Button" type="TextureButton"]
 margin_bottom = 40.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

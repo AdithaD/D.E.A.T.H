@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -18,7 +18,8 @@
 [ext_resource path="res://Scenes/TurnManager.gd" type="Script" id=17]
 [ext_resource path="res://Scenes/TurnUI.gd" type="Script" id=18]
 [ext_resource path="res://Assets/Sounds/Music/DEATH.wav" type="AudioStream" id=19]
-[ext_resource path="res://Scenes/Enemies/EnemyUnit.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Units/Medic.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Enemies/EnemyUnit.tscn" type="PackedScene" id=21]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -64,6 +65,9 @@ position = Vector2( 96, -16 )
 [node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
 position = Vector2( 64, -32 )
 
+[node name="Medic" parent="Cover" instance=ExtResource( 20 )]
+position = Vector2( 0, -16 )
+
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
 current = true
@@ -75,7 +79,7 @@ move_speed_scaling = 0.4
 
 [node name="Tween" type="Tween" parent="UserCamera"]
 
-[node name="EnemyUnit" parent="." instance=ExtResource( 20 )]
+[node name="EnemyUnit" parent="." instance=ExtResource( 21 )]
 position = Vector2( -32, 16 )
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
@@ -131,6 +135,9 @@ margin_right = 211.0
 margin_bottom = 43.0
 text = "asdf"
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DescriptionText" type="Label" parent="UI/HUD/Ability Prompt"]
 anchor_left = 0.5
@@ -165,9 +172,9 @@ follow_viewport_enable = true
 follow_viewport_scale = 0.4
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
-margin_left = -3129.88
+margin_left = -3130.05
 margin_top = -1525.79
-margin_right = -1209.88
+margin_right = -1210.05
 margin_bottom = -445.787
 rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 14 )
@@ -184,3 +191,7 @@ autoplay = true
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
 [connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]
+
+[editable path="Cover/Marksman"]
+[editable path="Cover/Gunner"]
+[editable path="Cover/Medic"]
