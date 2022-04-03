@@ -117,7 +117,7 @@ transform = Transform2D( 1, 0, 0, 1, -1000, -500 )
 follow_viewport_enable = true
 follow_viewport_scale = 0.4
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+[node name="Background" type="TextureRect" parent="ParallaxBackground"]
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 14 )
