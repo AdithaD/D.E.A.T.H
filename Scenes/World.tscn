@@ -185,6 +185,7 @@ stream = ExtResource( 19 )
 volume_db = -12.0
 autoplay = true
 
+[connection signal="update_attr" from="Cover/Medic" to="Cover/Medic/HealthDisplay" method="_on_PlayerUnit_update_attr"]
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
 [connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]
