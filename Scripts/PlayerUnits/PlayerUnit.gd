@@ -15,7 +15,7 @@ var abilities = []
 var grid_position
 var god
 var is_marked
-var mark_length
+var mark_length = 0
 
 signal update_attr
 signal used_ability
