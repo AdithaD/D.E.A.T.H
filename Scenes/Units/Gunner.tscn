@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl top right.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl bottom right.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Units/Shred Cover.gd" type="Script" id=10]
-[ext_resource path="res://Assets/Sprites/shred_cover.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/shredder shot.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
