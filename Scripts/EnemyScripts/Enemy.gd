@@ -12,6 +12,8 @@ var ai
 var grid_position
 var god
 
+var is_marked = false
+
 signal update_attr
 
 func _ready():
@@ -60,7 +62,7 @@ func do_action(action):
 		TARGET_TYPE.cover:
 			pass
 		TARGET_TYPE.tile:
-			pass
+			ability.use_ability_on_tile(self, target)
 	
 		
 func die():

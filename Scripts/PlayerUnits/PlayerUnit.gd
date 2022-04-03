@@ -5,6 +5,8 @@ export (int) var max_health
 export (int) var actionPointsPerTurn
 export (int) var tilesPerMove
 
+export (bool) var can_cover = true
+
 var health
 var action_points = actionPointsPerTurn
 
@@ -12,6 +14,8 @@ var abilities = []
 
 var grid_position
 var god
+var is_marked
+var mark_length
 
 signal update_attr
 signal used_ability
@@ -32,7 +36,10 @@ func _ready():
 
 func new_turn():
 	action_points = actionPointsPerTurn
-	pass
+	if(mark_length > 0):
+		mark_length -= 1
+	if(mark_length <= 0):
+		is_marked = false
 
 func spend_action_points(action_cost: int):
 	action_points -= 1
@@ -52,6 +59,11 @@ func on_used_ability(index):
 func set_grid_position(new_grid):
 	grid_position = new_grid
 	position = god.grid_to_world(grid_position)
+	
+func apply_mark(turns):
+	if turns > mark_length:
+		mark_length = turns
+	is_marked = true 
 
 func _on_PlayerUnit_took_damage():
 	pass # Replace with function body.
