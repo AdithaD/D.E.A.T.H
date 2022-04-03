@@ -7,10 +7,22 @@ export (NodePath) var floor_map_path
 onready var obstacle_tile_map = get_node(obstacle_map_path)
 
 onready var floor_tile_map = get_node(floor_map_path)
+var cover
+
+# all other obstacles are 0 over
+var cover_map = {
+					"Building wall 1": 1,
+					"Building wall 2": 1,
+					"CORNER TOWER": 1,
+					"PYLON": 1,
+					"half pylon.png 4": 0.5
+}
 
 signal new_turn
 
 func _ready():
+	cover = Cover.new()
+	cover.init(obstacle_tile_map, cover_map)
 	set_process_input(true)
 
 func _input(event):
@@ -62,7 +74,27 @@ func cell_exists(grid):
 func new_turn():
 	emit_signal("new_turn")
 	
+func get_cover(loc_a, loc_b):
+	return cover.get_cover(loc_a, loc_b)
+
+func get_hit_chance(loc_a, loc_b, penetration=0, ignores_cover=false):
+	if ignores_cover:
+		return 0.95
+	var post_pen = max(cover.get_cover(loc_a, loc_b) - penetration, 0)
+	return hit_chance_func(post_pen)
+	
+func hit_chance_func(x):
+	var value = (-0.3325 * x) + 0.95
+	return clamp(value, 0, 1)
+	
 class Cover:
+	var obstacle_tile_map
+	var cover_map
+	
+	func init(map, cov_map):
+		obstacle_tile_map = map
+		cover_map = cov_map
+	
 	static func raytrace(loc_a, loc_b):
 		var tiles = []
 		
@@ -103,10 +135,14 @@ class Cover:
 		return tiles
 
 		
-	static func get_cover(loc_a, loc_b):
-		pass
-		
-	
+	func get_cover(loc_a, loc_b):
+		var total_cover = 0
+		for tile in raytrace(loc_a, loc_b):
+			var tile_index =  obstacle_tile_map.get_cellv(tile)
+			var name = obstacle_tile_map.tile_set.tile_get_name(tile_index)
+			if(name in cover_map):
+				total_cover += cover_map[name]
 
+		return total_cover
 
 

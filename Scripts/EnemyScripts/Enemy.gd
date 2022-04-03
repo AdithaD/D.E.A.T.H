@@ -51,7 +51,7 @@ func do_action(action):
 	
 	match ability.target_type:
 		TARGET_TYPE.player:
-			ability.use_ability_on_player(target)
+			ability.use_ability_on_player(self, target)
 		TARGET_TYPE.enemy:
 			pass
 		TARGET_TYPE.cover:
