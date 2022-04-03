@@ -10,7 +10,8 @@ var action_points = actionPointsPerTurn
 
 var abilities = [] 
 
-var grid_position = Vector2(0, 0)
+var grid_position
+var god
 
 signal update_attr
 signal used_ability
@@ -23,7 +24,11 @@ func _ready():
 			
 	new_turn()
 	emit_signal('update_attr')
-	pass # Replace with function body.
+	god = get_tree().root.get_child(0)
+	
+	# temp
+	yield(get_tree(), "idle_frame")
+	grid_position = god.world_to_grid(position)
 
 func new_turn():
 	action_points = actionPointsPerTurn
@@ -36,6 +41,10 @@ func spend_action_points(action_cost: int):
 
 func moveTo(x: int, y: int):
 	pass
+	
+func take_damage(dmg):
+	health -= dmg
+	emit_signal("update_attr")
 
 func on_used_ability(index):
 	emit_signal("used_ability")

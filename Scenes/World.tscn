@@ -59,7 +59,8 @@ move_speed_scaling = 0.4
 [node name="Tween" type="Tween" parent="UserCamera"]
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
-position = Vector2( 16, 24 )
+position = Vector2( -12, 61 )
+tiles_per_move = 1
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, -1 )

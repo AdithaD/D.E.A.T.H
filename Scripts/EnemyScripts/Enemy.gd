@@ -1,37 +1,72 @@
 extends Node2D
 class_name Enemy
 
-export (int) var max_health
-export (int) var tiles_per_move
-
-export (int) var can_attack
-export (int) var attack_range
-export (int) var attack_dmg
+export (int) var max_health = 5
+export (int) var tiles_per_move = 5
+export (bool) var can_cover = true
+enum TARGET_TYPE { player, enemy, cover, tile }
 
 var health
 var abilities = []
 var ai
-var grid_position = Vector2(0, 0)
+var grid_position
+var god
 
 func _ready():
 	health = max_health
 	abilities = $Abilities.get_children()
 	ai = $AI
+	god = get_tree().root.get_child(0)
 	
-	# todo: remove, shouldnt be called from here for tesing 
-	set_process_input(true)
-
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		new_turn()
+	# temp
+	yield(get_tree(), "idle_frame")
+	grid_position = god.world_to_grid(position)
 	
 
 func new_turn():
-	var move = [grid_position]
 	if(ai.has_method("get_move")):
-		move = ai.get_move(self)
-	print(move)
+		var move = ai.get_move()
+		grid_position = move[-1]
+		print(grid_position)
+		position = god.grid_to_world(grid_position)
+	
+	if(ai.has_method("get_action")):
+		do_action(ai.get_action())
+		
 
-func take_damage(damage):
-	health -= damage
-	print('oof ouch oowie i took %s damage' % damage )
+func get_ability(name):
+	for x in abilities:
+		if x.ability_name == name:
+			return x
+	return null
+	
+
+func do_action(action):
+	if(action == null):
+		return
+	var target = action["target"]
+	var ability = get_ability(action["action"])
+	if(ability == null):
+		return
+	
+	match ability.target_type:
+		TARGET_TYPE.player:
+			ability.use_ability_on_player(target)
+		TARGET_TYPE.enemy:
+			pass
+		TARGET_TYPE.cover:
+			pass
+		TARGET_TYPE.tile:
+			pass
+	
+		
+func die():
+	pass
+
+func take_damage(dmg):
+	health -= dmg
+	if health <= 0:
+		die()
+
+func _on_World_new_turn():
+	new_turn()

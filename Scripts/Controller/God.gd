@@ -5,11 +5,18 @@ extends Node
 export (NodePath) var obstacle_map_path
 export (NodePath) var floor_map_path
 onready var obstacle_tile_map = get_node(obstacle_map_path)
+
 onready var floor_tile_map = get_node(floor_map_path)
-#func _ready():
-#	print(get_obstacle_locations())
-#
-#
+
+signal new_turn
+
+func _ready():
+	set_process_input(true)
+
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		new_turn()
+
 #func load_nodes(nodePaths: Array) -> Array:
 #	var nodes := []
 #	for nodePath in nodePaths:
@@ -37,8 +44,22 @@ func get_floor_tilemap():
 func get_obstacle_locations():
 	return get_obstacle_tilemap().get_used_cells()
 
+func world_to_grid(world):
+	return floor_tile_map.world_to_map(world)
 func get_new_selector(scene):
 	var new_selector = scene.instance()
 	new_selector.obstacle_tile_map = obstacle_tile_map
 	new_selector.floor_tile_map = floor_tile_map
 	return new_selector
+
+func grid_to_world(grid):
+	return floor_tile_map.map_to_world(grid)
+	
+func cell_exists(grid):
+	return floor_tile_map.get_cellv(grid) != -1
+	
+
+func new_turn():
+	emit_signal("new_turn")
+
+
