@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/medi bottom right.png-88164df97c241ed4e8273bc598fdbada.stex"
+path="res://.import/backgroung scene.png-f56f3ecf6ee1fd21495022946dcf8492.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/PlayerUnits/Medic/medi bottom right.png"
-dest_files=[ "res://.import/medi bottom right.png-88164df97c241ed4e8273bc598fdbada.stex" ]
+source_file="res://Assets/backgroung scene.png"
+dest_files=[ "res://.import/backgroung scene.png-f56f3ecf6ee1fd21495022946dcf8492.stex" ]
 
 [params]
 
