@@ -1,0 +1,19 @@
+[gd_resource type="TileSet" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/TILEMAPS/half pylon.png" type="Texture" id=5]
+
+[resource]
+4/name = "half pylon.png 4"
+4/texture = ExtResource( 5 )
+4/tex_offset = Vector2( 0, -32 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 32, 64 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
