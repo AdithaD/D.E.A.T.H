@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Scenes/UI/Selector.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/ScriptInstances/AbilityLifecycle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Controller/God.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/Enemies/BaseEnemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/UI/UserCamera.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/UI/Ability UI/AbilitiesBar.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
@@ -20,6 +19,7 @@
 [ext_resource path="res://Scenes/TurnUI.gd" type="Script" id=18]
 [ext_resource path="res://Assets/Sounds/Music/DEATH.wav" type="AudioStream" id=19]
 [ext_resource path="res://Scenes/Units/Medic.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Enemies/EnemyUnit.tscn" type="PackedScene" id=21]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -79,12 +79,8 @@ move_speed_scaling = 0.4
 
 [node name="Tween" type="Tween" parent="UserCamera"]
 
-[node name="Enemy" parent="." instance=ExtResource( 7 )]
+[node name="EnemyUnit" parent="." instance=ExtResource( 21 )]
 position = Vector2( -32, 16 )
-
-[node name="Enemy2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 0, 48 )
-tiles_per_move = 1
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../Cover")

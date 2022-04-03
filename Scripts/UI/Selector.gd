@@ -124,8 +124,12 @@ func select_enemy():
 func select_cover():
 	var mouse_pos = get_global_mouse_position()
 	var map_coords = obstacle_tile_map.world_to_map(mouse_pos)
-	selection = map_coords
+	
+	if(obstacle_tile_map.get_cellv(map_coords) != -1):
+		selection = map_coords
 
+		camera.focus_on(obstacle_tile_map.map_to_world(map_coords))
+		emit_signal("on_select_cover", selection)
 	pass
 	
 func select_tile():

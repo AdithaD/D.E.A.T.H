@@ -35,11 +35,6 @@ func _ready():
 			
 	emit_signal('update_attr')
 	god = get_tree().root.get_child(0)
-	
-	# temp
-	yield(get_tree(), "idle_frame")
-	grid_position = god.world_to_grid(position)
-	
 func new_turn(finish_turn):
 	end_turn = finish_turn
 		
@@ -53,7 +48,9 @@ func new_turn(finish_turn):
 		mark_length -= 1
 	if(mark_length <= 0):
 		is_marked = false
+
 	emit_signal('update_attr')
+
 
 func get_moveable_distance():
 	return tiles_per_turn - dist_moved

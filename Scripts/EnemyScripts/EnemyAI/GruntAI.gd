@@ -1,30 +1,28 @@
 extends Node
 
-export (int) var min_dist = 1
+var god
+var enemy
+
 const bfs_path = "res://Scripts/Pathing/BFS.gd"
 const bfs_class = preload(bfs_path)
 
-var god
 var bfs
-var enemy
 
 func _ready():
 #	randomize()
-	god = get_tree().root.get_child(0)
 	bfs = bfs_class.new()
+	god = get_tree().root.get_child(0)
 	enemy = get_parent()
-
-func get_move():
-	bfs.init(god)
-	var reachable = bfs.get_reachable(enemy.grid_position, enemy.tiles_per_move)
 	
-	var best = [enemy.grid_position, 0]
-
-	for tile in reachable:
-		if evaluate_tile(tile) > best[1] and get_dist_to_closest_player(tile) >= min_dist:
-			best = [tile, evaluate_tile(tile)]
+func generate_turn(abilities):
+	var move_ability = abilities[0]
+	
+	var other_ability = abilities[1]
+	if(abilities.size() > 2):
+		other_ability  = abilities[range(1, abilities.size() - 1)]
 		
-	return bfs.find_path(enemy.grid_position, best[0])
+	return [move_ability, other_ability]
+
 
 func evaluate_tile(pos):
 	return float(1)/max(get_move_dist_to_closest_player(pos), 1)
@@ -55,13 +53,3 @@ func get_move_dist_to_closest_player(pos):
 			closest = len(path) - 1
 	
 	return closest
-	
-func get_action():
-	var ability_range = enemy.get_ability("shoot").ability_range
-	var in_range = get_players_in_range(ability_range, enemy.grid_position)
-	if len(in_range) == 0:
-		return null
-	
-	return {"action": "shoot", "target" : in_range[randi() % in_range.size()]}
-	
-	
