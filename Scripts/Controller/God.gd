@@ -18,6 +18,8 @@ var cover_map = {
 					"half pylon.png 4": 0.5
 }
 
+var unwalkable_tile_names = ["waterr.tres 4"]
+
 func _ready():
 	cover = Cover.new()
 	cover.init(obstacle_tile_map, cover_map)
@@ -55,6 +57,19 @@ func get_player_locations():
 	for player in get_player_nodes():
 		out.append(player.grid_position)
 	return out
+	
+func get_enemy_locations():
+	var out = []
+	for enemy in get_enemy_nodes():
+		out.append(enemy.grid_position)
+	return out
+	
+func get_unwalkable_tiles():
+	var unwalkable_tiles = []
+	for name in unwalkable_tile_names:
+		unwalkable_tiles += get_floor_tilemap().get_used_cells_by_id(get_floor_tilemap().tile_set.find_tile_by_name(name))
+	return unwalkable_tiles
+	
 
 func get_obstacle_tilemap():
 	return obstacle_tile_map
@@ -62,8 +77,15 @@ func get_obstacle_tilemap():
 func get_floor_tilemap():
 	return floor_tile_map
 	
+func get_cover_obstacles():
+	var obstacles = []
+	for name in cover_map.keys():
+		obstacles += get_obstacle_tilemap().get_used_cells_by_id(get_obstacle_tilemap().tile_set.find_tile_by_name(name))
+	return obstacles
+		
+
 func get_obstacle_locations():
-	return get_obstacle_tilemap().get_used_cells()
+	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles()
 
 func world_to_grid(world):
 	return floor_tile_map.world_to_map(world)
@@ -93,8 +115,8 @@ func get_hit_chance(loc_a, loc_b, penetration=0, ignores_cover=false):
 	return hit_chance_func(post_pen)
 	
 func hit_chance_func(x):
-	var value = (-0.3325 * x) + 0.95
-	return clamp(value, 0, 1)
+	var value = 1 - log(x + 1) / log(5)
+	return clamp(value, 0, 0.95)
 	
 	
 class Cover:
@@ -149,9 +171,10 @@ class Cover:
 		var total_cover = 0
 		for tile in raytrace(loc_a, loc_b):
 			var tile_index =  obstacle_tile_map.get_cellv(tile)
-			var name = obstacle_tile_map.tile_set.tile_get_name(tile_index)
-			if(name in cover_map):
-				total_cover += cover_map[name]
+			if(tile_index != -1):
+				var name = obstacle_tile_map.tile_set.tile_get_name(tile_index)
+				if(name in cover_map):
+					total_cover += cover_map[name]
 
 		return total_cover
 
