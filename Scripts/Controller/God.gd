@@ -49,6 +49,9 @@ func init_entities():
 func get_player_nodes():
 #	return player_units
 	return get_tree().get_nodes_in_group("player_unit")
+	
+func get_flying_player_nodes():
+	return get_tree().get_nodes_in_group("flying_player_unit")
 
 func get_enemy_nodes():
 	return get_tree().get_nodes_in_group("enemy")
@@ -181,5 +184,20 @@ class Cover:
 
 		return total_cover
 
+class EnemySpawner:
+	var wave_num = 1
+	
+	func spawn_enemy(enemy_scene, loc):
+		pass
+	
+	func spawn_wave():
+		var spawns = []
+		wave_num += 1
+
+	func get_empty_spawn_locations():
+		pass
+		
+	func get_spawn_enemy_list():
+		pass
 
 

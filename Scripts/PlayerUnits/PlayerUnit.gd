@@ -83,6 +83,11 @@ func die():
 	$DeathSprite.visible = true
 	$AnimatedSprite.visible = false
 	
+
+func heal_damage(heal_amount):
+	health = min(health + heal_amount, max_health)
+	emit_signal("update_attr")
+
 func on_used_ability(index):
 	emit_signal("used_ability")
 

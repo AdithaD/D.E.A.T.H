@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -20,8 +20,11 @@
 [ext_resource path="res://Scenes/TurnUI.gd" type="Script" id=18]
 [ext_resource path="res://Assets/Sounds/Music/DEATH.wav" type="AudioStream" id=19]
 [ext_resource path="res://Scenes/Units/Medic.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=21]
+[ext_resource path="res://Scenes/Enemies/Recon.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/Units/Grenadier.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Units/Helicopter.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Enemies/Artillery.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/Enemies/AntiAir.tscn" type="PackedScene" id=25]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -61,23 +64,34 @@ script = ExtResource( 3 )
 tile_set = ExtResource( 2 )
 texture_offset = Vector2( 0, -32 )
 
-[node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
-position = Vector2( 96, -16 )
-script = ExtResource( 21 )
+[node name="Grenadier" parent="Cover" instance=ExtResource( 21 )]
+position = Vector2( 48, 24 )
 
-[node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
-position = Vector2( 64, -32 )
-script = ExtResource( 21 )
+[node name="Grunt" parent="Cover" instance=ExtResource( 7 )]
+position = Vector2( 32, 48 )
+
+[node name="Recon" parent="Cover" instance=ExtResource( 21 )]
+position = Vector2( 32, 32 )
+
+[node name="Artillery" parent="Cover" instance=ExtResource( 24 )]
+position = Vector2( -128, 32 )
+
+[node name="AntiAir" parent="Cover" instance=ExtResource( 25 )]
+position = Vector2( -128, 64 )
+
+[node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
 
 [node name="Medic" parent="Cover" instance=ExtResource( 20 )]
-position = Vector2( 0, -16 )
-script = ExtResource( 21 )
+position = Vector2( 240, -72 )
 
-[node name="Heal" parent="Cover/Medic/Abilities" index="1"]
-voice_lines = [ "Is it critical?", "This might sting a little!", "Heroes never die", "Drink some water!" ]
+[node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
+position = Vector2( 128, -112 )
 
-[node name="Grenadier" parent="Cover" instance=ExtResource( 22 )]
-position = Vector2( 48, 24 )
+[node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
+position = Vector2( 256, -96 )
+
+[node name="Grenadier2" parent="Cover" instance=ExtResource( 22 )]
+position = Vector2( 208, -120 )
 
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
@@ -89,9 +103,6 @@ focus_zoom = 0.3
 move_speed_scaling = 0.4
 
 [node name="Tween" type="Tween" parent="UserCamera"]
-
-[node name="Grunt" parent="." instance=ExtResource( 7 )]
-position = Vector2( -32, 16 )
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../Cover")
@@ -199,7 +210,3 @@ autoplay = true
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
 [connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]
-
-[editable path="Cover/Marksman"]
-[editable path="Cover/Gunner"]
-[editable path="Cover/Medic"]

@@ -48,4 +48,7 @@ damage = 3
 [node name="HealthDisplay" parent="." index="3" instance=ExtResource( 4 )]
 position = Vector2( -20, -29 )
 
+[node name="DeathSprite" parent="." index="4"]
+visible = false
+
 [connection signal="update_attr" from="." to="HealthDisplay" method="_on_PlayerUnit_update_attr"]

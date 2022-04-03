@@ -55,9 +55,10 @@ func new_turn():
 			
 			for ability in turn:
 				ability.use_ai_ability(self)
+				yield(ability, "finished_doing")
 		
 		emit_signal('update_attr')
-	
+
 func take_damage(dmg):
 	health -= dmg
 	if(health <= 0):

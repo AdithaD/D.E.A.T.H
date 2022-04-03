@@ -20,10 +20,11 @@ func display_voice_line(voice_line):
 	$VoiceLineTimer.start()
 	
 func display_ability_voice_line():
-	var index = randi() % lifecycle.active_ability.voice_lines.size()
-	var voice_line = lifecycle.active_ability.voice_lines[index]
-	
-	display_voice_line(voice_line)
+	if lifecycle.active_ability.voice_lines.size() > 0:
+		var index = randi() % lifecycle.active_ability.voice_lines.size()
+		var voice_line = lifecycle.active_ability.voice_lines[index]
+		
+		display_voice_line(voice_line)
 
 
 func bind_lifecycle(new_lifecycle):
