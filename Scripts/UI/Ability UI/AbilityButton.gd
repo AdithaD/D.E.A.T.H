@@ -4,7 +4,7 @@ class_name AbilityButton
 var player
 var ability_index
 
-onready var turn_manager = get_node("/root/World/TurnManager")
+onready var turn_manager = get_node("/root/World/AbilityLifecycleManager")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -12,6 +12,11 @@ var active_ability
 var player 
 var target
 
+signal selecting
+signal doing 
+signal cancel
+signal completed 
+
 func _ready():
 	secondary_selector = get_node("/root/World").get_new_selector(secondary_selector_scene)
 	add_child(secondary_selector)
@@ -42,7 +47,8 @@ func start(casting_player, ability_index):
 	
 	secondary_selector.set_select_mode(active_ability.target_type)
 	secondary_selector.listen_to_input = true
-
+	
+	emit_signal('selecting')
 	
 func _on_Secondary_Selector_select(selected):
 	if(LIFECYCLE.selecting):
@@ -52,17 +58,13 @@ func _on_Secondary_Selector_select(selected):
 
 func move_to_doing():
 	print('moving to doing')
-
+	emit_signal('doing')
 	state = LIFECYCLE.doing
 	active_ability.use_ability(player, target)
 	state = LIFECYCLE.complete
 	queue_free()
 
-func _on_Selector_unselect():
-	print('killing ability command')
-	queue_free()
-	pass
-
 func _on_Secondary_Selector_quit_selection():
 	primary_selector.listen_to_input = true
+	emit_signal('cancel')
 	queue_free()
