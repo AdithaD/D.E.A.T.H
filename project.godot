@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "PlayerUnit",
 "language": "GDScript",
 "path": "res://Scripts/PlayerUnits/PlayerUnit.gd"
+}, {
+"base": "Node2D",
+"class": "Selector",
+"language": "GDScript",
+"path": "res://Scripts/UI/Selector.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
 "AbilityButton": "",
 "AbilityLifecycle": "",
 "Enemy": "",
-"PlayerUnit": ""
+"PlayerUnit": "",
+"Selector": ""
 }
 
 [application]
