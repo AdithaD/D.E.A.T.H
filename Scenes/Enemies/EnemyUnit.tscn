@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Enemies/EnemyUnit.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Enemies/EnemyShoot.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Enemies/EnemyMove.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/EnemyAbilities/EnemyShoot.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/EnemyAbilities/EnemyMove.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Enemies/EnemyUI.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/EnemyScripts/EnemyAI/GruntAI.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Sprites/Enemies/Grunt/grunt bottom right.png" type="Texture" id=6]
