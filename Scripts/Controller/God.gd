@@ -94,8 +94,8 @@ func get_hit_chance(loc_a, loc_b, penetration=0, ignores_cover=false):
 	return hit_chance_func(post_pen)
 	
 func hit_chance_func(x):
-	var value = (-0.3325 * x) + 0.95
-	return clamp(value, 0, 1)
+	var value = 1 - log(x + 1) / log(5)
+	return clamp(value, 0, 0.95)
 	
 class Cover:
 	var obstacle_tile_map
