@@ -69,8 +69,15 @@ func get_obstacle_tilemap():
 func get_floor_tilemap():
 	return floor_tile_map
 	
+func get_cover_obstacles():
+	var obstacles = []
+	for name in cover_map.keys():
+		obstacles += get_obstacle_tilemap().get_used_cells_by_id(get_obstacle_tilemap().tile_set.find_tile_by_name(name))
+	return obstacles
+		
+
 func get_obstacle_locations():
-	return get_obstacle_tilemap().get_used_cells() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles()
+	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles()
 
 func world_to_grid(world):
 	return floor_tile_map.world_to_map(world)
