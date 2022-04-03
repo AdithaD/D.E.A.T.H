@@ -81,6 +81,12 @@ penetration = 0
 
 [node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
 
+[node name="Recon" parent="." instance=ExtResource( 22 )]
+position = Vector2( 32, 32 )
+
+[node name="Grunt" parent="." instance=ExtResource( 7 )]
+position = Vector2( 32, 48 )
+
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
 current = true
@@ -91,12 +97,6 @@ focus_zoom = 0.3
 move_speed_scaling = 0.4
 
 [node name="Tween" type="Tween" parent="UserCamera"]
-
-[node name="Grunt" parent="." instance=ExtResource( 7 )]
-position = Vector2( -32, 16 )
-
-[node name="Recon" parent="." instance=ExtResource( 22 )]
-position = Vector2( 0, 48 )
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../Cover")
