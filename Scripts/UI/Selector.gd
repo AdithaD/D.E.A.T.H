@@ -20,8 +20,10 @@ signal on_select_player(selected_player)
 signal on_select_enemy(selected_enemy)
 signal on_select_tile(selected_tile)
 signal on_select_cover(selected_cover)
+
 signal on_deselect()
 signal on_quit_selection()
+signal on_confirm_select()
 
 func _ready():
 	$Sprite.texture = selector_image
@@ -40,14 +42,24 @@ func deselect():
 	selection = null
 	camera.unfocus()
 	emit_signal("on_deselect")
+	
 
 func _process(_delta):
 	
 	if selection != null:
-		if(Input.is_action_just_pressed("deselect") && listen_to_input):
-			if(selection != null):
-				deselect()
+		if (target_type == Ability.TARGET_TYPE.player):
+			if(selection.global_position != global_position):
+				var tile = floor_tile_map.world_to_map(selection.global_position)
+				var snapped_pos = floor_tile_map.map_to_world(tile)
 				
+				var new_pos = Vector2(snapped_pos.x, snapped_pos.y + 8)
+				$Sprite.global_position = new_pos
+				
+		if(Input.is_action_just_pressed("deselect") && listen_to_input):
+			deselect()
+		if(Input.is_action_just_pressed("confirm_select") && listen_to_input):
+			emit_signal("on_confirm_select")
+			emit_signal("on_confirm_select")
 
 	else:
 		if Input.is_action_just_pressed("deselect"):
@@ -87,7 +99,7 @@ func select_player():
 		if unit.global_position == snapped_pos:
 			selection = unit
 			emit_signal("on_select_player", selection)
-			camera.focusOn(unit.global_position)
+			camera.focus_on(unit.global_position)
 			break			
 
 	pass
@@ -102,7 +114,7 @@ func select_enemy():
 	for enemy in enemies:
 		if enemy.global_position == snapped_pos:
 			selection = enemy
-			camera.focusOn(enemy.global_position)
+			camera.focus_on(enemy.global_position)
 			emit_signal("on_select_enemy", selection)
 			break			
 			

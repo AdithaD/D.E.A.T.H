@@ -13,8 +13,8 @@ func _use_ability(player, target):
 	var path = bfs.find_path(player.grid_position, target)
 	
 	if(path != null):
-		player.set_grid_position(path[-1])
-	
+		yield(player.do_move(path.slice(1,len(path) - 1)), "completed")
+		player.dist_moved += path.size() - 1
 	finish_doing()
 	pass
 
@@ -23,4 +23,5 @@ func _ready():
 	god = get_tree().root.get_child(0)
 
 
-	
+func _ability_conditions(player):
+	return player.get_moveable_distance() > 0

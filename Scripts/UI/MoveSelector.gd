@@ -10,7 +10,7 @@ var reachable
 func _ready():
 	bfs = bfs_class.new()
 	bfs.init(self.god)
-	reachable = bfs.get_reachable(lifecycle.player.grid_position, lifecycle.player.tilesPerMove)
+	reachable = bfs.get_reachable(lifecycle.player.grid_position, lifecycle.player.get_moveable_distance())
 	get_node("/root/World/Overlay").set_overlay(reachable)
 	
 func select_tile():

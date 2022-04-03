@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/UI/Selector.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/ScriptInstances/AbilityLifecycle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Controller/God.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/BaseEnemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Enemies/BaseEnemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/UI/UserCamera.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/UI/Ability UI/AbilitiesBar.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
@@ -16,12 +16,17 @@
 [ext_resource path="res://Assets/BACKGROUNMD.png" type="Texture" id=14]
 [ext_resource path="res://Resource/overlay.tres" type="TileSet" id=15]
 [ext_resource path="res://Scenes/Overlay.gd" type="Script" id=16]
-[ext_resource path="res://Assets/Sounds/Music/DEATH.wav" type="AudioStream" id=17]
+[ext_resource path="res://Scenes/TurnManager.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/TurnUI.gd" type="Script" id=18]
+[ext_resource path="res://Assets/Sounds/Music/DEATH.wav" type="AudioStream" id=19]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
 obstacle_map_path = NodePath("Cover")
 floor_map_path = NodePath("Tiles")
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource( 17 )
 
 [node name="Tiles" type="TileMap" parent="."]
 mode = 1
@@ -72,6 +77,9 @@ move_speed_scaling = 0.4
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
 position = Vector2( -32, 16 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, 48 )
 tiles_per_move = 1
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
@@ -83,6 +91,24 @@ floor_map_path = NodePath("../Tiles")
 [node name="HUD" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="TurnUI" type="Control" parent="UI/HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 18 )
+
+[node name="TurnNumberLabel" type="Label" parent="UI/HUD/TurnUI"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 120.0
+margin_bottom = 32.0
+
+[node name="NextTurn" type="Button" parent="UI/HUD/TurnUI"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 105.0
+margin_bottom = 68.0
+text = "Next Button"
 
 [node name="Abilities Bar" type="HBoxContainer" parent="UI/HUD"]
 anchor_left = 0.5
@@ -155,9 +181,10 @@ __meta__ = {
 }
 
 [node name="Combat Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 17 )
+stream = ExtResource( 19 )
 volume_db = -12.0
 autoplay = true
 
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
+[connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]

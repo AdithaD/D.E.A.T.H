@@ -25,8 +25,10 @@ func new_turn():
 		cooldown -= 1;
 
 func can_use_ability(player):
-	return player.action_points > 0 and cooldown == 0
+	return player.action_points > 0 and cooldown == 0 and _ability_conditions(player)
 
+func _ability_conditions(player):
+	return true
 
 func use_ability(player, target):
 	if (can_use_ability(player)) :

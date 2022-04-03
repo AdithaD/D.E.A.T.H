@@ -4,6 +4,7 @@ extends Node
 #onready var player_units = load_nodes(player_unit_node_paths)
 export (NodePath) var obstacle_map_path
 export (NodePath) var floor_map_path
+export (int) var mark_acc_increase = 20
 onready var obstacle_tile_map = get_node(obstacle_map_path)
 
 onready var floor_tile_map = get_node(floor_map_path)
@@ -24,11 +25,19 @@ func _ready():
 	cover = Cover.new()
 	cover.init(obstacle_tile_map, cover_map)
 	set_process_input(true)
+	
+	init_entities()	
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		new_turn()
+	$TurnManager.new_turn()
 
+
+func init_entities():
+	for en in get_enemy_nodes():	
+		en.grid_position = world_to_grid(en.position)
+	
+	for player in get_player_nodes():
+		player.grid_position = world_to_grid(player.position)
+		
 #func load_nodes(nodePaths: Array) -> Array:
 #	var nodes := []
 #	for nodePath in nodePaths:
@@ -96,27 +105,22 @@ func grid_to_world(grid):
 func cell_exists(grid):
 	return floor_tile_map.get_cellv(grid) != -1
 	
-
-func new_turn():
-	for player in get_player_nodes():
-		if player.has_method("new_turn"):
-			player.new_turn()
-	for enemy in get_enemy_nodes():
-		if enemy.has_method("new_turn"):
-			enemy.new_turn()
 	
 func get_cover(loc_a, loc_b):
 	return cover.get_cover(loc_a, loc_b)
 
-func get_hit_chance(loc_a, loc_b, penetration=0, ignores_cover=false):
+func get_hit_chance(loc_a, loc_b, penetration=0, ignores_cover=false, marked=false):
 	if ignores_cover:
 		return 0.95
 	var post_pen = max(cover.get_cover(loc_a, loc_b) - penetration, 0)
+	if marked:
+		return min(1, hit_chance_func(post_pen) + (float(mark_acc_increase)/100))
 	return hit_chance_func(post_pen)
 	
 func hit_chance_func(x):
 	var value = 1 - log(x + 1) / log(5)
 	return clamp(value, 0, 0.95)
+	
 	
 class Cover:
 	var obstacle_tile_map
@@ -176,5 +180,6 @@ class Cover:
 					total_cover += cover_map[name]
 
 		return total_cover
+
 
 
