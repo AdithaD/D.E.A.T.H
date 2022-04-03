@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Assets/Sounds/Music/DEATH.wav" type="AudioStream" id=19]
 [ext_resource path="res://Scenes/Units/Medic.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scripts/Abilities/Heal.gd" type="Script" id=21]
+[ext_resource path="res://Scenes/Enemies/Recon.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Units/Helicopter.tscn" type="PackedScene" id=23]
 
 [node name="World" type="Node2D"]
@@ -93,6 +94,9 @@ move_speed_scaling = 0.4
 
 [node name="Grunt" parent="." instance=ExtResource( 7 )]
 position = Vector2( -32, 16 )
+
+[node name="Recon" parent="." instance=ExtResource( 22 )]
+position = Vector2( 0, 48 )
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../Cover")
