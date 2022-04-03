@@ -142,11 +142,16 @@ follow_viewport_enable = true
 follow_viewport_scale = 0.4
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
-margin_left = -960.415
-margin_top = -373.201
-margin_right = 959.585
-margin_bottom = 706.799
+margin_left = -1912.86
+margin_top = -843.072
+margin_right = 7.14453
+margin_bottom = 236.928
+rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
