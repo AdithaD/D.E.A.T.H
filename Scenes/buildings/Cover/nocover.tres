@@ -1,5 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=2]
+[gd_resource type="TileSet" load_steps=4 format=2]
 
+[ext_resource path="res://Assets/TILEMAPS/flag.tres" type="Texture" id=1]
 [ext_resource path="res://Assets/TILEMAPS/BUSH.png" type="Texture" id=6]
 [ext_resource path="res://Assets/TILEMAPS/crater.png" type="Texture" id=7]
 
@@ -32,3 +33,17 @@
 6/shape_one_way_margin = 0.0
 6/shapes = [  ]
 6/z_index = 0
+7/name = "flag.tres 7"
+7/texture = ExtResource( 1 )
+7/tex_offset = Vector2( 0, -32 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 32, 64 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
