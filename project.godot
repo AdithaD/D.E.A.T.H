@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Ability",
 "class": "EnemyAbility",
 "language": "GDScript",
-"path": "res://Scripts/Abilities/EnemyAbility.gd"
+"path": "res://Scripts/EnemyAbilities/EnemyAbility.gd"
 }, {
 "base": "Node2D",
 "class": "EnemyUnit",

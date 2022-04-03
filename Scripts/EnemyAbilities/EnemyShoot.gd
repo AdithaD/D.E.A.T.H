@@ -1,16 +1,24 @@
-extends Node
+extends EnemyAbility
 
-enum TARGET_TYPE { player, enemy, cover, tile }
-
-export (int) var ability_range = 5
 export (int) var damage = 1
 export (int) var penetration = 0
-var ability_name = "shoot"
-var target_type = TARGET_TYPE.player
+export (int) var shoot_range = 10
 
-func use_ability_on_player(_enemy, unit):
-#	randomize()
+func _use_ai_ability(source):
+	#randomize()
+	print('enemy shooting')
+	var target = _generate_target(source)
 	var god = get_tree().root.get_child(0)
-	var rand = god.get_hit_chance(_enemy.grid_position, unit.grid_position, penetration, !unit.can_cover, unit.is_marked)
+	var rand = god.get_hit_chance(source.grid_position, target.grid_position, penetration, !target.can_cover, target.is_marked)
 	if(randf() < rand):
-		unit.take_damage(damage)
+		target.take_damage(damage)
+	
+	finish_doing()
+	
+func _generate_target(source):
+	var players = ai.get_players_in_range(shoot_range, source.grid_position)
+	
+	if(players.size() > 0):
+		var index  = randi() % players.size()
+		
+		return players[index]
