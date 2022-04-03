@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Scenes/ScriptInstances/AbilityLifecycle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Controller/God.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Enemies/Grunt.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scripts/Abilities/Heal.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/UI/UserCamera.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/UI/Ability UI/AbilitiesBar.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
@@ -21,6 +20,9 @@
 [ext_resource path="res://Scenes/TurnUI.gd" type="Script" id=18]
 [ext_resource path="res://Assets/Sounds/Music/DEATH.wav" type="AudioStream" id=19]
 [ext_resource path="res://Scenes/Units/Medic.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scripts/Abilities/Heal.gd" type="Script" id=21]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/shredder shot.png" type="Texture" id=22]
+[ext_resource path="res://Scenes/Units/Helicopter.tscn" type="PackedScene" id=23]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -66,6 +68,11 @@ position = Vector2( 96, -16 )
 [node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
 position = Vector2( 64, -32 )
 
+[node name="Shred Cover" parent="Cover/Gunner/Abilities" index="1"]
+ability_description = "Turn any pieces of cover into rubble."
+icon = ExtResource( 22 )
+voice_lines = [ "You can't hide now!", "They're in the open!", "Shredding cover!" ]
+
 [node name="Medic" parent="Cover" instance=ExtResource( 20 )]
 position = Vector2( 0, -16 )
 
@@ -74,8 +81,11 @@ script = ExtResource( 21 )
 ability_name = "Ability"
 ability_description = "Ability Description"
 voice_lines = [ "Healing!", "Heroes never die!" ]
+cooldownDuration = 2
 heal_amount = 3
 penetration = 0
+
+[node name="Helicoper" parent="Cover" instance=ExtResource( 23 )]
 
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
@@ -90,9 +100,6 @@ move_speed_scaling = 0.4
 
 [node name="Grunt" parent="." instance=ExtResource( 7 )]
 position = Vector2( -32, 16 )
-
-[node name="Shoot" parent="EnemyUnit/Abilities" index="1"]
-voice_lines = [ "Die!", "It's over!" ]
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../Cover")
@@ -205,4 +212,4 @@ autoplay = true
 [editable path="Cover/Marksman"]
 [editable path="Cover/Gunner"]
 [editable path="Cover/Medic"]
-[editable path="EnemyUnit"]
+[editable path="Cover/Helicoper"]
