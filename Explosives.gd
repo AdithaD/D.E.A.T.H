@@ -1,6 +1,7 @@
 extends Ability
 
 export (int) var area_of_effect = 1
+export (int) var select_range = 10
 export (int) var damage = 2
 
 # Called when the node enters the scene tree for the first time.

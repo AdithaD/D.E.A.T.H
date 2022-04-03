@@ -10,7 +10,6 @@ onready var lifecycle_manager = get_node("/root/World/AbilityLifecycleManager")
 func _ready():
 	texture_normal = player.abilities[ability_index].icon
 	connect("pressed", self, "_on_Ability_Button_pressed")
-	player.abilities[ability_index].connect("ability_used", self, "set_state")
 	print(player.abilities[ability_index].can_use_ability(player)	)
 	
 	set_state()

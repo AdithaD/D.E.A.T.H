@@ -8,7 +8,7 @@ onready var turn_manager = get_node("/root/World/TurnManager")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 		turn_manager.connect("update_turn", self, "_on_TurnManager_update_turn")
-
+		
 var selected_player
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -18,6 +18,7 @@ func create_ability_button(player, ability_index):
 	ability_button.player = player
 	ability_button.ability_index = ability_index
 	add_child(ability_button)
+	player.abilities[ability_index].connect("ability_used", self, "regenerate_buttons")
 
 func regenerate_buttons():
 	for child in get_children():
