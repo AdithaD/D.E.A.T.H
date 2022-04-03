@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/UI/Selector.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/ScriptInstances/AbilityLifecycle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Controller/God.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/BaseEnemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Enemies/BaseEnemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/UI/UserCamera.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/UI/Ability UI/AbilitiesBar.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
@@ -76,7 +76,6 @@ move_speed_scaling = 0.4
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
 position = Vector2( -32, 16 )
-tiles_per_move = 1
 
 [node name="Enemy2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, 48 )
