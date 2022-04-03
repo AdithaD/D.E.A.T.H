@@ -49,6 +49,7 @@ zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 8 )
 default_zoom = 0.5
 focus_zoom = 0.3
+move_speed_scaling = 0.4
 
 [node name="Tween" type="Tween" parent="UserCamera"]
 
