@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://Scripts/Abilities/Heal.gd" type="Script" id=21]
 [ext_resource path="res://Scenes/Enemies/Recon.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Units/Helicopter.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Enemies/Artillery.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/Enemies/AntiAir.tscn" type="PackedScene" id=25]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -79,13 +81,19 @@ voice_lines = [ "Healing!", "Heroes never die!" ]
 heal_amount = 3
 penetration = 0
 
-[node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
+[node name="Grunt" parent="Cover" instance=ExtResource( 7 )]
+position = Vector2( 32, 48 )
 
-[node name="Recon" parent="." instance=ExtResource( 22 )]
+[node name="Recon" parent="Cover" instance=ExtResource( 22 )]
 position = Vector2( 32, 32 )
 
-[node name="Grunt" parent="." instance=ExtResource( 7 )]
-position = Vector2( 32, 48 )
+[node name="Artillery" parent="Cover" instance=ExtResource( 24 )]
+position = Vector2( -128, 32 )
+
+[node name="AntiAir" parent="Cover" instance=ExtResource( 25 )]
+position = Vector2( -128, 64 )
+
+[node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
 
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
