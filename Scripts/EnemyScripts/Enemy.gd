@@ -4,6 +4,10 @@ class_name Enemy
 export (int) var max_health = 5
 export (int) var tiles_per_move = 5
 export (bool) var can_cover = true
+
+export (float) var move_animation_time = 0.15
+var move_interval = 0.025
+
 enum TARGET_TYPE { player, enemy, cover, tile }
 
 var health
@@ -31,13 +35,27 @@ func _ready():
 func new_turn():
 	if(ai.has_method("get_move")):
 		var move = ai.get_move()
-		grid_position = move[-1]
-		print(grid_position)
-		position = god.grid_to_world(grid_position)
+		yield(do_move(move.slice(1,len(move) - 1)), "completed")
 	
 	if(ai.has_method("get_action")):
 		do_action(ai.get_action())
-		
+	
+func do_move(path):
+	grid_position = path[-1]
+	print(grid_position)
+	for loc in path:
+		yield(world_move_to(god.grid_to_world(loc)), "completed")
+	
+
+func world_move_to(loc):
+	var diff = loc - position
+	var steps = int(move_animation_time/move_interval)
+	for i in range(0, steps):
+		yield(get_tree().create_timer(move_interval), "timeout")
+		position += diff/steps
+	
+	position = loc
+	
 
 func get_ability(name):
 	for x in abilities:
