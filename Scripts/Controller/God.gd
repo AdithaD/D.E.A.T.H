@@ -4,6 +4,7 @@ extends Node
 #onready var player_units = load_nodes(player_unit_node_paths)
 export (NodePath) var obstacle_map_path
 export (NodePath) var floor_map_path
+export (int) var mark_acc_increase = 20
 onready var obstacle_tile_map = get_node(obstacle_map_path)
 
 onready var floor_tile_map = get_node(floor_map_path)
@@ -108,10 +109,12 @@ func cell_exists(grid):
 func get_cover(loc_a, loc_b):
 	return cover.get_cover(loc_a, loc_b)
 
-func get_hit_chance(loc_a, loc_b, penetration=0, ignores_cover=false):
+func get_hit_chance(loc_a, loc_b, penetration=0, ignores_cover=false, marked=false):
 	if ignores_cover:
 		return 0.95
 	var post_pen = max(cover.get_cover(loc_a, loc_b) - penetration, 0)
+	if marked:
+		return min(1, hit_chance_func(post_pen) + (float(mark_acc_increase)/100))
 	return hit_chance_func(post_pen)
 	
 func hit_chance_func(x):

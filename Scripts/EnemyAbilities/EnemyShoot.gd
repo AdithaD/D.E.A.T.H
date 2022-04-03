@@ -11,6 +11,6 @@ var target_type = TARGET_TYPE.player
 func use_ability_on_player(_enemy, unit):
 #	randomize()
 	var god = get_tree().root.get_child(0)
-	var rand = god.get_hit_chance(_enemy.grid_position, unit.grid_position, penetration)
+	var rand = god.get_hit_chance(_enemy.grid_position, unit.grid_position, penetration, !unit.can_cover, unit.is_marked)
 	if(randf() < rand):
 		unit.take_damage(damage)

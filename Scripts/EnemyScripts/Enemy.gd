@@ -12,11 +12,21 @@ var ai
 var grid_position
 var god
 
+var is_marked = false
+
+signal update_attr
+
 func _ready():
 	health = max_health
 	abilities = $Abilities.get_children()
 	ai = $AI
 	god = get_tree().root.get_child(0)
+	emit_signal('update_attr')
+	
+	# temp
+	yield(get_tree(), "idle_frame")
+	grid_position = god.world_to_grid(position)
+	
 
 func new_turn():
 
@@ -52,7 +62,7 @@ func do_action(action):
 		TARGET_TYPE.cover:
 			pass
 		TARGET_TYPE.tile:
-			pass
+			ability.use_ability_on_tile(self, target)
 	
 		
 func die():
@@ -62,3 +72,4 @@ func take_damage(dmg):
 	health -= dmg
 	if health <= 0:
 		die()
+	emit_signal('update_attr')
