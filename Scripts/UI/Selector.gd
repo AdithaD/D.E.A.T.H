@@ -114,13 +114,9 @@ func select_cover():
 	
 func select_tile():
 	var mouse_pos = get_global_mouse_position()
-	var map_coords = floor_tile_map.world_to_map(mouse_pos)
-
-	print(map_coords)
-	print(floor_tile_map.map_to_world(map_coords))
-	selection = floor_tile_map.get_cell(map_coords.x, map_coords.y)
+	selection = floor_tile_map.world_to_map(mouse_pos)
 	
-
+	emit_signal("on_select_tile", selection)
 	pass
 
 func set_select_mode(new_type):

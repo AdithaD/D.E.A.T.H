@@ -37,11 +37,12 @@ func _ready():
 
 func init(casting_player, ability_index, new_primary_selector):
 	primary_selector = new_primary_selector
-	primary_selector.connect("on_deselect", self, "_on_Selector_unselect")
+	primary_selector.connect("on_deselect", self, "_on_Selector_deselect")
 	
 	player = casting_player
 	active_ability = player.abilities[ability_index]
-		
+	
+	active_ability.connect('finished_doing', self, "on_finished_doing")
 
 func start():
 	print('starting lifecycle')
@@ -63,8 +64,12 @@ func _on_Secondary_Selector_select(selected):
 func move_to_doing():
 	print('moving to doing')
 	emit_signal('doing')
+	
 	state = LIFECYCLE.doing
+	
 	active_ability.use_ability(player, target)
+	
+func on_finished_doing():
 	state = LIFECYCLE.complete
 	primary_selector.listen_to_input = true
 	queue_free()

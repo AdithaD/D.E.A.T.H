@@ -48,6 +48,10 @@ func take_damage(dmg):
 
 func on_used_ability(index):
 	emit_signal("used_ability")
-	
+
+func set_grid_position(new_grid):
+	grid_position = new_grid
+	position = god.grid_to_world(grid_position)
+
 func _on_PlayerUnit_took_damage():
 	pass # Replace with function body.

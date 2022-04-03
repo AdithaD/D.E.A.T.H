@@ -14,6 +14,7 @@ enum TARGET_TYPE { player, enemy, cover, tile }
 export(TARGET_TYPE) var target_type = TARGET_TYPE.enemy
 
 signal ability_used
+signal finished_doing
 
 var cooldown = 0
 
@@ -22,7 +23,7 @@ func new_turn():
 		cooldown -= 1;
 
 func can_use_ability(player):
-	return player.action_points <= 0 || cooldown == 0
+	return player.action_points > 0 and cooldown == 0
 
 
 func use_ability(player, target):
@@ -35,3 +36,6 @@ func use_ability(player, target):
 
 func _use_ability(_player, _target):
 	pass
+
+func finish_doing():
+	emit_signal('finished_doing')

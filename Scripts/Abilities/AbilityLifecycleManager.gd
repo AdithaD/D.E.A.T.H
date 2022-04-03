@@ -16,6 +16,3 @@ func submit_ability(player, ability_index):
 	ability_prompt.set_ability(life_cycle)
 	player.get_node("PlayerUI").bind_lifecycle(life_cycle)
 	life_cycle.start()
-	
-
-	

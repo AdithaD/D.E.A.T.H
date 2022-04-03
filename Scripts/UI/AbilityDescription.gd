@@ -14,6 +14,7 @@ func set_ability(a):
 	ability_lifecycle.connect("selecting", self, "show")
 	ability_lifecycle.connect("selected", self, "enable_confirm")
 	ability_lifecycle.connect("doing", self, "hide")
+	ability_lifecycle.connect("cancel", self, "hide")
 	
 	$Button.connect("pressed", ability_lifecycle, "move_to_doing")
 		
