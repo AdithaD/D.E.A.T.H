@@ -31,7 +31,8 @@ func new_turn():
 
 	if(ai.has_method("get_move")):
 		var move = ai.get_move()
-		yield(do_move(move.slice(1,len(move) - 1)), "completed")
+		if(len(move) >= 2):
+			yield(do_move(move.slice(1,len(move) - 1)), "completed")
 	
 	if(ai.has_method("get_action")):
 		do_action(ai.get_action())
