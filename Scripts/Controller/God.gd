@@ -10,6 +10,8 @@ onready var obstacle_tile_map = get_node(obstacle_map_path)
 onready var floor_tile_map = get_node(floor_map_path)
 var cover
 
+var civlians_evacuated = 0
+
 # all other obstacles are 0 over
 var cover_map = {
 					"Building wall 1": 1,
@@ -27,6 +29,7 @@ func _ready():
 	set_process_input(true)
 	
 	init_entities()	
+	init_world()
 
 	$TurnManager.new_turn()
 
@@ -38,6 +41,14 @@ func init_entities():
 	for player in get_player_nodes():
 		player.grid_position = world_to_grid(player.position)
 		
+	for civilian in get_tree().get_nodes_in_group("civilian"):
+		civilian.grid_position = world_to_grid(civilian.position)
+		
+func init_world():
+	for obj in get_tree().get_nodes_in_group("world_object"):
+		obj.grid_position = world_to_grid(obj.position)
+		obj.init()
+
 #func load_nodes(nodePaths: Array) -> Array:
 #	var nodes := []
 #	for nodePath in nodePaths:
@@ -45,7 +56,27 @@ func init_entities():
 #		if node != null:
 #			nodes.append(node)
 #	return nodes
-#
+
+func get_evacuation_areas():
+	return get_tree().get_nodes_in_group("evacuation_area")
+
+func get_active_evacuation_areas():
+	var evacuation_areas = get_evacuation_areas()
+
+	var list = []
+	for ea in evacuation_areas:
+		if(ea.is_active):
+			list.append(ea)
+
+	return list
+	
+func evacuate_civilian(civilian):
+	civlians_evacuated += 1
+	
+	# on civilian evacuated effects
+	
+	civilian.queue_free()
+
 func get_player_nodes():
 #	return player_units
 	return get_tree().get_nodes_in_group("player_unit")
@@ -187,11 +218,11 @@ class Cover:
 class EnemySpawner:
 	var wave_num = 1
 	
-	func spawn_enemy(enemy_scene, loc):
+	func spawn_enemy(_enemy_scene, _loc):
 		pass
 	
 	func spawn_wave():
-		var spawns = []
+		 # var spawns = []
 		wave_num += 1
 
 	func get_empty_spawn_locations():

@@ -8,7 +8,6 @@ var god
 
 func _use_ai_ability(source):
 	#randomize()
-	print('enemy shooting')
 	god = get_tree().root.get_child(0)
 	var target = _generate_target(source)
 	if target != null:

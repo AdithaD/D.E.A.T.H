@@ -76,17 +76,13 @@ func get_moveable_distance():
 func spend_action_points(action_cost: int):
 	action_points -= action_cost
 	emit_signal('update_attr')
-	print(action_points)
 #	if (action_points <= 0):
 #		end_turn.call_func()
 
 	pass
 
-func moveTo(x: int, y: int):
-	pass
 
-
-func on_used_ability(index):
+func on_used_ability(_index):
 	emit_signal("used_ability")
 
 func set_grid_position(new_grid):

@@ -9,8 +9,7 @@ onready var lifecycle_manager = get_node("/root/World/AbilityLifecycleManager")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	texture_normal = player.abilities[ability_index].icon
-	connect("pressed", self, "_on_Ability_Button_pressed")
-	print(player.abilities[ability_index].can_use_ability(player)	)
+	var _conn = connect("pressed", self, "_on_Ability_Button_pressed")
 	
 	set_state()
 

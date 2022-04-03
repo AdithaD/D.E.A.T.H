@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -25,6 +25,8 @@
 [ext_resource path="res://Scenes/Units/Helicopter.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Enemies/Artillery.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/Enemies/AntiAir.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/Evacuation Area.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/Civilian.tscn" type="PackedScene" id=28]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -64,34 +66,43 @@ script = ExtResource( 3 )
 tile_set = ExtResource( 2 )
 texture_offset = Vector2( 0, -32 )
 
-[node name="Grenadier" parent="Cover" instance=ExtResource( 21 )]
-position = Vector2( 48, 24 )
-
-[node name="Grunt" parent="Cover" instance=ExtResource( 7 )]
-position = Vector2( 32, 48 )
-
-[node name="Recon" parent="Cover" instance=ExtResource( 21 )]
+[node name="AntiAir" parent="Cover" instance=ExtResource( 25 )]
 position = Vector2( 32, 32 )
 
 [node name="Artillery" parent="Cover" instance=ExtResource( 24 )]
-position = Vector2( -128, 32 )
+position = Vector2( 48, 8 )
 
-[node name="AntiAir" parent="Cover" instance=ExtResource( 25 )]
-position = Vector2( -128, 64 )
+[node name="Grunt" parent="Cover" instance=ExtResource( 7 )]
+position = Vector2( 32, -16 )
 
-[node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
+[node name="Recon" parent="Cover" instance=ExtResource( 21 )]
+position = Vector2( 80, -24 )
 
-[node name="Medic" parent="Cover" instance=ExtResource( 20 )]
-position = Vector2( 240, -72 )
+[node name="Evacuation Area" parent="Cover" instance=ExtResource( 27 )]
+position = Vector2( 48, -136 )
+area_of_effect = 1
+is_active = true
 
-[node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
-position = Vector2( 128, -112 )
+[node name="Grenadier" parent="Cover" instance=ExtResource( 22 )]
+position = Vector2( 192, -80 )
 
 [node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
-position = Vector2( 256, -96 )
+position = Vector2( 144, -104 )
 
-[node name="Grenadier2" parent="Cover" instance=ExtResource( 22 )]
-position = Vector2( 208, -120 )
+[node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
+position = Vector2( 48, -136 )
+
+[node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
+position = Vector2( 160, -64 )
+
+[node name="Civilian" parent="Cover" instance=ExtResource( 28 )]
+position = Vector2( 32, -128 )
+max_health = 5
+actions_points_per_turn = 2
+tiles_per_turn = 5
+
+[node name="Medic" parent="Cover" instance=ExtResource( 20 )]
+position = Vector2( 128, -80 )
 
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )

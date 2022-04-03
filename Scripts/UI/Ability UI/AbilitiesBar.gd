@@ -35,8 +35,6 @@ func _on_Selector_on_select_player(new_selected_player):
 
 
 func _on_Selector_on_deselect():
-	print('deselected')
-
 	selected_player = null
 	pass # Replace with function body.
 

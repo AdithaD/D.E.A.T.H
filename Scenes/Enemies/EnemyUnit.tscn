@@ -16,6 +16,7 @@ tiles_per_turn = 5
 
 [node name="EnemyMove" type="Node" parent="Abilities"]
 script = ExtResource( 3 )
+cooldownDuration = null
 
 [node name="EnemyUI" type="Control" parent="."]
 margin_left = -3.8147e-06
@@ -50,5 +51,5 @@ position = Vector2( -20, -45 )
 visible = false
 texture = ExtResource( 11 )
 
-[connection signal="update_attr" from="." to="EnemyUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="." to="HealthDisplay" method="_on_EnemyUnit_update_attr"]
+[connection signal="update_attr" from="." to="EnemyUI" method="_on_Unit_update_attr"]
+[connection signal="update_attr" from="." to="HealthDisplay" method="_on_Unit_update_attr"]

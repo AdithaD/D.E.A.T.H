@@ -12,7 +12,7 @@ func submit_ability(player, ability_index):
 			child.queue_free()
 			
 
-	if(player.abilities[ability_index].can_use_ability(player)):
+	if(player.can_be_controlled() and player.abilities[ability_index].can_use_ability(player)):
 		var life_cycle = ability_lifecyle_scene.instance()
 		add_child(life_cycle)
 

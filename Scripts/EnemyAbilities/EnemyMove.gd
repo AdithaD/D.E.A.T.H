@@ -20,7 +20,6 @@ func _ready():
 	
 func _use_ai_ability(source):
 	enemy = source
-	print('enemy moving')
 	var path = get_move()
 	
 	if(len(path) >= 2):
@@ -32,7 +31,6 @@ func _use_ai_ability(source):
 func do_move(path):
 	var prev_loc = enemy.grid_position
 	enemy.grid_position = path[-1]
-#	print(enemy.grid_position)
 	for loc in path:
 		change_dir_sprite(loc - prev_loc)
 		prev_loc = loc
@@ -42,7 +40,7 @@ func do_move(path):
 func world_move_to(loc):
 	var diff = loc - enemy.position
 	var steps = int(move_animation_time/move_interval)
-	for i in range(0, steps):
+	for _i in range(0, steps):
 		yield(get_tree().create_timer(move_interval), "timeout")
 		enemy.position += diff/steps
 	

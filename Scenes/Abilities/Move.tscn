@@ -11,6 +11,6 @@ ability_description = "Haul your ass to a square"
 icon = ExtResource( 2 )
 voice_lines = [ "Bounding!", "Cover me!", "Hauling ass!" ]
 action_cost = 0
-cooldownDuration = 0
+cooldown_duration = 0
 selector = ExtResource( 3 )
 target_type = 3

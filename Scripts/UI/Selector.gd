@@ -18,6 +18,7 @@ onready var camera = get_node("/root/World/UserCamera")
 
 signal on_select_player(selected_player)
 signal on_select_enemy(selected_enemy)
+signal on_select_civilian(selected_civilian)
 signal on_select_tile(selected_tile)
 signal on_select_cover(selected_cover)
 
@@ -28,7 +29,6 @@ signal on_confirm_select()
 func _ready():
 	$Sprite.texture = selector_image
 	god = get_node("/root/World")
-	print(god)
 	if obstacle_map_path != "":
 		obstacle_tile_map = get_node(obstacle_map_path)
 
@@ -82,9 +82,10 @@ func _process(_delta):
 				select_cover()
 			Ability.TARGET_TYPE.tile:
 				select_tile()	
-		
+			Ability.TARGET_TYPE.civilian:
+				select_civilian()
 		if(selection):
-			print("selected %s" % selection)
+			print("Selected %s" % selection)
 	
 
 func select_player():
@@ -94,7 +95,6 @@ func select_player():
 	
 	var player_units = get_tree().get_nodes_in_group("player_unit")
 	
-	print(snapped_pos)
 	for unit in player_units:
 		if unit.global_position == snapped_pos:
 			selection = unit
@@ -121,6 +121,24 @@ func select_enemy():
 	
 	pass
 	
+func select_civilian():
+	var mouse_pos = get_global_mouse_position()
+	var tile = floor_tile_map.world_to_map(mouse_pos)
+	var snapped_pos = floor_tile_map.map_to_world(tile)
+	
+	var civilians = get_tree().get_nodes_in_group("civilian")
+	
+
+	for civ in civilians:
+		if civ.global_position == snapped_pos:
+			selection = civ
+			camera.focus_on(civ.global_position)
+			emit_signal("on_select_civilian", selection)
+			break			
+			
+	
+	pass
+
 func select_cover():
 	var mouse_pos = get_global_mouse_position()
 	var map_coords = obstacle_tile_map.world_to_map(mouse_pos)
@@ -144,5 +162,4 @@ func set_select_mode(new_type):
 	deselect()
 
 func quit_selection():
-	print('quit seleciton')
 	emit_signal("on_quit_selection")

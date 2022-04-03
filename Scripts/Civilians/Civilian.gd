@@ -1,5 +1,5 @@
 extends Node2D
-class_name PlayerUnit
+class_name Civilian
 
 export (int) var max_health
 export (int) var actions_points_per_turn
@@ -28,6 +28,8 @@ var is_dead = false
 signal update_attr
 signal used_ability
 
+signal dead
+
 enum SPRITE_DIRECTIONS {BOTTOM_LEFT, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT}
 
 # Called when the node enters the scene tree for the first time.
@@ -41,28 +43,24 @@ func _ready():
 	god = get_tree().root.get_child(0)
 	
 func new_turn(finish_turn):
-	update_turn_effects()
-	if(!can_be_controlled()):
-		emit_signal('update_attr')
+	if(is_dead):
 		finish_turn.call_func()
 	else:
 		end_turn = finish_turn
 			
 		action_points = actions_points_per_turn
 		dist_moved = 0
+		
+		for ability in abilities:
+			ability.new_turn()
+			
+		if(mark_length > 0):
+			mark_length -= 1
+		if(mark_length <= 0):
+			is_marked = false
+
 		emit_signal('update_attr')
 
-func update_turn_effects():
-	for ability in abilities:
-		ability.new_turn()
-		
-	if(mark_length > 0):
-		mark_length -= 1
-	if(mark_length <= 0):
-		is_marked = false
-
-func can_be_controlled():
-	return !is_dead
 
 func get_moveable_distance():
 	return tiles_per_turn - dist_moved
@@ -85,6 +83,7 @@ func die():
 	is_dead = true
 	$DeathSprite.visible = true
 	$AnimatedSprite.visible = false
+	emit_signal("dead")
 	
 
 func heal_damage(heal_amount):
@@ -132,6 +131,7 @@ func change_dir_sprite(vector):
 
 func set_sprite_index(index):
 	$AnimatedSprite.frame = index
-
-func _on_PlayerUnit_took_damage():
-	pass # Replace with function body.
+	
+func on_evacuation():
+	print('civilian %s is celebrating' % self)
+	pass
