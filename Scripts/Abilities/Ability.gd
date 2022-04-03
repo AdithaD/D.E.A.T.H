@@ -3,6 +3,7 @@ class_name Ability
 
 export (String) var ability_name = "Ability"
 export (String) var ability_description = "Ability Description"
+export (Texture) var icon
 
 export (int) var action_cost = 1
 export (int) var cooldownDuration = 1
@@ -18,7 +19,7 @@ func new_turn():
 		cooldown -= 1;
 
 func can_use_ability(player):
-	return player.actionPoints <= 0 || cooldown != 0
+	return player.actionPoints <= 0 || cooldown == 0
 
 
 func use_ability(player, target):

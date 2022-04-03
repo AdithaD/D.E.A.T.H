@@ -44,6 +44,7 @@ func take_damage(dmg):
 	health -= dmg
 	emit_signal("update_attr")
 
-
+func use_ability(index):
+	abilities[index].use_ability(self)
 func _on_PlayerUnit_took_damage():
 	pass # Replace with function body.
