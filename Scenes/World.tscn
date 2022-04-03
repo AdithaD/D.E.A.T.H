@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/ScriptInstances/AbilityLifecycle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Controller/God.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Enemies/Grunt.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Abilities/Heal.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/UI/UserCamera.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/UI/Ability UI/AbilitiesBar.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
@@ -68,6 +69,14 @@ position = Vector2( 64, -32 )
 [node name="Medic" parent="Cover" instance=ExtResource( 20 )]
 position = Vector2( 0, -16 )
 
+[node name="Heal" parent="Cover/Medic/Abilities" index="1"]
+script = ExtResource( 21 )
+ability_name = "Ability"
+ability_description = "Ability Description"
+voice_lines = [ "Healing!", "Heroes never die!" ]
+heal_amount = 3
+penetration = 0
+
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
 current = true
@@ -81,6 +90,9 @@ move_speed_scaling = 0.4
 
 [node name="Grunt" parent="." instance=ExtResource( 7 )]
 position = Vector2( -32, 16 )
+
+[node name="Shoot" parent="EnemyUnit/Abilities" index="1"]
+voice_lines = [ "Die!", "It's over!" ]
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../Cover")
@@ -193,3 +205,4 @@ autoplay = true
 [editable path="Cover/Marksman"]
 [editable path="Cover/Gunner"]
 [editable path="Cover/Medic"]
+[editable path="EnemyUnit"]

@@ -67,6 +67,10 @@ func spend_action_points(action_cost: int):
 func take_damage(dmg):
 	health -= dmg
 	emit_signal("update_attr")
+	
+func heal_damage(heal_amount):
+	health = min(health + heal_amount, max_health)
+	emit_signal("update_attr")
 
 func on_used_ability(index):
 	emit_signal("used_ability")
