@@ -9,4 +9,6 @@ ability_name = "Move"
 ability_description = "Haul your ass to a square"
 icon = ExtResource( 2 )
 voice_lines = [ "Bounding!", "Cover me!", "Hauling ass!" ]
+action_cost = 0
+cooldownDuration = 0
 target_type = 3

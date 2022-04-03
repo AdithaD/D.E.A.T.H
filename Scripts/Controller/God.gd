@@ -22,11 +22,19 @@ func _ready():
 	cover = Cover.new()
 	cover.init(obstacle_tile_map, cover_map)
 	set_process_input(true)
+	
+	init_entities()	
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		new_turn()
+	$TurnManager.new_turn()
 
+
+func init_entities():
+	for en in get_enemy_nodes():	
+		en.grid_position = world_to_grid(en.position)
+	
+	for player in get_player_nodes():
+		player.grid_position = world_to_grid(player.position)
+		
 #func load_nodes(nodePaths: Array) -> Array:
 #	var nodes := []
 #	for nodePath in nodePaths:
@@ -74,14 +82,6 @@ func grid_to_world(grid):
 func cell_exists(grid):
 	return floor_tile_map.get_cellv(grid) != -1
 	
-
-func new_turn():
-	for player in get_player_nodes():
-		if player.has_method("new_turn"):
-			player.new_turn()
-	for enemy in get_enemy_nodes():
-		if enemy.has_method("new_turn"):
-			enemy.new_turn()
 	
 func get_cover(loc_a, loc_b):
 	return cover.get_cover(loc_a, loc_b)
@@ -95,6 +95,7 @@ func get_hit_chance(loc_a, loc_b, penetration=0, ignores_cover=false):
 func hit_chance_func(x):
 	var value = (-0.3325 * x) + 0.95
 	return clamp(value, 0, 1)
+	
 	
 class Cover:
 	var obstacle_tile_map
@@ -153,5 +154,6 @@ class Cover:
 				total_cover += cover_map[name]
 
 		return total_cover
+
 
 

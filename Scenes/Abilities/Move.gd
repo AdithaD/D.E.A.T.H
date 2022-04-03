@@ -14,7 +14,7 @@ func _use_ability(player, target):
 	
 	if(path != null):
 		player.set_grid_position(path[-1])
-	
+		player.dist_moved += path.size() - 1
 	finish_doing()
 	pass
 
@@ -23,4 +23,5 @@ func _ready():
 	god = get_tree().root.get_child(0)
 
 
-	
+func _ability_conditions(player):
+	return player.get_moveable_distance() > 0

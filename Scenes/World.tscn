@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -16,11 +16,16 @@
 [ext_resource path="res://Assets/BACKGROUNMD.png" type="Texture" id=14]
 [ext_resource path="res://Resource/overlay.tres" type="TileSet" id=15]
 [ext_resource path="res://Scenes/Overlay.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/TurnManager.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/TurnUI.gd" type="Script" id=18]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
 obstacle_map_path = NodePath("Cover")
 floor_map_path = NodePath("Tiles")
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource( 17 )
 
 [node name="Tiles" type="TileMap" parent="."]
 mode = 1
@@ -83,6 +88,24 @@ floor_map_path = NodePath("../Tiles")
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="TurnUI" type="Control" parent="UI/HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 18 )
+
+[node name="TurnNumberLabel" type="Label" parent="UI/HUD/TurnUI"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 120.0
+margin_bottom = 32.0
+
+[node name="NextTurn" type="Button" parent="UI/HUD/TurnUI"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 105.0
+margin_bottom = 68.0
+text = "Next Button"
+
 [node name="Abilities Bar" type="HBoxContainer" parent="UI/HUD"]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -131,12 +154,6 @@ margin_right = -16.0
 margin_bottom = -9.0
 text = "Confirm"
 
-[node name="Label" type="Label" parent="UI/HUD"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 120.0
-margin_bottom = 40.0
-
 [node name="AbilityLifecycleManager" type="Node" parent="."]
 script = ExtResource( 11 )
 selector_path = NodePath("../Selector")
@@ -148,11 +165,12 @@ follow_viewport_enable = true
 follow_viewport_scale = 0.4
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
-margin_left = -1120.0
-margin_top = -448.0
-margin_right = 800.0
-margin_bottom = 632.0
+margin_left = -1192.0
+margin_top = -440.0
+margin_right = 728.0
+margin_bottom = 640.0
 texture = ExtResource( 14 )
 
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
+[connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]

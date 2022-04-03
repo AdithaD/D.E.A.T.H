@@ -47,6 +47,14 @@ func deselect():
 func _process(_delta):
 	
 	if selection != null:
+		if (target_type == Ability.TARGET_TYPE.player):
+			if(selection.global_position != global_position):
+				var tile = floor_tile_map.world_to_map(selection.global_position)
+				var snapped_pos = floor_tile_map.map_to_world(tile)
+				
+				var new_pos = Vector2(snapped_pos.x, snapped_pos.y + 8)
+				$Sprite.global_position = new_pos
+				
 		if(Input.is_action_just_pressed("deselect") && listen_to_input):
 			deselect()
 		if(Input.is_action_just_pressed("confirm_select") && listen_to_input):

@@ -2,17 +2,19 @@ extends Node2D
 class_name PlayerUnit
 
 export (int) var max_health
-export (int) var actionPointsPerTurn
-export (int) var tilesPerMove
+export (int) var actions_points_per_turn
+export (int) var tiles_per_turn
 
 var health
-var action_points = actionPointsPerTurn
+var action_points = actions_points_per_turn
+var dist_moved = 0
 
 var abilities = [] 
 
 var grid_position
 var god
 
+var end_turn
 signal update_attr
 signal used_ability
 
@@ -22,21 +24,35 @@ func _ready():
 	
 	abilities = $Abilities.get_children()
 			
-	new_turn()
 	emit_signal('update_attr')
 	god = get_tree().root.get_child(0)
 	
 	# temp
 	yield(get_tree(), "idle_frame")
 	grid_position = god.world_to_grid(position)
-
-func new_turn():
-	action_points = actionPointsPerTurn
+	
+func new_turn(finish_turn):
+	end_turn = finish_turn
+		
+	action_points = actions_points_per_turn
+	dist_moved = 0
+	
+	for ability in abilities:
+		ability.new_turn()
+		
+	emit_signal('update_attr')
 	pass
 
+func get_moveable_distance():
+	return tiles_per_turn - dist_moved
+
 func spend_action_points(action_cost: int):
-	action_points -= 1
+	action_points -= action_cost
 	emit_signal('update_attr')
+	print(action_points)
+	if (action_points <= 0):
+		end_turn.call_func()
+
 	pass
 
 func moveTo(x: int, y: int):

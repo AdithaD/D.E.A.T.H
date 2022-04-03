@@ -8,8 +8,8 @@
 [node name="PlayerUnit" type="Node2D" groups=["player_unit"]]
 script = ExtResource( 1 )
 max_health = 10
-actionPointsPerTurn = 2
-tilesPerMove = 5
+actions_points_per_turn = 2
+tiles_per_turn = 5
 
 [node name="Abilities" type="Node2D" parent="."]
 

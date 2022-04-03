@@ -17,11 +17,6 @@ func _ready():
 	abilities = $Abilities.get_children()
 	ai = $AI
 	god = get_tree().root.get_child(0)
-	
-	# temp
-	yield(get_tree(), "idle_frame")
-	grid_position = god.world_to_grid(position)
-	
 
 func new_turn():
 	if(ai.has_method("get_move")):
@@ -32,7 +27,6 @@ func new_turn():
 	
 	if(ai.has_method("get_action")):
 		do_action(ai.get_action())
-		
 
 func get_ability(name):
 	for x in abilities:
