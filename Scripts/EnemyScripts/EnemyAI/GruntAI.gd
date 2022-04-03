@@ -19,7 +19,7 @@ func generate_turn(abilities):
 	
 	var other_ability = abilities[1]
 	if(abilities.size() > 2):
-		other_ability  = abilities[range(1, abilities.size() - 1)]
+		other_ability  = abilities[randi() % len(abilities)]
 		
 	return [move_ability, other_ability]
 
