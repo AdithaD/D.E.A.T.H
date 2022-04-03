@@ -18,8 +18,6 @@ var cover_map = {
 					"half pylon.png 4": 0.5
 }
 
-signal new_turn
-
 func _ready():
 	cover = Cover.new()
 	cover.init(obstacle_tile_map, cover_map)
@@ -40,6 +38,9 @@ func _input(event):
 func get_player_nodes():
 #	return player_units
 	return get_tree().get_nodes_in_group("player_unit")
+
+func get_enemy_nodes():
+	return get_tree().get_nodes_in_group("enemy")
 	
 func get_player_locations():
 	var out = []
@@ -72,7 +73,12 @@ func cell_exists(grid):
 	
 
 func new_turn():
-	emit_signal("new_turn")
+	for player in get_player_nodes():
+		if player.has_method("new_turn"):
+			player.new_turn()
+	for enemy in get_enemy_nodes():
+		if enemy.has_method("new_turn"):
+			enemy.new_turn()
 	
 func get_cover(loc_a, loc_b):
 	return cover.get_cover(loc_a, loc_b)

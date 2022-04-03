@@ -67,6 +67,3 @@ func take_damage(dmg):
 	health -= dmg
 	if health <= 0:
 		die()
-
-func _on_World_new_turn():
-	new_turn()
