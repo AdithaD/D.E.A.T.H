@@ -99,7 +99,7 @@ func select_player():
 		if unit.global_position == snapped_pos:
 			selection = unit
 			emit_signal("on_select_player", selection)
-			camera.focusOn(unit.global_position)
+			camera.focus_on(unit.global_position)
 			break			
 
 	pass
@@ -114,7 +114,7 @@ func select_enemy():
 	for enemy in enemies:
 		if enemy.global_position == snapped_pos:
 			selection = enemy
-			camera.focusOn(enemy.global_position)
+			camera.focus_on(enemy.global_position)
 			emit_signal("on_select_enemy", selection)
 			break			
 			

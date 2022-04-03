@@ -78,6 +78,10 @@ move_speed_scaling = 0.4
 position = Vector2( -32, 16 )
 tiles_per_move = 1
 
+[node name="Enemy2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, 48 )
+tiles_per_move = 1
+
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../Cover")
 floor_map_path = NodePath("../Tiles")

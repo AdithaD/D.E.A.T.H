@@ -19,6 +19,7 @@ func _ready():
 	god = get_tree().root.get_child(0)
 
 func new_turn():
+
 	if(ai.has_method("get_move")):
 		var move = ai.get_move()
 		grid_position = move[-1]

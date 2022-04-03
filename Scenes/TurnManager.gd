@@ -27,7 +27,7 @@ func new_turn():
 
 func conduct_turn():
 	yield(conduct_player_turn(), "completed")
-	conduct_enemy_turn()
+	yield(conduct_enemy_turn(), "completed")
 	new_turn()
 
 	
@@ -45,7 +45,11 @@ func count_players():
 func conduct_player_turn():
 	state = TURN_STATE.player
 	print('player turn')
+	
+	get_node("/root/World/UserCamera").move_to(god.get_player_nodes()[0].position)
+	get_node("/root/World/UserCamera").unfocus()
 	for player in god.get_player_nodes():
+		
 		if player.has_method("new_turn"):
 			player.new_turn(funcref(self, "increment_counter"))
 	
@@ -67,9 +71,13 @@ func conduct_enemy_turn():
 	
 	for enemy in god.get_enemy_nodes():
 		if enemy.has_method("new_turn"):
+			get_node("/root/World/UserCamera").focus_on(enemy.position)
+			yield(get_tree().create_timer(0.4), "timeout")
 			enemy.new_turn()
+			yield(get_tree().create_timer(1.2), "timeout")
 
 	print('finsihed turn')		
+	
 func _on_NextTurn_pressed():
 	should_force_end_turn = true
 	player_unit_counter.resume()

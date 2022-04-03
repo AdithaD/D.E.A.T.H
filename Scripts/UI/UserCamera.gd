@@ -10,9 +10,11 @@ var should_move = false
 func _ready():
 	zoom = Vector2(default_zoom, default_zoom)
 
+func move_to(target: Vector2):
+	$Tween.interpolate_property(self, "global_position", self.global_position, target, 0.3, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	$Tween.start()
 
-
-func focusOn(target: Vector2):
+func focus_on(target: Vector2):
 	$Tween.interpolate_property(self, "global_position", self.global_position, target, 0.3, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(self, "zoom", self.zoom, Vector2(focus_zoom,focus_zoom), 0.3, Tween.TRANS_SINE, Tween.EASE_OUT)
 	$Tween.start()
