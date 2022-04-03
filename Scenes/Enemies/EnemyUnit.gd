@@ -52,6 +52,7 @@ func new_turn():
 		
 		for ability in turn:
 			ability.use_ai_ability(self)
+			yield(ability, "finished_doing")
 	
 	emit_signal('update_attr')
 
