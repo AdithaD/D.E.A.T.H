@@ -4,14 +4,15 @@
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl bottom left.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Abilities/GunShoot.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Sprites/shoot_icon.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl bottom right.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/rain of bullets.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/Fire weapon.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl bottom right.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl top left.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl top right.png" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -23,12 +24,21 @@ animations = [ {
 position = Vector2( 0, -19 )
 frames = SubResource( 1 )
 
-[node name="Rain Hell" type="Node" parent="Abilities" index="0"]
+[node name="Rain Hell" type="Node" parent="Abilities" index="1"]
 script = ExtResource( 3 )
 ability_name = "Rain Hell"
-ability_description = "Unleash your machinegun on the enemy"
+ability_description = "Unleash a hail of bullets on the enemy."
 icon = ExtResource( 5 )
-voice_lines = [ "Rapid fire!", "Quantity over quality!" ]
+voice_lines = [ "Rapid fire!", "Quantity over quality!", "Eat lead!" ]
+damage = 5
+
+[node name="Shoot" type="Node" parent="Abilities" index="2"]
+script = ExtResource( 3 )
+ability_name = "Shoot"
+ability_description = "Take aim and fire."
+icon = ExtResource( 6 )
+voice_lines = [ "Firing on target", "Lock n' load", "Engaging hostile" ]
+damage = 3
 
 [node name="HealthDisplay" parent="." index="3" instance=ExtResource( 4 )]
 position = Vector2( -19, -31 )

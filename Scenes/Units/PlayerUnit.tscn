@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Abilities/Move.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Abilities/MoveSelector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/UI/PlayerUI.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/move.png" type="Texture" id=5]
 
-[node name="PlayerUnit" type="Node2D" groups=["player_unit"]]
+[node name="PlayerUnit" type="Node2D" groups=[
+"player_unit",
+]]
 script = ExtResource( 1 )
 max_health = 10
 actions_points_per_turn = 2
@@ -14,6 +17,7 @@ tiles_per_turn = 5
 [node name="Abilities" type="Node2D" parent="."]
 
 [node name="Move" parent="Abilities" instance=ExtResource( 2 )]
+icon = ExtResource( 5 )
 selector = ExtResource( 3 )
 
 [node name="PlayerUI" type="Control" parent="."]
