@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/air top right.png-f5d8c318c26412d0f28b8489a0c0db19.stex"
+path="res://.import/shredder shot.png-9597bdd0cc29fd1d3784e8eebc7d400c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemies/AntiAir/air top right.png"
-dest_files=[ "res://.import/air top right.png-f5d8c318c26412d0f28b8489a0c0db19.stex" ]
+source_file="res://Assets/Sprites/PlayerUnits/ActionIcons/shredder shot.png"
+dest_files=[ "res://.import/shredder shot.png-9597bdd0cc29fd1d3784e8eebc7d400c.stex" ]
 
 [params]
 

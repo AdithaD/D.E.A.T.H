@@ -19,7 +19,8 @@ func generate_turn(abilities):
 	
 	var other_ability = abilities[1]
 	if(abilities.size() > 2):
-		other_ability  = abilities[range(1, abilities.size() - 1)]
+		var other_abilities = abilities.slice(1,len(abilities) - 1)
+		other_ability  = other_abilities[randi() % len(other_abilities)]
 		
 	return [move_ability, other_ability]
 
@@ -40,6 +41,13 @@ func get_dist_to_closest_player(pos):
 func get_players_in_range(ability_range, pos):
 	var in_range = []
 	for player in god.get_player_nodes():
+		if bfs.grid_distance(player.grid_position, pos) <= ability_range:
+			in_range.append(player)
+	return in_range
+
+func get_flying_players_in_range(ability_range, pos):
+	var in_range = []
+	for player in god.get_flying_player_nodes():
 		if bfs.grid_distance(player.grid_position, pos) <= ability_range:
 			in_range.append(player)
 	return in_range
