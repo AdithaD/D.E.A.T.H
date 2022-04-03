@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=9 format=2]
+[gd_resource type="TileSet" load_steps=10 format=2]
 
 [ext_resource path="res://Assets/TILEMAPS/Building wall 1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/TILEMAPS/Building wall 2.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/TILEMAPS/BUSH.png" type="Texture" id=6]
 [ext_resource path="res://Assets/TILEMAPS/crater.png" type="Texture" id=7]
 [ext_resource path="res://Assets/TILEMAPS/flag.tres" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/rubble.png" type="Texture" id=9]
 
 [resource]
 0/name = "Building wall 1"
@@ -122,3 +123,17 @@
 7/shape_one_way_margin = 0.0
 7/shapes = [  ]
 7/z_index = 0
+8/name = "rubble"
+8/texture = ExtResource( 9 )
+8/tex_offset = Vector2( 0, -32 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 0, 32, 64 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0

@@ -25,6 +25,8 @@ var end_turn
 signal update_attr
 signal used_ability
 
+enum SPRITE_DIRECTIONS {BOTTOM_LEFT, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	health = max_health
@@ -33,11 +35,6 @@ func _ready():
 			
 	emit_signal('update_attr')
 	god = get_tree().root.get_child(0)
-	
-	# temp
-	yield(get_tree(), "idle_frame")
-	grid_position = god.world_to_grid(position)
-	
 func new_turn(finish_turn):
 	end_turn = finish_turn
 		
@@ -51,7 +48,9 @@ func new_turn(finish_turn):
 		mark_length -= 1
 	if(mark_length <= 0):
 		is_marked = false
+
 	emit_signal('update_attr')
+
 
 func get_moveable_distance():
 	return tiles_per_turn - dist_moved
@@ -79,9 +78,11 @@ func apply_mark(turns):
 	is_marked = true
 	
 func do_move(path):
+	var prev_loc = grid_position
 	grid_position = path[-1]
-	print(grid_position)
 	for loc in path:
+		change_dir_sprite(loc - prev_loc)
+		prev_loc = loc
 		yield(world_move_to(god.grid_to_world(loc)), "completed")
 	
 
@@ -93,6 +94,21 @@ func world_move_to(loc):
 		position += diff/steps
 	
 	position = loc
+
+func change_dir_sprite(vector):
+	if(abs(vector.x) >= abs(vector.y)):
+		if(vector.x >= 0):
+			set_sprite_index(SPRITE_DIRECTIONS.BOTTOM_RIGHT)
+		else:
+			set_sprite_index(SPRITE_DIRECTIONS.TOP_LEFT)
+	else:
+		if(vector.y >= 0):
+			set_sprite_index(SPRITE_DIRECTIONS.BOTTOM_LEFT)
+		else:
+			set_sprite_index(SPRITE_DIRECTIONS.TOP_RIGHT)
+
+func set_sprite_index(index):
+	$AnimatedSprite.frame = index
 
 func _on_PlayerUnit_took_damage():
 	pass # Replace with function body.

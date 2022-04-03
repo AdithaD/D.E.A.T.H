@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Enemies/EnemyUnit.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Enemies/EnemyShoot.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Enemies/EnemyMove.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Enemies/EnemyUI.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/EnemyScripts/EnemyAI/GruntAI.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Sprites/enemy.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=7]
+
+[node name="EnemyUnit" type="Node2D" groups=["enemy"]]
+script = ExtResource( 1 )
+max_health = 5
+actions_points_per_turn = 2
+tiles_per_turn = 5
+
+[node name="AI" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Abilities" type="Node2D" parent="."]
+
+[node name="EnemyMove" type="Node" parent="Abilities"]
+script = ExtResource( 3 )
+
+[node name="Shoot" type="Node" parent="Abilities"]
+script = ExtResource( 2 )
+
+[node name="EnemyUI" type="Control" parent="."]
+margin_left = -46.0
+margin_top = -42.0
+margin_right = 54.0
+margin_bottom = -22.0
+rect_scale = Vector2( 0.998463, 0.996449 )
+script = ExtResource( 4 )
+
+[node name="DisplayText" type="Label" parent="EnemyUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.00307
+margin_top = 58.2067
+margin_right = 2.00307
+margin_bottom = 58.2067
+align = 1
+valign = 1
+
+[node name="VoiceLine" type="Label" parent="EnemyUI"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="VoiceLineTimer" type="Timer" parent="EnemyUI"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -4 )
+texture = ExtResource( 6 )
+
+[node name="HealthDisplay" parent="." instance=ExtResource( 7 )]
+position = Vector2( -19, -20 )
+
+[connection signal="update_attr" from="." to="EnemyUI" method="_on_PlayerUnit_update_attr"]
+[connection signal="update_attr" from="." to="HealthDisplay" method="_on_EnemyUnit_update_attr"]
