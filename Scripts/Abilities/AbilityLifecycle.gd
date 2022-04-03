@@ -12,28 +12,13 @@ var active_ability
 var player 
 var target
 
+onready var god = get_node("/root/World")
+
 signal selecting
 signal selected
 signal doing 
 signal cancel
 signal completed 
-
-func _ready():
-	secondary_selector = get_node("/root/World").get_new_selector(secondary_selector_scene)
-	add_child(secondary_selector)
-
-
-	secondary_selector.connect("on_select_player", self, "_on_Secondary_Selector_select")
-	secondary_selector.connect("on_select_enemy", self, "_on_Secondary_Selector_select")
-	secondary_selector.connect("on_select_tile", self, "_on_Secondary_Selector_select")
-	secondary_selector.connect("on_select_cover", self, "_on_Secondary_Selector_select")
-	secondary_selector.connect("on_deselect", self, "_on_Secondary_Selector_deselect")
-	secondary_selector.connect("on_quit_selection", self, "_on_Secondary_Selector_quit_selection")
-
-
-	secondary_selector.listen_to_input = false
-	
-	pass # Replace with function body.
 
 func init(casting_player, ability_index, new_primary_selector):
 	primary_selector = new_primary_selector
@@ -43,6 +28,25 @@ func init(casting_player, ability_index, new_primary_selector):
 	active_ability = player.abilities[ability_index]
 	
 	active_ability.connect('finished_doing', self, "on_finished_doing")
+	
+	if active_ability.selector != null:
+		secondary_selector = active_ability.selector.instance()
+		god.init_selector(secondary_selector)
+	else:
+		secondary_selector = god.get_new_selector(secondary_selector_scene)
+	
+	secondary_selector.lifecycle = self
+	
+	add_child(secondary_selector)
+
+	secondary_selector.connect("on_select_player", self, "_on_Secondary_Selector_select")
+	secondary_selector.connect("on_select_enemy", self, "_on_Secondary_Selector_select")
+	secondary_selector.connect("on_select_tile", self, "_on_Secondary_Selector_select")
+	secondary_selector.connect("on_select_cover", self, "_on_Secondary_Selector_select")
+	secondary_selector.connect("on_deselect", self, "_on_Secondary_Selector_deselect")
+	secondary_selector.connect("on_quit_selection", self, "_on_Secondary_Selector_quit_selection")
+
+	secondary_selector.listen_to_input = false
 
 func start():
 	print('starting lifecycle')

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -11,9 +11,11 @@
 [ext_resource path="res://Scripts/UI/Ability UI/AbilitiesBar.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/Abilities/AbilityLifecycleManager.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/UI/AbilityDescription.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/UI/Ability UI/AbilityDescription.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Units/Gunner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/BACKGROUNMD.png" type="Texture" id=14]
+[ext_resource path="res://Resource/overlay.tres" type="TileSet" id=15]
+[ext_resource path="res://Scenes/Overlay.gd" type="Script" id=16]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -30,6 +32,14 @@ tile_data = PoolIntArray( -917523, 0, 0, -917522, 0, 0, -917521, 0, 0, -917520, 
 script = ExtResource( 3 )
 tile_set = ExtResource( 1 )
 texture_offset = Vector2( 0, -32 )
+
+[node name="Overlay" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 15 )
+cell_size = Vector2( 32, 16 )
+cell_y_sort = true
+format = 1
+script = ExtResource( 16 )
 
 [node name="Cover" type="TileMap" parent="."]
 mode = 1
@@ -64,7 +74,6 @@ position = Vector2( -32, 16 )
 tiles_per_move = 1
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
-position = Vector2( 0, -1 )
 obstacle_map_path = NodePath("../Cover")
 floor_map_path = NodePath("../Tiles")
 
@@ -138,9 +147,6 @@ margin_top = -373.201
 margin_right = 959.585
 margin_bottom = 706.799
 texture = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]

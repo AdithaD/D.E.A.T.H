@@ -1,4 +1,5 @@
 extends Node2D
+class_name Selector
 export (NodePath) var obstacle_map_path
 export (NodePath) var floor_map_path
 export (Texture) var selector_image
@@ -9,6 +10,9 @@ export(Ability.TARGET_TYPE) var target_type = Ability.TARGET_TYPE.player
 
 var selection
 var listen_to_input = true
+
+var god
+var lifecycle
 
 onready var camera = get_node("/root/World/UserCamera")
 
@@ -21,7 +25,7 @@ signal on_quit_selection()
 
 func _ready():
 	$Sprite.texture = selector_image
-	var god = get_node("/root/World")
+	god = get_node("/root/World")
 	print(god)
 	if obstacle_map_path != "":
 		obstacle_tile_map = get_node(obstacle_map_path)

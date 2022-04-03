@@ -12,7 +12,8 @@ func _use_ability(player, target):
 	bfs.init(god)
 	var path = bfs.find_path(player.grid_position, target)
 	
-	player.set_grid_position(path[-1])
+	if(path != null):
+		player.set_grid_position(path[-1])
 	
 	finish_doing()
 	pass

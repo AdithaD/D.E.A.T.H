@@ -10,6 +10,8 @@ export (Array, String) var voice_lines
 export (int) var action_cost = 1
 export (int) var cooldownDuration = 1
 
+export (PackedScene) var selector
+
 enum TARGET_TYPE { player, enemy, cover, tile }
 export(TARGET_TYPE) var target_type = TARGET_TYPE.enemy
 

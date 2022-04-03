@@ -61,9 +61,12 @@ func world_to_grid(world):
 	return floor_tile_map.world_to_map(world)
 func get_new_selector(scene):
 	var new_selector = scene.instance()
-	new_selector.obstacle_tile_map = obstacle_tile_map
-	new_selector.floor_tile_map = floor_tile_map
+	init_selector(new_selector)
 	return new_selector
+	
+func init_selector(selector):
+	selector.obstacle_tile_map = obstacle_tile_map
+	selector.floor_tile_map = floor_tile_map
 
 func grid_to_world(grid):
 	return floor_tile_map.map_to_world(grid)
