@@ -8,10 +8,11 @@ func _use_ai_ability(source):
 	#randomize()
 	print('enemy shooting')
 	var target = _generate_target(source)
-	var god = get_tree().root.get_child(0)
-	var rand = god.get_hit_chance(source.grid_position, target.grid_position, penetration, !target.can_cover, target.is_marked)
-	if(randf() < rand):
-		target.take_damage(damage)
+	if target != null:
+		var god = get_tree().root.get_child(0)
+		var rand = god.get_hit_chance(source.grid_position, target.grid_position, penetration, !target.can_cover, target.is_marked)
+		if(randf() < rand):
+			target.take_damage(damage)
 	
 	finish_doing()
 	
@@ -22,3 +23,5 @@ func _generate_target(source):
 		var index  = randi() % players.size()
 		
 		return players[index]
+	
+	return null
