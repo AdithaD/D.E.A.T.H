@@ -18,6 +18,7 @@
 [ext_resource path="res://Scenes/Overlay.gd" type="Script" id=16]
 [ext_resource path="res://Scenes/TurnManager.gd" type="Script" id=17]
 [ext_resource path="res://Scenes/TurnUI.gd" type="Script" id=18]
+[ext_resource path="res://Assets/Sounds/Music/DEATH.wav" type="AudioStream" id=17]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -178,6 +179,11 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Combat Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -12.0
+autoplay = true
 
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
