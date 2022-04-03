@@ -26,29 +26,32 @@ signal used_ability
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ai = $AI
 	health = max_health
 	
 	abilities = $Abilities.get_children()
+	
+	for ability in abilities:
+		ability.ai = ai
 			
 	emit_signal('update_attr')
 	god = get_tree().root.get_child(0)
 	
 
 func new_turn():
+	ai.bfs.init(god)
+	
 	for ability in abilities:
 		ability.new_turn()
 		
 	action_points = actions_points_per_turn
 	dist_moved = 0
-		
-	if(ai.has_method("get_move")):
-		var move = ai.get_move()
-		grid_position = move[-1]
-		print(grid_position)
-		position = god.grid_to_world(grid_position)
 	
-	if(ai.has_method("get_action")):
-		do_action(ai.get_action())
+	if(ai.has_method("generate_turn")):
+		var turn = ai.generate_turn(abilities)
+		
+		for ability in turn:
+			ability.use_ai_ability(self)
 	
 	emit_signal('update_attr')
 
@@ -59,8 +62,8 @@ func spend_action_points(action_cost: int):
 	action_points -= action_cost
 	emit_signal('update_attr')
 	print(action_points)
-	if (action_points <= 0):
-		end_turn.call_func()
+#	if (action_points <= 0):
+#		end_turn.call_func()
 
 	pass
 

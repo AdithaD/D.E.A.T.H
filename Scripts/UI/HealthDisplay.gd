@@ -35,3 +35,7 @@ func update():
 
 func _on_PlayerUnit_update_attr():
 	update()
+
+
+func _on_EnemyUnit_update_attr():
+	pass # Replace with function body.
