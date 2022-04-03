@@ -18,6 +18,8 @@ var cover_map = {
 					"half pylon.png 4": 0.5
 }
 
+var unwalkable_tile_names = ["waterr.tres 4"]
+
 func _ready():
 	cover = Cover.new()
 	cover.init(obstacle_tile_map, cover_map)
@@ -47,6 +49,19 @@ func get_player_locations():
 	for player in get_player_nodes():
 		out.append(player.grid_position)
 	return out
+	
+func get_enemy_locations():
+	var out = []
+	for enemy in get_enemy_nodes():
+		out.append(enemy.grid_position)
+	return out
+	
+func get_unwalkable_tiles():
+	var unwalkable_tiles = []
+	for name in unwalkable_tile_names:
+		unwalkable_tiles += get_floor_tilemap().get_used_cells_by_id(get_floor_tilemap().tile_set.find_tile_by_name(name))
+	return unwalkable_tiles
+	
 
 func get_obstacle_tilemap():
 	return obstacle_tile_map
@@ -55,8 +70,7 @@ func get_floor_tilemap():
 	return floor_tile_map
 	
 func get_obstacle_locations():
-	# todo: add player units and enemies as obstacles
-	return get_obstacle_tilemap().get_used_cells()
+	return get_obstacle_tilemap().get_used_cells() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles()
 
 func world_to_grid(world):
 	return floor_tile_map.world_to_map(world)
