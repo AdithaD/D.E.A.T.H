@@ -10,8 +10,8 @@
 [ext_resource path="res://Scripts/UI/UserCamera.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/UI/Ability UI/AbilitiesBar.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Units/Marksman.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/AbilityLifecycleManager.gd" type="Script" id=11]
-[ext_resource path="res://Scenes/AbilityDescription.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Abilities/AbilityLifecycleManager.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/UI/AbilityDescription.gd" type="Script" id=12]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )

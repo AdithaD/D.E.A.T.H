@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/player.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Abilities/GunShoot.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Units/PlayerUI.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/UI/PlayerUI.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sprites/shoot_icon.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -28,6 +28,7 @@ script = ExtResource( 3 )
 ability_name = "Sniper Shot"
 ability_description = "Take a high-powered shot with your rifle"
 icon = ExtResource( 5 )
+voice_lines = [ "Taking ze shot!", "It's high noon!" ]
 damage = 4
 penetration = 1
 
@@ -46,11 +47,19 @@ script = ExtResource( 4 )
 [node name="DisplayText" type="Label" parent="PlayerUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.00154
-margin_top = 3.01069
-margin_right = -1.00154
-margin_bottom = 3.01069
+margin_left = 2.00307
+margin_top = 58.2067
+margin_right = 2.00307
+margin_bottom = 58.2067
 align = 1
 valign = 1
+
+[node name="VoiceLine" type="Label" parent="PlayerUI"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="VoiceLineTimer" type="Timer" parent="PlayerUI"]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="update_attr" from="." to="PlayerUI" method="_on_PlayerUnit_update_attr"]

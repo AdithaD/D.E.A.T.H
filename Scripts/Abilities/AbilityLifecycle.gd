@@ -32,6 +32,7 @@ func _ready():
 
 
 	secondary_selector.listen_to_input = false
+	
 	pass # Replace with function body.
 
 func init(casting_player, ability_index, new_primary_selector):
@@ -41,6 +42,7 @@ func init(casting_player, ability_index, new_primary_selector):
 	player = casting_player
 	active_ability = player.abilities[ability_index]
 		
+
 func start():
 	print('starting lifecycle')
 	state = LIFECYCLE.selecting

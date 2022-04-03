@@ -13,6 +13,7 @@ var abilities = []
 var grid_position = Vector2(0, 0)
 
 signal update_attr
+signal used_ability
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,7 +37,8 @@ func spend_action_points(action_cost: int):
 func moveTo(x: int, y: int):
 	pass
 
-func use_ability(index):
-	abilities[index].use_ability(self)
+func on_used_ability(index):
+	emit_signal("used_ability")
+	
 func _on_PlayerUnit_took_damage():
 	pass # Replace with function body.
