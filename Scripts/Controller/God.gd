@@ -55,6 +55,7 @@ func get_floor_tilemap():
 	return floor_tile_map
 	
 func get_obstacle_locations():
+	# todo: add player units and enemies as obstacles
 	return get_obstacle_tilemap().get_used_cells()
 
 func world_to_grid(world):
@@ -148,9 +149,10 @@ class Cover:
 		var total_cover = 0
 		for tile in raytrace(loc_a, loc_b):
 			var tile_index =  obstacle_tile_map.get_cellv(tile)
-			var name = obstacle_tile_map.tile_set.tile_get_name(tile_index)
-			if(name in cover_map):
-				total_cover += cover_map[name]
+			if(tile_index != -1):
+				var name = obstacle_tile_map.tile_set.tile_get_name(tile_index)
+				if(name in cover_map):
+					total_cover += cover_map[name]
 
 		return total_cover
 
