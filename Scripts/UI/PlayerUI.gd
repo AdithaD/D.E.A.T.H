@@ -34,3 +34,7 @@ func bind_lifecycle(new_lifecycle):
 func _on_PlayerUnit_update_attr():
 	update_status_text()
 	pass # Replace with function body.
+
+
+func _on_Gunner_update_attr():
+	pass # Replace with function body.

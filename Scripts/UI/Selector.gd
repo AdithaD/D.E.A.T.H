@@ -78,7 +78,7 @@ func select_player():
 	
 	var player_units = get_tree().get_nodes_in_group("player_unit")
 	
-
+	print(snapped_pos)
 	for unit in player_units:
 		if unit.global_position == snapped_pos:
 			selection = unit
