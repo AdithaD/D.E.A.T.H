@@ -1,4 +1,5 @@
 extends Node2D
+class_name Selector
 export (NodePath) var obstacle_map_path
 export (NodePath) var floor_map_path
 export (Texture) var selector_image
@@ -9,6 +10,9 @@ export(Ability.TARGET_TYPE) var target_type = Ability.TARGET_TYPE.player
 
 var selection
 var listen_to_input = true
+
+var god
+var lifecycle
 
 onready var camera = get_node("/root/World/UserCamera")
 
@@ -21,7 +25,7 @@ signal on_quit_selection()
 
 func _ready():
 	$Sprite.texture = selector_image
-	var god = get_node("/root/World")
+	god = get_node("/root/World")
 	print(god)
 	if obstacle_map_path != "":
 		obstacle_tile_map = get_node(obstacle_map_path)
@@ -78,7 +82,7 @@ func select_player():
 	
 	var player_units = get_tree().get_nodes_in_group("player_unit")
 	
-
+	print(snapped_pos)
 	for unit in player_units:
 		if unit.global_position == snapped_pos:
 			selection = unit
@@ -99,6 +103,7 @@ func select_enemy():
 		if enemy.global_position == snapped_pos:
 			selection = enemy
 			camera.focusOn(enemy.global_position)
+			emit_signal("on_select_enemy", selection)
 			break			
 			
 	
@@ -113,13 +118,9 @@ func select_cover():
 	
 func select_tile():
 	var mouse_pos = get_global_mouse_position()
-	var map_coords = floor_tile_map.world_to_map(mouse_pos)
-
-	print(map_coords)
-	print(floor_tile_map.map_to_world(map_coords))
-	selection = floor_tile_map.get_cell(map_coords.x, map_coords.y)
+	selection = floor_tile_map.world_to_map(mouse_pos)
 	
-
+	emit_signal("on_select_tile", selection)
 	pass
 
 func set_select_mode(new_type):

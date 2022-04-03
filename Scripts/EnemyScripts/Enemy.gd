@@ -51,7 +51,7 @@ func do_action(action):
 	
 	match ability.target_type:
 		TARGET_TYPE.player:
-			ability.use_ability_on_player(target)
+			ability.use_ability_on_player(self, target)
 		TARGET_TYPE.enemy:
 			pass
 		TARGET_TYPE.cover:
@@ -67,6 +67,3 @@ func take_damage(dmg):
 	health -= dmg
 	if health <= 0:
 		die()
-
-func _on_World_new_turn():
-	new_turn()

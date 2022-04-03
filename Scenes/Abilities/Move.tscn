@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Abilities/Move.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/move.png" type="Texture" id=2]
+
+[node name="Move" type="Node"]
+script = ExtResource( 1 )
+ability_name = "Move"
+ability_description = "Haul your ass to a square"
+icon = ExtResource( 2 )
+voice_lines = [ "Bounding!", "Cover me!", "Hauling ass!" ]
+target_type = 3

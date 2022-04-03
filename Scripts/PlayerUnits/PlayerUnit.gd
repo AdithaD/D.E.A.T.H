@@ -6,7 +6,7 @@ export (int) var actionPointsPerTurn
 export (int) var tilesPerMove
 
 var health
-var actionPoints = actionPointsPerTurn
+var action_points = actionPointsPerTurn
 
 var abilities = [] 
 
@@ -14,6 +14,7 @@ var grid_position
 var god
 
 signal update_attr
+signal used_ability
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,11 +31,12 @@ func _ready():
 	grid_position = god.world_to_grid(position)
 
 func new_turn():
-	actionPoints = actionPointsPerTurn
+	action_points = actionPointsPerTurn
 	pass
 
-func spendActionPoint(action_cost: int):
-	actionPoints -= 1
+func spend_action_points(action_cost: int):
+	action_points -= 1
+	emit_signal('update_attr')
 	pass
 
 func moveTo(x: int, y: int):
@@ -44,7 +46,12 @@ func take_damage(dmg):
 	health -= dmg
 	emit_signal("update_attr")
 
-func use_ability(index):
-	abilities[index].use_ability(self)
+func on_used_ability(index):
+	emit_signal("used_ability")
+
+func set_grid_position(new_grid):
+	grid_position = new_grid
+	position = god.grid_to_world(grid_position)
+
 func _on_PlayerUnit_took_damage():
 	pass # Replace with function body.

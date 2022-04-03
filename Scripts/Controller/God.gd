@@ -7,10 +7,22 @@ export (NodePath) var floor_map_path
 onready var obstacle_tile_map = get_node(obstacle_map_path)
 
 onready var floor_tile_map = get_node(floor_map_path)
+var cover
 
-signal new_turn
+# all other obstacles are 0 over
+var cover_map = {
+					"Building wall 1": 1,
+					"Building wall 2": 1,
+					"CORNER TOWER": 1,
+					"PYLON": 1,
+					"half pylon.png 4": 0.5
+}
+
+var unwalkable_tile_names = ["waterr.tres 4"]
 
 func _ready():
+	cover = Cover.new()
+	cover.init(obstacle_tile_map, cover_map)
 	set_process_input(true)
 
 func _input(event):
@@ -28,12 +40,28 @@ func _input(event):
 func get_player_nodes():
 #	return player_units
 	return get_tree().get_nodes_in_group("player_unit")
+
+func get_enemy_nodes():
+	return get_tree().get_nodes_in_group("enemy")
 	
 func get_player_locations():
 	var out = []
 	for player in get_player_nodes():
 		out.append(player.grid_position)
 	return out
+	
+func get_enemy_locations():
+	var out = []
+	for enemy in get_enemy_nodes():
+		out.append(enemy.grid_position)
+	return out
+	
+func get_unwalkable_tiles():
+	var unwalkable_tiles = []
+	for name in unwalkable_tile_names:
+		unwalkable_tiles += get_floor_tilemap().get_used_cells_by_id(get_floor_tilemap().tile_set.find_tile_by_name(name))
+	return unwalkable_tiles
+	
 
 func get_obstacle_tilemap():
 	return obstacle_tile_map
@@ -41,16 +69,26 @@ func get_obstacle_tilemap():
 func get_floor_tilemap():
 	return floor_tile_map
 	
+func get_cover_obstacles():
+	var obstacles = []
+	for name in cover_map.keys():
+		obstacles += get_obstacle_tilemap().get_used_cells_by_id(get_obstacle_tilemap().tile_set.find_tile_by_name(name))
+	return obstacles
+		
+
 func get_obstacle_locations():
-	return get_obstacle_tilemap().get_used_cells()
+	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles()
 
 func world_to_grid(world):
 	return floor_tile_map.world_to_map(world)
 func get_new_selector(scene):
 	var new_selector = scene.instance()
-	new_selector.obstacle_tile_map = obstacle_tile_map
-	new_selector.floor_tile_map = floor_tile_map
+	init_selector(new_selector)
 	return new_selector
+	
+func init_selector(selector):
+	selector.obstacle_tile_map = obstacle_tile_map
+	selector.floor_tile_map = floor_tile_map
 
 func grid_to_world(grid):
 	return floor_tile_map.map_to_world(grid)
@@ -60,9 +98,34 @@ func cell_exists(grid):
 	
 
 func new_turn():
-	emit_signal("new_turn")
+	for player in get_player_nodes():
+		if player.has_method("new_turn"):
+			player.new_turn()
+	for enemy in get_enemy_nodes():
+		if enemy.has_method("new_turn"):
+			enemy.new_turn()
+	
+func get_cover(loc_a, loc_b):
+	return cover.get_cover(loc_a, loc_b)
+
+func get_hit_chance(loc_a, loc_b, penetration=0, ignores_cover=false):
+	if ignores_cover:
+		return 0.95
+	var post_pen = max(cover.get_cover(loc_a, loc_b) - penetration, 0)
+	return hit_chance_func(post_pen)
+	
+func hit_chance_func(x):
+	var value = 1 - log(x + 1) / log(5)
+	return clamp(value, 0, 0.95)
 	
 class Cover:
+	var obstacle_tile_map
+	var cover_map
+	
+	func init(map, cov_map):
+		obstacle_tile_map = map
+		cover_map = cov_map
+	
 	static func raytrace(loc_a, loc_b):
 		var tiles = []
 		
@@ -103,10 +166,15 @@ class Cover:
 		return tiles
 
 		
-	static func get_cover(loc_a, loc_b):
-		pass
-		
-	
+	func get_cover(loc_a, loc_b):
+		var total_cover = 0
+		for tile in raytrace(loc_a, loc_b):
+			var tile_index =  obstacle_tile_map.get_cellv(tile)
+			if(tile_index != -1):
+				var name = obstacle_tile_map.tile_set.tile_get_name(tile_index)
+				if(name in cover_map):
+					total_cover += cover_map[name]
 
+		return total_cover
 
 

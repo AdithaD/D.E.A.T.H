@@ -50,7 +50,7 @@ func get_move_dist_to_closest_player(pos):
 	var player_locations = god.get_player_locations()
 	var closest = 9999
 	for loc in player_locations:
-		var path = bfs.find_path(pos, loc)
+		var path = bfs.find_path(pos, loc, true)
 		if(path and (len(path) - 1 < closest)):
 			closest = len(path) - 1
 	
