@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/backgroung scene.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Cinematic/cinematic.gd" type="Script" id=2]
+
+[node name="Opening Scene" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 690.77
+margin_top = 258.509
+margin_right = 930.77
+margin_bottom = 393.509
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+script = ExtResource( 2 )
