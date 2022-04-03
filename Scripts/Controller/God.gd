@@ -61,5 +61,52 @@ func cell_exists(grid):
 
 func new_turn():
 	emit_signal("new_turn")
+	
+class Cover:
+	static func raytrace(loc_a, loc_b):
+		var tiles = []
+		
+		var x0 = loc_a.x
+		var y0 = loc_a.y
+		var x1 = loc_b.x
+		var y1 = loc_b.y
+		
+		var dx = abs(x1 - x0);
+		var dy = abs(y1 - y0);
+		var x = x0;
+		var y = y0;
+		var n = 1 + dx + dy;
+		var x_inc = 1 if (x1 > x0) else  -1;
+		var y_inc =  1 if (y1 > y0) else -1;
+		var error = dx - dy;
+		dx *= 2;
+		dy *= 2;
+
+		while n > 0:
+			tiles.append(Vector2(x, y))
+
+			if (error > 0):
+				x += x_inc;
+				error -= dy;
+			elif error < 0:
+				y += y_inc;
+				error += dx;
+			elif error == 0:
+				x += x_inc
+				error -= dy
+				y += y_inc
+				error += dx
+				n -= 1
+			
+			n -= 1
+		
+		return tiles
+
+		
+	static func get_cover(loc_a, loc_b):
+		pass
+		
+	
+
 
 
