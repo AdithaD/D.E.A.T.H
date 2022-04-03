@@ -19,11 +19,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="EnemyUnit" type="Node2D" groups=["enemy"]]
+[node name="Grunt" type="Node2D" groups=["enemy"]]
 script = ExtResource( 1 )
-max_health = 5
+max_health = 4
 actions_points_per_turn = 2
-tiles_per_turn = 5
+tiles_per_turn = 4
 
 [node name="AI" type="Node2D" parent="."]
 script = ExtResource( 5 )
@@ -68,7 +68,7 @@ frames = SubResource( 1 )
 animation = "Frames"
 
 [node name="HealthDisplay" parent="." instance=ExtResource( 7 )]
-position = Vector2( -19, -20 )
+position = Vector2( -21, -33 )
 
 [connection signal="update_attr" from="." to="EnemyUI" method="_on_PlayerUnit_update_attr"]
 [connection signal="update_attr" from="." to="HealthDisplay" method="_on_EnemyUnit_update_attr"]

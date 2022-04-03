@@ -11,6 +11,8 @@ var enemy
 export (float) var move_animation_time = 0.15
 var move_interval = 0.025
 
+enum SPRITE_DIRECTIONS {BOTTOM_LEFT, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT}
+
 func _ready():
 #	randomize()
 	god = get_tree().root.get_child(0)
@@ -28,9 +30,12 @@ func _use_ai_ability(source):
 	pass
 
 func do_move(path):
+	var prev_loc = enemy.grid_position
 	enemy.grid_position = path[-1]
-	print(enemy.grid_position)
+#	print(enemy.grid_position)
 	for loc in path:
+		change_dir_sprite(loc - prev_loc)
+		prev_loc = loc
 		yield(world_move_to(god.grid_to_world(loc)), "completed")
 	
 
@@ -55,5 +60,21 @@ func get_move():
 			best = [tile, ai.evaluate_tile(tile)]
 		
 	return bfs.find_path(enemy.grid_position, best[0])
+
+func change_dir_sprite(vector):
+	if(abs(vector.x) >= abs(vector.y)):
+		if(vector.x >= 0):
+			set_sprite_index(SPRITE_DIRECTIONS.BOTTOM_RIGHT)
+		else:
+			set_sprite_index(SPRITE_DIRECTIONS.TOP_LEFT)
+	else:
+		if(vector.y >= 0):
+			set_sprite_index(SPRITE_DIRECTIONS.BOTTOM_LEFT)
+		else:
+			set_sprite_index(SPRITE_DIRECTIONS.TOP_RIGHT)
+
+func set_sprite_index(index):
+	enemy.get_node("AnimatedSprite").frame = index
+
 
 
