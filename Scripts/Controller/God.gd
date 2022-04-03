@@ -49,6 +49,9 @@ func init_entities():
 func get_player_nodes():
 #	return player_units
 	return get_tree().get_nodes_in_group("player_unit")
+	
+func get_flying_player_nodes():
+	return get_tree().get_nodes_in_group("flying_player_unit")
 
 func get_enemy_nodes():
 	return get_tree().get_nodes_in_group("enemy")

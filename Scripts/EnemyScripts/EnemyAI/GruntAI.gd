@@ -45,6 +45,13 @@ func get_players_in_range(ability_range, pos):
 			in_range.append(player)
 	return in_range
 
+func get_flying_players_in_range(ability_range, pos):
+	var in_range = []
+	for player in god.get_flying_player_nodes():
+		if bfs.grid_distance(player.grid_position, pos) <= ability_range:
+			in_range.append(player)
+	return in_range
+
 func get_move_dist_to_closest_player(pos):
 	var player_locations = god.get_player_locations()
 	var closest = 9999
