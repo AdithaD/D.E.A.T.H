@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Explosives.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Units/PlayerUnit.tscn" type="PackedScene" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom right.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Sprites/rocket_launcher.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Abilities/AoESelector.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Abilities/Grenade.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Abilities/GunShoot.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/Fire weapon.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -19,7 +22,15 @@ animations = [ {
 
 [node name="Grenadier" instance=ExtResource( 2 )]
 
-[node name="RocketLauncher" type="Node" parent="Abilities" index="1"]
+[node name="Shoot" type="Node" parent="Abilities" index="1"]
+script = ExtResource( 10 )
+ability_name = "Shoot"
+ability_description = "Take aim and fire."
+icon = ExtResource( 11 )
+voice_lines = [ "Firing on target", "Lock n' load", "Engaging hostile" ]
+damage = 3
+
+[node name="RocketLauncher" type="Node" parent="Abilities" index="2"]
 script = ExtResource( 1 )
 ability_name = "Rocket Launcher"
 ability_description = "Destroy cover and deal damage in an area."
@@ -32,16 +43,11 @@ target_type = 3
 area_of_effect = 2
 damage = 4
 
-[node name="Grenade" type="Node" parent="Abilities" index="2"]
-script = ExtResource( 1 )
-ability_name = "Grenade"
-ability_description = "Lob a grenade"
-icon = ExtResource( 7 )
-voice_lines = [ "Stand clear!", "Pulling the pin!", "Oh shit, I threw the pin!" ]
-selector = ExtResource( 8 )
-target_type = 3
-select_range = 5
+[node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 9 )]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 position = Vector2( 2, -20 )
 frames = SubResource( 1 )
+
+[node name="DeathSprite" parent="." index="3"]
+visible = false

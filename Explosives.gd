@@ -15,18 +15,18 @@ func _use_ability(source, target):
 	var floor_tilemap = god.get_floor_tilemap()
 	
 	# to improve
-	var enemies = get_tree().get_nodes_in_group("enemy")
-
+	var damagable = get_tree().get_nodes_in_group("damageable")
+	
 	var tiles_affected = generateAoE(target)
-	for enemy in enemies:
-		if tiles_affected.find(enemy.grid_position) != -1:
-			enemy.take_damage(damage)
+	for entity in damagable:
+		if tiles_affected.find(entity.grid_position) != -1:
+			entity.take_damage(damage)
 	
 	for tile in tiles_affected:
 		if obstacle_tilemap.get_cellv(tile) != -1:
 			obstacle_tilemap.set_cellv(tile, obstacle_tilemap.tile_set.find_tile_by_name("rubble"))
 	
-	emit_signal("ability_used")
+	finish_doing()
 
 func generateAoE(target):
 	var pos = target

@@ -20,6 +20,8 @@ var mark_length = 0
 
 var ai
 
+var is_dead = false
+
 var end_turn
 signal update_attr
 signal used_ability
@@ -39,21 +41,33 @@ func _ready():
 	
 
 func new_turn():
-	ai.bfs.init(god)
-	
-	for ability in abilities:
-		ability.new_turn()
+	if(!is_dead):
+		ai.bfs.init(god)
 		
-	action_points = actions_points_per_turn
-	dist_moved = 0
-	
-	if(ai.has_method("generate_turn")):
-		var turn = ai.generate_turn(abilities)
+		for ability in abilities:
+			ability.new_turn()
+			
+		action_points = actions_points_per_turn
+		dist_moved = 0
 		
-		for ability in turn:
-			ability.use_ai_ability(self)
+		if(ai.has_method("generate_turn")):
+			var turn = ai.generate_turn(abilities)
+			
+			for ability in turn:
+				ability.use_ai_ability(self)
+		
+		emit_signal('update_attr')
 	
-	emit_signal('update_attr')
+func take_damage(dmg):
+	health -= dmg
+	if(health <= 0):
+		die()
+	emit_signal("update_attr")
+	
+func die():
+	is_dead = true
+	$DeathSprite.visible = true
+	$AnimatedSprite.visible = false
 
 func get_moveable_distance():
 	return tiles_per_turn - dist_moved
@@ -69,10 +83,7 @@ func spend_action_points(action_cost: int):
 
 func moveTo(x: int, y: int):
 	pass
-	
-func take_damage(dmg):
-	health -= dmg
-	emit_signal("update_attr")
+
 
 func on_used_ability(index):
 	emit_signal("used_ability")

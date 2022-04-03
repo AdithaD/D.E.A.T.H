@@ -22,6 +22,9 @@ var is_marked
 var mark_length = 0
 
 var end_turn
+
+var is_dead = false
+
 signal update_attr
 signal used_ability
 
@@ -30,26 +33,31 @@ enum SPRITE_DIRECTIONS {BOTTOM_LEFT, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	health = max_health
+	$DeathSprite.visible=false
 	
 	abilities = $Abilities.get_children()
 			
 	emit_signal('update_attr')
 	god = get_tree().root.get_child(0)
-func new_turn(finish_turn):
-	end_turn = finish_turn
-		
-	action_points = actions_points_per_turn
-	dist_moved = 0
 	
-	for ability in abilities:
-		ability.new_turn()
+func new_turn(finish_turn):
+	if(is_dead):
+		finish_turn.call_func()
+	else:
+		end_turn = finish_turn
+			
+		action_points = actions_points_per_turn
+		dist_moved = 0
 		
-	if(mark_length > 0):
-		mark_length -= 1
-	if(mark_length <= 0):
-		is_marked = false
+		for ability in abilities:
+			ability.new_turn()
+			
+		if(mark_length > 0):
+			mark_length -= 1
+		if(mark_length <= 0):
+			is_marked = false
 
-	emit_signal('update_attr')
+		emit_signal('update_attr')
 
 
 func get_moveable_distance():
@@ -66,8 +74,15 @@ func spend_action_points(action_cost: int):
 
 func take_damage(dmg):
 	health -= dmg
+	if(health <= 0):
+		die()
 	emit_signal("update_attr")
-
+	
+func die():
+	is_dead = true
+	$DeathSprite.visible = true
+	$AnimatedSprite.visible = false
+	
 func on_used_ability(index):
 	emit_signal("used_ability")
 

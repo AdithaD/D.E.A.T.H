@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Enemies/EnemyUnit.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/EnemyAbilities/EnemyShoot.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Sprites/Enemies/Grunt/grunt top right.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprites/Enemies/Grunt/grunt bottom left.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/Enemies/Grunt/grunt top left.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/body.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -19,7 +20,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="EnemyUnit" type="Node2D" groups=["enemy"]]
+[node name="EnemyUnit" type="Node2D" groups=["damageable", "enemy"]]
 script = ExtResource( 1 )
 max_health = 5
 actions_points_per_turn = 2
@@ -69,6 +70,10 @@ animation = "Frames"
 
 [node name="HealthDisplay" parent="." instance=ExtResource( 7 )]
 position = Vector2( -19, -20 )
+
+[node name="DeathSprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 11 )
 
 [connection signal="update_attr" from="." to="EnemyUI" method="_on_PlayerUnit_update_attr"]
 [connection signal="update_attr" from="." to="HealthDisplay" method="_on_EnemyUnit_update_attr"]
