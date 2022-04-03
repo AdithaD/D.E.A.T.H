@@ -131,6 +131,12 @@ margin_right = -16.0
 margin_bottom = -9.0
 text = "Confirm"
 
+[node name="Label" type="Label" parent="UI/HUD"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 120.0
+margin_bottom = 40.0
+
 [node name="AbilityLifecycleManager" type="Node" parent="."]
 script = ExtResource( 11 )
 selector_path = NodePath("../Selector")
@@ -142,10 +148,10 @@ follow_viewport_enable = true
 follow_viewport_scale = 0.4
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
-margin_left = -960.415
-margin_top = -373.201
-margin_right = 959.585
-margin_bottom = 706.799
+margin_left = -1120.0
+margin_top = -448.0
+margin_right = 800.0
+margin_bottom = 632.0
 texture = ExtResource( 14 )
 
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]

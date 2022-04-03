@@ -45,7 +45,7 @@ func init(casting_player, ability_index, new_primary_selector):
 	secondary_selector.connect("on_select_cover", self, "_on_Secondary_Selector_select")
 	secondary_selector.connect("on_deselect", self, "_on_Secondary_Selector_deselect")
 	secondary_selector.connect("on_quit_selection", self, "_on_Secondary_Selector_quit_selection")
-
+	secondary_selector.connect("on_confirm_select", self,"on_Secondary_Selector_confirm_select")
 	secondary_selector.listen_to_input = false
 
 func start():
@@ -58,7 +58,10 @@ func start():
 	secondary_selector.listen_to_input = true
 	
 	emit_signal('selecting')
-	
+
+func on_Secondary_Selector_confirm_select():
+	move_to_doing()
+
 func _on_Secondary_Selector_select(selected):
 	if(state == LIFECYCLE.selecting):
 		target = selected

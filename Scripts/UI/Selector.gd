@@ -20,8 +20,10 @@ signal on_select_player(selected_player)
 signal on_select_enemy(selected_enemy)
 signal on_select_tile(selected_tile)
 signal on_select_cover(selected_cover)
+
 signal on_deselect()
 signal on_quit_selection()
+signal on_confirm_select()
 
 func _ready():
 	$Sprite.texture = selector_image
@@ -40,14 +42,16 @@ func deselect():
 	selection = null
 	camera.unfocus()
 	emit_signal("on_deselect")
+	
 
 func _process(_delta):
 	
 	if selection != null:
 		if(Input.is_action_just_pressed("deselect") && listen_to_input):
-			if(selection != null):
-				deselect()
-				
+			deselect()
+		if(Input.is_action_just_pressed("confirm_select") && listen_to_input):
+			emit_signal("on_confirm_select")
+			emit_signal("on_confirm_select")
 
 	else:
 		if Input.is_action_just_pressed("deselect"):
