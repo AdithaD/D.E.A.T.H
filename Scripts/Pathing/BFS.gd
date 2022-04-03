@@ -20,13 +20,20 @@ func get_reachable(start, dist):
 				
 	return explored.keys()
 
-func find_path(start, goal):
+func find_path(start, goal, goal_can_be_obstacle = false):
 	if start == goal:
 		return [start]
 	var explored = {start: null}
 	var queue = [start]
 	while len(queue) != 0:
 		var new = queue.pop_front()
+		
+		if(goal_can_be_obstacle):
+			for neigh in get_all_neighbours(new):
+				if(neigh == goal):
+					explored[neigh] = new
+					return reconstruct_path(goal, explored)
+		
 		for neigh in get_neighbours(new):
 			if(neigh == goal):
 				explored[neigh] = new
@@ -43,6 +50,14 @@ func get_neighbours(a):
 	for dir in direction_vectors:
 		var temp_neig = a + dir
 		if tile_exists(temp_neig) and !tile_is_blocked(temp_neig):
+			possible_neighbours.append(temp_neig)
+	return possible_neighbours
+
+func get_all_neighbours(a):
+	var possible_neighbours = []
+	for dir in direction_vectors:
+		var temp_neig = a + dir
+		if tile_exists(temp_neig):
 			possible_neighbours.append(temp_neig)
 	return possible_neighbours
 	
