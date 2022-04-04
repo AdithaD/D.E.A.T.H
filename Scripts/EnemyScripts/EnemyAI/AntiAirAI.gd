@@ -27,4 +27,4 @@ func evaluate_tile(pos):
 	return score
 
 func get_target_locations():
-	return god.get_flying_players_locations()
+	return god.get_flying_player_locations()
