@@ -6,7 +6,7 @@
 [ext_resource path="res://Scripts/UI/PlayerUI.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/move.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/Sprites/body.png" type="Texture" id=7]
+[ext_resource path="res://Resource/UnitDeath.tres" type="SpriteFrames" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "text float off"
@@ -101,8 +101,10 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerUI"]
 "anims/text float off" = SubResource( 1 )
 
-[node name="DeathSprite" type="Sprite" parent="."]
-texture = ExtResource( 7 )
+[node name="DeathSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = ExtResource( 7 )
+frame = 2
 
 [node name="HealthDisplay" parent="." instance=ExtResource( 6 )]
 position = Vector2( -19, -31 )

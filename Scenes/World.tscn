@@ -303,6 +303,10 @@ __meta__ = {
 autoplay = "fade in"
 "anims/fade in" = SubResource( 1 )
 
+[connection signal="update_attr" from="Cover/AntiAir" to="Cover/AntiAir/HealthDisplay" method="_on_Unit_update_attr"]
+[connection signal="update_attr" from="Cover/Artillery" to="Cover/Artillery/HealthDisplay" method="_on_Unit_update_attr"]
+[connection signal="update_attr" from="Cover/Grunt" to="Cover/Grunt/HealthDisplay" method="_on_Unit_update_attr"]
+[connection signal="update_attr" from="Cover/Recon" to="Cover/Recon/HealthDisplay" method="_on_Unit_update_attr"]
 [connection signal="update_attr" from="Cover/Grenadier" to="Cover/Grenadier/PlayerUI" method="_on_PlayerUnit_update_attr"]
 [connection signal="update_attr" from="Cover/Gunner" to="Cover/Gunner/PlayerUI" method="_on_PlayerUnit_update_attr"]
 [connection signal="update_attr" from="Cover/Helicopter" to="Cover/Helicopter/PlayerUI" method="_on_PlayerUnit_update_attr"]

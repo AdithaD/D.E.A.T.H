@@ -60,8 +60,8 @@ use_sound = ExtResource( 6 )
 voice_lines = [ "Rapid fire!", "Quantity over quality!", "Eat lead!" ]
 damage = 5
 penetration = 1
-burst_number = 8
-burst_delay = 0.03
+burst_number = 6
+burst_delay = 0.02
 bullet_length = 10
 
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 12 )]
@@ -74,6 +74,3 @@ visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
 frame = 1
-
-[node name="DeathSprite" parent="." index="3"]
-visible = false

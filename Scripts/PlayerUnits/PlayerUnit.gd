@@ -83,8 +83,11 @@ func take_damage(dmg):
 	
 func die():
 	is_dead = true
+	$DeathSprite.set_frame(0)
 	$DeathSprite.visible = true
 	$AnimatedSprite.visible = false
+	$DeathSprite.play()
+	
 	
 
 func heal_damage(heal_amount):
