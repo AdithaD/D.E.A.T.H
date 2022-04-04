@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://Scripts/CivilianSpawning.gd" type="Script" id=26]
 [ext_resource path="res://Scenes/Evacuation Area.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Civilian.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Scenes/EnemySpawner.gd" type="Script" id=29]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -38,12 +39,33 @@ floor_map_path = NodePath("Tiles")
 
 [node name="CivilianSpawner" type="Node" parent="Spawner"]
 script = ExtResource( 26 )
+amount_to_spawn = 1
 civilian_types = [ ExtResource( 28 ) ]
 spawn_target = NodePath("../../Cover")
 
 [node name="EnemySpawner" type="Node" parent="Spawner"]
+script = ExtResource( 29 )
+enemies = [ ExtResource( 25 ), ExtResource( 24 ), ExtResource( 7 ), ExtResource( 21 ) ]
+difficulties = [ 5, 4, 3, 2 ]
+turn_multiplier = 2
+turn_spawn_period = 0
+spawn_target = NodePath("../../Cover")
 
 [node name="Timer" type="Timer" parent="Spawner/EnemySpawner"]
+
+[node name="Spawn Points" type="Node" parent="Spawner/EnemySpawner"]
+
+[node name="SpawnPoint" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
+position = Vector2( 256, -144 )
+
+[node name="SpawnPoint2" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
+position = Vector2( 256, -96 )
+
+[node name="SpawnPoint3" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
+position = Vector2( 320, -160 )
+
+[node name="SpawnPoint4" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
+position = Vector2( 320, -96 )
 
 [node name="TurnManager" type="Node" parent="."]
 script = ExtResource( 17 )

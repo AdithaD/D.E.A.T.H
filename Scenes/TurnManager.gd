@@ -26,10 +26,15 @@ func new_turn():
 
 
 func conduct_turn():
+
+	get_node("../Spawner/EnemySpawner").spawn(turn)
+		
 	yield(conduct_player_turn(), "completed")
-	conduct_civilian_turn()
+	yield(conduct_civilian_turn(),"completed")
 	yield(conduct_enemy_turn(), "completed")
 	
+
+
 	new_turn()
 
 	
@@ -86,6 +91,7 @@ func conduct_civilian_turn():
 		if civilian.has_method("new_turn"):
 			get_node("/root/World/UserCamera").focus_on(civilian.position)
 			civilian.new_turn()
+			yield(civilian, "turn_complete")
 			
 func _on_NextTurn_pressed():
 	should_force_end_turn = true

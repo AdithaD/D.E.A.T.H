@@ -16,3 +16,11 @@ static func filter_entities_in_AoE(entities, center, aoe_range):
 			list.append(entity)
 			
 	return list
+	
+static func get_free_tiles_in_AoE(center, aoe_range, god):
+	var tiles_affected = generate_AoE(center, aoe_range)
+	var list = []
+	for tile in tiles_affected:
+		if god.get_obstacle_locations().find(tile) == -1:
+			list.append(tile)
+	return list

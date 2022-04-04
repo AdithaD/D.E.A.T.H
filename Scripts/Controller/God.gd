@@ -45,7 +45,10 @@ func init_entities():
 		
 	for civilian in get_tree().get_nodes_in_group("civilian"):
 		civilian.grid_position = world_to_grid(civilian.position)
-		
+
+func init_entity(entity):
+	entity.grid_position = world_to_grid(entity.position)
+	
 func init_world():
 	for obj in get_tree().get_nodes_in_group("world_object"):
 		obj.grid_position = world_to_grid(obj.position)

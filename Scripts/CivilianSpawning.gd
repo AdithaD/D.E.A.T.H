@@ -42,7 +42,7 @@ func spawn_civilians(new_god):
 			
 		
 		amount_spawned += size_of_batch
-
+		print(amount_spawned)
 func get_valid_spawns(position, batch_size):
 	var possible_spawns = aoe.generate_AoE(position, 1)
 	var all_obs = god.get_obstacle_locations()
