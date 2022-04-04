@@ -41,5 +41,9 @@ func get_evacuation_area(pos):
 		if(ea.is_in_evacuation_area(pos)):
 			return ea
 
-
-	return null
+func get_details(lifecycle):
+	var super_details = .get_details(lifecycle) + "\n\n"
+	
+	
+	super_details += "Your helicopter will be unavailable for a whole turn after using this ability"
+	return super_details

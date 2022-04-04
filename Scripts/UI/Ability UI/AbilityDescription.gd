@@ -10,6 +10,7 @@ func set_ability(a):
 	ability_lifecycle = a
 	$NameText.text = ability_lifecycle.active_ability.ability_name
 	$DescriptionText.text = ability_lifecycle.active_ability.ability_description
+	$DetailsText.text = ability_lifecycle.active_ability.get_details(ability_lifecycle)
 	
 	ability_lifecycle.connect("selecting", self, "show")
 	ability_lifecycle.connect("selected", self, "enable_confirm")

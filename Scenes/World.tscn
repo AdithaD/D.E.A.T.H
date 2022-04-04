@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://Scenes/Effects.gd" type="Script" id=30]
 [ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=31]
 [ext_resource path="res://Resource/AbilityPromptPressed.tres" type="StyleBox" id=32]
+[ext_resource path="res://Assets/Fonts/pixeloid bold heading.tres" type="DynamicFont" id=33]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade in"
@@ -65,7 +66,6 @@ script = ExtResource( 29 )
 enemies = [ ExtResource( 25 ), ExtResource( 24 ), ExtResource( 7 ), ExtResource( 21 ) ]
 difficulties = [ 5, 4, 3, 2 ]
 turn_multiplier = 2
-turn_spawn_period = 0
 spawn_target = NodePath("../../Cover")
 
 [node name="Timer" type="Timer" parent="Spawner/EnemySpawner"]
@@ -225,20 +225,17 @@ script = ExtResource( 9 )
 [node name="Ability Prompt" type="Panel" parent="UI/HUD"]
 margin_left = 21.0
 margin_top = 352.0
-margin_right = 240.0
-margin_bottom = 575.0
+margin_right = 384.0
+margin_bottom = 888.0
 custom_styles/panel = ExtResource( 19 )
 script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="NameText" type="Label" parent="UI/HUD/Ability Prompt"]
-margin_left = 5.0
-margin_top = 6.0
-margin_right = 211.0
-margin_bottom = 43.0
-custom_fonts/font = ExtResource( 31 )
+margin_left = 19.0
+margin_top = 8.0
+margin_right = 329.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 33 )
 text = "asdf"
 valign = 1
 __meta__ = {
@@ -246,14 +243,23 @@ __meta__ = {
 }
 
 [node name="DescriptionText" type="Label" parent="UI/HUD/Ability Prompt"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -103.5
-margin_top = -173.0
-margin_right = 101.5
-margin_bottom = -13.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 19.0
+margin_top = -180.0
+margin_right = 339.0
+margin_bottom = -20.0
+custom_fonts/font = ExtResource( 31 )
+text = "asdfasdfasdf"
+autowrap = true
+
+[node name="DetailsText" type="Label" parent="UI/HUD/Ability Prompt"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 19.0
+margin_top = 28.0
+margin_right = 339.0
+margin_bottom = 188.0
 custom_fonts/font = ExtResource( 31 )
 text = "asdfasdfasdf"
 autowrap = true
@@ -262,10 +268,11 @@ autowrap = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = -29.0
-margin_right = -16.0
-margin_bottom = -9.0
+margin_left = 19.0
+margin_top = -72.0
+margin_right = -13.0
+margin_bottom = -33.0
+custom_fonts/font = ExtResource( 33 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/normal = ExtResource( 19 )
 text = "Confirm"

@@ -37,3 +37,11 @@ func submit_tracer_burst(start_pos, target_pos, length, speed, amount, offset):
 			
 		for child in get_children():
 			child.queue_free()
+
+func get_details(lifecycle):
+	var super = .get_details(lifecycle) + "\n"
+	
+	super += "Damage: %s \n" % damage
+	super += "Penetration: %s \n" %  penetration
+	
+	return super

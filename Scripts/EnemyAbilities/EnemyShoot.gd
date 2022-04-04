@@ -40,7 +40,7 @@ func submit_tracer_burst(start_pos, target_pos, length, speed, amount, offset):
 			child.queue_free()
 	
 func _generate_target(source):
-	var players = ai.get_alive_players_in_range(shoot_range, source.grid_position)
+	var players = ai.get_players_in_range(shoot_range, source.grid_position)
 	
 	if len(players) == 0:
 		return null
