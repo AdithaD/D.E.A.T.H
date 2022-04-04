@@ -230,9 +230,9 @@ custom_fonts/font = ExtResource( 34 )
 
 [node name="NextTurn" type="Button" parent="UI/HUD/TurnUI"]
 margin_left = 1424.0
-margin_top = 136.0
+margin_top = 248.0
 margin_right = 1746.0
-margin_bottom = 210.0
+margin_bottom = 322.0
 custom_fonts/font = ExtResource( 33 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/normal = ExtResource( 19 )
