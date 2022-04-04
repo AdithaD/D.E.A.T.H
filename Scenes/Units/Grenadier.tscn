@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Explosives.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Units/PlayerUnit.tscn" type="PackedScene" id=2]
@@ -10,10 +10,23 @@
 [ext_resource path="res://Scenes/Abilities/AoESelector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Abilities/Grenade.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Abilities/Shoot.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/Fire weapon.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/rocket.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/riflesfx.mp3" type="AudioStream" id=13]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/grenade.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 5.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 3.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 4.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 6.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 1.png" type="Texture" id=19]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 19 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "default",
+"speed": 7.0
+} ]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -42,9 +55,21 @@ target_type = 3
 area_of_effect = 2
 damage = 4
 
+[node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/RocketLauncher" index="0"]
+visible = false
+scale = Vector2( 4, 4 )
+frames = SubResource( 2 )
+frame = 1
+
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 9 )]
 icon = ExtResource( 14 )
 use_sound = ExtResource( 7 )
+
+[node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/Grenade" index="0"]
+visible = false
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+frame = 1
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 position = Vector2( 2, -20 )

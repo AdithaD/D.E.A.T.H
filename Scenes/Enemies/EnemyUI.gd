@@ -12,8 +12,8 @@ func _process(_delta):
 	if($VoiceLine.visible && $VoiceLineTimer.is_stopped()):
 		$VoiceLine.visible = false
 	
-func update_status_text():
-	$DisplayText.text = "HP: " + String(unit.health)+ ", AP: " + String(unit.action_points)
+#func update_status_text():
+#	$DisplayText.text = "HP: " + String(unit.health)+ ", AP: " + String(unit.action_points)
 
 func display_voice_line(voice_line):
 	$VoiceLine.text = voice_line
@@ -29,12 +29,12 @@ func display_ability_voice_line(ability):
 		display_voice_line(voice_line)
 		
 func display_hit_chance(hit_chance):
-	$HitChanceLabel.text = String(hit_chance)
+	$HitChanceLabel.text = String(stepify(hit_chance, 0.01))
 
 func clear_hit_chance():
 	$HitChanceLabel.text = ""
 
-func _on_Unit_update_attr():
-	update_status_text()
+#func _on_Unit_update_attr():
+#	update_status_text()
 	pass # Replace with function body.
 

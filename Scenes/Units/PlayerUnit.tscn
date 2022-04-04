@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Abilities/Move.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/Abilities/RangeSelector.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/Abilities/Stay.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/stop.png" type="Texture" id=12]
+[ext_resource path="res://Resource/UnitDeath.tres" type="SpriteFrames" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "text float off"
@@ -127,8 +128,10 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerUI"]
 "anims/text float off" = SubResource( 1 )
 
-[node name="DeathSprite" type="Sprite" parent="."]
-texture = ExtResource( 7 )
+[node name="DeathSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = ExtResource( 13 )
+frame = 2
 
 [node name="HealthDisplay" parent="." instance=ExtResource( 6 )]
 position = Vector2( -19, -31 )

@@ -18,7 +18,7 @@ var abilities = []
 
 var grid_position
 var god
-var is_marked
+var is_marked = false
 var mark_length = 0
 
 var end_turn
@@ -83,8 +83,11 @@ func take_damage(dmg):
 	
 func die():
 	is_dead = true
+	$DeathSprite.set_frame(0)
 	$DeathSprite.visible = true
 	$AnimatedSprite.visible = false
+	$DeathSprite.play()
+	
 	
 
 func heal_damage(heal_amount):

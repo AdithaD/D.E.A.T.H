@@ -7,6 +7,7 @@ export (int) var damage = 2
 var aoe = preload("res://Scripts/AoE.gd")
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -28,7 +29,13 @@ func _use_ability(_source, target):
 	for tile in tiles_affected:
 		if obstacle_tilemap.get_cellv(tile) != -1:
 			obstacle_tilemap.set_cellv(tile, obstacle_tilemap.tile_set.find_tile_by_name("rubble"))
-			
+	
+	$ExplosionAnimation.set_frame(1)
+	$ExplosionAnimation.position = god.grid_to_world(target)
 	SoundEngine.play_explosion_sfx()
+	$ExplosionAnimation.visible = true
+	$ExplosionAnimation.play()
+	yield($ExplosionAnimation, "animation_finished")
+	$ExplosionAnimation.visible = false
 	
 	finish_doing()
