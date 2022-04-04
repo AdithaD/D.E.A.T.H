@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Enemies/EnemyUnit.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/pixeloid font.tres" type="DynamicFont" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Resource/UnitDeath.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Sprites/UI/marked icon.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "text float off"
@@ -107,6 +108,12 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyUI"]
 "anims/text float off" = SubResource( 1 )
+
+[node name="MarkedIcon" type="Sprite" parent="EnemyUI"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.862745 )
+position = Vector2( 50.077, 46 )
+texture = ExtResource( 8 )
 
 [node name="DeathSprite" type="AnimatedSprite" parent="."]
 visible = false
