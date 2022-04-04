@@ -1,4 +1,5 @@
 extends BFSAI
+class_name GruntAI
 
 var player_bonus = 2000
 var civilian_bonus = 100
@@ -33,7 +34,7 @@ func get_hitchance(pos, target, penetration=0):
 	return god.get_hit_chance(pos, target.grid_position, penetration, !target.can_cover, target.is_marked)
 			
 
-func evaulate_tile(pos):
+func evaluate_tile(pos):
 	# can get within range of player/civ?
 	# NO?
 	# move closer
@@ -43,9 +44,12 @@ func evaulate_tile(pos):
 	var in_range = false
 	
 	var shoot_range = 0
-	if(get_parent().get_node_or_null("EnemyShoot")):
-		shoot_range = get_parent().get_node("EnemyShoot").shoot_range
-		penetration = get_parent().get_node("EnemyShoot").penetration
+	
+	var abilities = get_parent().get_node("Abilities")
+	if(abilities.get_node_or_null("EnemyShoot")):
+		var enemyshoot = abilities.get_node("EnemyShoot")
+		shoot_range = enemyshoot.shoot_range
+		penetration = enemyshoot.penetration
 	
 	var players_in_range = get_players_in_range(shoot_range, pos)
 	var civilians_in_range = get_civilians_in_range(shoot_range, pos)
@@ -54,7 +58,7 @@ func evaulate_tile(pos):
 		score = float(player_bonus)
 		score += get_highest_hitchance(pos, players_in_range, penetration) * hit_chance_score_multiplier
 		for player in get_players_in_range(unit_check_acc_range, pos):
-			score -= get_hitchance(pos, player, penetration) * enemy_hit_chance_score_multiplier
+			score -= get_hitchance(pos, player, 0) * enemy_hit_chance_score_multiplier
 			
 		return score
 		
@@ -65,3 +69,4 @@ func evaulate_tile(pos):
 		return score
 	
 	score = float(1)/max(get_dist_to_closest_target(pos), 1) * player_bonus
+	return score

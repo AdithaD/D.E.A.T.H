@@ -5,12 +5,16 @@ extends Node
 export (NodePath) var obstacle_map_path
 export (NodePath) var floor_map_path
 export (int) var mark_acc_increase = 20
+
+export (Array, PackedScene) var players
+
 onready var obstacle_tile_map = get_node(obstacle_map_path)
 
 onready var floor_tile_map = get_node(floor_map_path)
 var cover
 
 var civlians_evacuated = 0
+var players_killed = 0
 
 # all other obstacles are 0 over
 var cover_map = {
@@ -30,13 +34,36 @@ func _ready():
 	cover.init(obstacle_tile_map, cover_map)
 	set_process_input(true)
 	
-	$Spawner/CivilianSpawner.spawn_civilians(self)
+	spawn_players()
 	
+	$Spawner/CivilianSpawner.spawn_civilians(self)
+	$Spawner/EnemySpawner.force_spawn(0)
 	init_entities()	
 	init_world()
 
 	$TurnManager.new_turn()
 
+
+func spawn_players():
+	for i in range(0, players.size()):
+		var player = players[i].instance()
+		player.connect("death", self, "increment_dead_count")
+		$Cover.add_child(player)
+		
+		var snapped_pos = world_to_grid($Spawner/PlayerSpawnPoints.get_child(i).global_position)
+		player.position = grid_to_world(snapped_pos)
+
+func increment_dead_count():
+	players_killed += 1
+	check_game_over()
+
+func check_game_over():
+	if players_killed == players.size() or get_civilian_nodes().size() == 0:
+		game_over()
+
+func game_over():
+	$UI/HUD.visible = false
+	$"UI/Game Over".visible = true
 
 func init_entities():
 	for en in get_enemy_nodes():	
@@ -107,7 +134,7 @@ func get_player_nodes(alive=true):
 	else:
 		return player_nodes
 func get_flying_player_nodes(alive=true):
-	var player_nodes =  get_tree().get_nodes_in_group("player_unit")
+	var player_nodes =  get_tree().get_nodes_in_group("flying_player_unit")
 	if alive:
 		var list = []
 		for p in player_nodes:
@@ -117,19 +144,40 @@ func get_flying_player_nodes(alive=true):
 	else:
 		return player_nodes
 
-func get_enemy_nodes():
-	return get_tree().get_nodes_in_group("enemy")
+func get_enemy_nodes(alive=true):
+	var enemy_nodes = get_tree().get_nodes_in_group("enemy")
+	if alive:
+		var list = []
+		for e in enemy_nodes:
+			if !e.is_dead:
+				list.append(e)
+		return list
+	else:
+		return enemy_nodes
 	
 func get_player_locations():
 	var out = []
 	for player in get_player_nodes():
 		out.append(player.grid_position)
 	return out
+
+func get_civilian_locations():
+	var out = []
+	for civilian in get_civilian_nodes():
+		out.append(civilian.grid_position)
+	return out
+	
 	
 func get_enemy_locations():
 	var out = []
 	for enemy in get_enemy_nodes():
 		out.append(enemy.grid_position)
+	return out
+
+func get_flying_player_locations():
+	var out = []
+	for player in get_flying_player_nodes():
+		out.append(player.grid_position)
 	return out
 	
 func get_unwalkable_tiles():
@@ -153,7 +201,7 @@ func get_cover_obstacles():
 		
 
 func get_obstacle_locations():
-	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles() + get_civilian_nodes()
+	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles() + get_civilian_locations()
 
 func world_to_grid(world):
 	return floor_tile_map.world_to_map(world)

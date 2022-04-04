@@ -38,6 +38,9 @@ func _ready():
 	pass # Replace with function body.
 
 
+func init():
+	pass
+
 func deselect():
 	selection = null
 	camera.unfocus()
@@ -58,7 +61,6 @@ func _process(_delta):
 		if(Input.is_action_just_pressed("deselect") && listen_to_input):
 			deselect()
 		if(Input.is_action_just_pressed("confirm_select") && listen_to_input):
-			emit_signal("on_confirm_select")
 			emit_signal("on_confirm_select")
 
 	else:
@@ -103,8 +105,8 @@ func select_player():
 				emit_signal("on_select_player", selection)
 				camera.focus_on(unit.global_position)
 				break			
-
 	pass
+
 func select_enemy():
 	var mouse_pos = get_global_mouse_position()
 	var tile = floor_tile_map.world_to_map(mouse_pos)
@@ -182,6 +184,10 @@ func can_select_enemy(_selection):
 func set_select_mode(new_type):
 	target_type = new_type
 	deselect()
+	
+func on_destroy():
+	pass
 
 func quit_selection():
+	on_destroy()
 	emit_signal("on_quit_selection")

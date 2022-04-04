@@ -1,7 +1,6 @@
 extends Ability
 
 export (int) var area_of_effect = 1
-export (int) var select_range = 10
 export (int) var damage = 2
 
 var aoe = preload("res://Scripts/AoE.gd")
@@ -39,3 +38,10 @@ func _use_ability(_source, target):
 	$ExplosionAnimation.visible = false
 	
 	finish_doing()
+
+func get_details(lifecycle):
+	var super_details = .get_details(lifecycle) + "\n"
+	
+	super_details += "Range: %s \n" % select_range
+	
+	return super_details

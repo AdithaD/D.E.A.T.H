@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Enemies/EnemyUnit.gd"
 }, {
+"base": "BFSAI",
+"class": "GruntAI",
+"language": "GDScript",
+"path": "res://Scripts/EnemyScripts/EnemyAI/GruntAI.gd"
+}, {
 "base": "Node2D",
 "class": "PlayerUnit",
 "language": "GDScript",
@@ -79,6 +84,7 @@ _global_script_class_icons={
 "EnemyAbility": "",
 "EnemyShoot": "",
 "EnemyUnit": "",
+"GruntAI": "",
 "PlayerUnit": "",
 "Selector": "",
 "TurnManager": ""
@@ -100,8 +106,7 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/resizable=false
 
 [input]
 
@@ -122,7 +127,7 @@ move_camera={
 }
 confirm_select={
 "deadzone": 0.51,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
@@ -132,4 +137,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"

@@ -29,12 +29,17 @@ func display_ability_voice_line(ability):
 		display_voice_line(voice_line)
 		
 func display_hit_chance(hit_chance):
-	$HitChanceLabel.text = String(stepify(hit_chance, 0.01))
+	$HitChanceLabel.text = String(stepify(hit_chance, 0.01) * 100) + "%"
 
 func clear_hit_chance():
 	$HitChanceLabel.text = ""
 
-#func _on_Unit_update_attr():
-#	update_status_text()
-	pass # Replace with function body.
+func _on_Unit_update_attr():
+	$MarkedIcon.visible = unit.is_marked
 
+func display_miss():
+	$MissText.visible = true
+	$MissTextAnimator.play("text float off")
+	yield($MissTextAnimator, "animation_finished")
+	$MissText.visible = false
+	pass

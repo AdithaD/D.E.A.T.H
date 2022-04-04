@@ -41,9 +41,9 @@ func get_players_in_range(ability_range, pos, alive=true):
 			in_range.append(player)
 	return in_range
 
-func get_civilians_in_range(ability_range, pos):
+func get_civilians_in_range(ability_range, pos, alive=true):
 	var in_range = []
-	for civilian in god.get_civilian_nodes():
+	for civilian in god.get_civilian_nodes(alive):
 		if bfs.grid_distance(civilian.grid_position, pos) <= ability_range:
 			in_range.append(civilian)
 	return in_range
@@ -76,3 +76,7 @@ func get_move(unit, min_dist):
 			best = [tile, evaluate_tile(tile)]
 		
 	return bfs.find_path(unit.grid_position, best[0])
+
+func grid_distance(a, b):
+	return abs(a.x - b.x) + abs(a.y - b.y)
+	

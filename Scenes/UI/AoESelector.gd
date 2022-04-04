@@ -1,13 +1,12 @@
-extends Selector
+extends "res://Scenes/Abilities/RangeSelector.gd"
 
 var area_of_effect
-var select_range
 
 var aoe = preload("res://Scripts/AoE.gd")
 
 func _ready():
 	area_of_effect = lifecycle.active_ability.area_of_effect
-	select_range = lifecycle.active_ability.select_range
+
 func select_tile():
 	var mouse_pos = get_global_mouse_position()
 	var grid_pos = floor_tile_map.world_to_map(mouse_pos)
@@ -20,10 +19,10 @@ func select_tile():
 func grid_distance(a, b):
 	return abs(a.x - b.x) + abs(a.y - b.y)
 
-func _exit_tree():
-	get_node("/root/World/Overlay").clear_overlay();
-
 func deselect():
-	get_node("/root/World/Overlay").clear_overlay();
+	get_node("/root/World/Overlay").clear_overlay_of(1);
 	.deselect()
 
+func on_destroy():
+	get_node("/root/World/Overlay").clear_overlay_of(1);
+	.on_destroy()

@@ -27,3 +27,11 @@ func _ready():
 
 func _ability_conditions(player):
 	return player.get_moveable_distance() > 0
+
+func get_details(lifecycle):
+	var super_details = .get_details(lifecycle) + "\n"
+	
+	super_details += "Tiles per turn: %s \n" % lifecycle.player.tiles_per_turn
+	super_details += "Moveable tiles: %s \n" % lifecycle.player.get_moveable_distance()
+	
+	return super_details

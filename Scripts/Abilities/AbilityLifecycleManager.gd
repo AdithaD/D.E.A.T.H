@@ -9,8 +9,7 @@ onready var ability_prompt = get_node(ability_prompt_path)
 
 func submit_ability(player, ability_index):
 	for child in get_children():
-			child.queue_free()
-			
+			child.cancel()
 
 	if(player.can_be_controlled() and player.abilities[ability_index].can_use_ability(player)):
 		var life_cycle = ability_lifecyle_scene.instance()

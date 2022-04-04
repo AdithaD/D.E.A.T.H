@@ -4,6 +4,8 @@ extends Control
 # var a = 2
 # var b = "text"
 
+var ability_button_scene = preload("res://Scenes/UI/Ability Button.tscn")
+
 onready var turn_manager = get_node("/root/World/TurnManager")
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +16,7 @@ var selected_player
 #func _process(delta):
 #	pass
 func create_ability_button(player, ability_index):
-	var ability_button = AbilityButton.new()
+	var ability_button = ability_button_scene.instance()
 	ability_button.player = player
 	ability_button.ability_index = ability_index
 	add_child(ability_button)
@@ -37,6 +39,8 @@ func _on_Selector_on_select_player(new_selected_player):
 
 func _on_Selector_on_deselect():
 	selected_player = null
+	for child in get_children():
+		child.queue_free()
 	pass # Replace with function body.
 
 

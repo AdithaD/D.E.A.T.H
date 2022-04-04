@@ -2,6 +2,8 @@ extends BFSAI
 
 onready var civilian = get_parent()
 
+export (int) var go_to_evac_dist = 10
+
 func generate_turn(abilities):
 	var move_ability = abilities[0]
 	
@@ -18,5 +20,15 @@ func get_target_locations():
 	else:
 		var locations = []
 		for ea in god.get_evacuation_areas():
-			locations.append(ea.grid_position)
-		return locations
+			if grid_distance(ea.grid_position, civilian.grid_position) < go_to_evac_dist:
+				locations.append(ea.grid_position)
+		
+		if locations.size() > 0:
+			return locations
+		else :
+			var reachable = bfs.get_reachable(civilian.grid_position, civilian.tiles_per_turn)
+			var target = reachable[randi() % reachable.size()]
+			
+			return [target]
+		
+

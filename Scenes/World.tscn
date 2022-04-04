@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -32,8 +32,25 @@
 [ext_resource path="res://Scenes/Effects.gd" type="Script" id=30]
 [ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=31]
 [ext_resource path="res://Resource/AbilityPromptPressed.tres" type="StyleBox" id=32]
-[ext_resource path="res://Assets/Sprites/UI/overlay.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Fonts/pixeloid bold heading.tres" type="DynamicFont" id=33]
 [ext_resource path="res://Assets/Fonts/pixeloid cinematic.tres" type="DynamicFont" id=34]
+[ext_resource path="res://Assets/Sprites/UI/overlay.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Sprites/info_display_accent.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Sprites/info_display_accent_disable.png" type="Texture" id=37]
+[ext_resource path="res://Assets/Fonts/pixeloid bold title.tres" type="DynamicFont" id=38]
+[ext_resource path="res://Scenes/Game Over.gd" type="Script" id=39]
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 36 )
+region_rect = Rect2( 0, 0, 220, 220 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 37 )
+region_rect = Rect2( 0, 0, 220, 220 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 36 )
+region_rect = Rect2( 0, 0, 220, 220 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade in"
@@ -54,8 +71,26 @@ tracks/0/keys = {
 script = ExtResource( 6 )
 obstacle_map_path = NodePath("Cover")
 floor_map_path = NodePath("Tiles")
+players = [ ExtResource( 22 ), ExtResource( 13 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 20 ) ]
 
 [node name="Spawner" type="Node" parent="."]
+
+[node name="PlayerSpawnPoints" type="Node" parent="Spawner"]
+
+[node name="SpawnPoint" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 32, -192 )
+
+[node name="SpawnPoint5" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 32, -160 )
+
+[node name="SpawnPoint2" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 96, -144 )
+
+[node name="SpawnPoint3" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 96, -176 )
+
+[node name="SpawnPoint4" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 64, -208 )
 
 [node name="CivilianSpawner" type="Node" parent="Spawner"]
 script = ExtResource( 26 )
@@ -67,7 +102,6 @@ script = ExtResource( 29 )
 enemies = [ ExtResource( 25 ), ExtResource( 24 ), ExtResource( 7 ), ExtResource( 21 ) ]
 difficulties = [ 5, 4, 3, 2 ]
 turn_multiplier = 2
-turn_spawn_period = 0
 spawn_target = NodePath("../../Cover")
 
 [node name="Timer" type="Timer" parent="Spawner/EnemySpawner"]
@@ -75,16 +109,16 @@ spawn_target = NodePath("../../Cover")
 [node name="Spawn Points" type="Node" parent="Spawner/EnemySpawner"]
 
 [node name="SpawnPoint" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
-position = Vector2( 256, -144 )
+position = Vector2( -352, -544 )
 
 [node name="SpawnPoint2" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
-position = Vector2( 256, -96 )
+position = Vector2( -832, -320 )
 
 [node name="SpawnPoint3" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
-position = Vector2( 320, -160 )
+position = Vector2( -1088, 176 )
 
 [node name="SpawnPoint4" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
-position = Vector2( 320, -96 )
+position = Vector2( -1360, -136 )
 
 [node name="Effects" type="Node" parent="."]
 script = ExtResource( 30 )
@@ -122,45 +156,10 @@ script = ExtResource( 3 )
 tile_set = ExtResource( 2 )
 texture_offset = Vector2( 0, -32 )
 
-[node name="AntiAir" parent="Cover" instance=ExtResource( 25 )]
-position = Vector2( 32, 32 )
-
-[node name="Artillery" parent="Cover" instance=ExtResource( 24 )]
-position = Vector2( 48, 8 )
-
-[node name="Grunt" parent="Cover" instance=ExtResource( 7 )]
-position = Vector2( 32, -16 )
-
-[node name="Recon" parent="Cover" instance=ExtResource( 21 )]
-position = Vector2( 80, -24 )
-
 [node name="Evacuation Area" parent="Cover" instance=ExtResource( 27 )]
 position = Vector2( 48, -136 )
 area_of_effect = 1
 is_active = true
-
-[node name="Grenadier" parent="Cover" instance=ExtResource( 22 )]
-position = Vector2( 192, -80 )
-max_health = 10
-
-[node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
-position = Vector2( 144, -104 )
-max_health = 10
-
-[node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
-position = Vector2( 160, -176 )
-max_health = 10
-
-[node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
-position = Vector2( 160, -64 )
-max_health = 10
-
-[node name="Civilian" parent="Cover" instance=ExtResource( 28 )]
-position = Vector2( 112, -200 )
-
-[node name="Medic" parent="Cover" instance=ExtResource( 20 )]
-position = Vector2( 128, -80 )
-max_health = 10
 
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
@@ -186,112 +185,190 @@ floor_map_path = NodePath("../Tiles")
 [node name="HUD" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CosmeticOverlay" type="TextureRect" parent="UI/HUD"]
-margin_right = 230.0
-margin_bottom = 135.0
-rect_scale = Vector2( 8, 8 )
-texture = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TurnUI" type="Control" parent="UI/HUD"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource( 35 )
+stretch_mode = 1
 
-[node name="TurnNumberLabel" type="Label" parent="UI/HUD/TurnUI"]
-margin_left = 1500.0
-margin_top = 100.0
-margin_right = 1612.0
-margin_bottom = 159.0
+[node name="Control" type="Control" parent="UI/HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 52.0
+margin_top = 45.0
+margin_right = -46.0
+margin_bottom = -52.0
+
+[node name="TurnUI" type="Control" parent="UI/HUD/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -292.0
+script = ExtResource( 18 )
+
+[node name="TurnNumberLabel" type="Label" parent="UI/HUD/Control/TurnUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -144.0
+margin_top = 40.0
+margin_right = 120.0
+margin_bottom = 99.0
 custom_fonts/font = ExtResource( 34 )
 
-[node name="NextTurn" type="Button" parent="UI/HUD/TurnUI"]
-margin_left = 1500.0
-margin_top = 170.0
-margin_right = 1700.0
-margin_bottom = 210.0
+[node name="NextTurn" type="Button" parent="UI/HUD/Control/TurnUI"]
+anchor_right = 1.0
+margin_left = -6.0
+margin_top = 139.0
+margin_right = -6.0
+margin_bottom = 174.0
+custom_fonts/font = ExtResource( 33 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/normal = ExtResource( 19 )
-text = "Next Button"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Next Turn"
 
-[node name="Abilities Bar" type="HBoxContainer" parent="UI/HUD"]
-anchor_left = 0.5
+[node name="Abilities Bar" type="HBoxContainer" parent="UI/HUD/Control"]
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -610.0
-margin_top = -190.0
-margin_right = -304.0
-margin_bottom = -150.0
-rect_scale = Vector2( 2, 2 )
+margin_left = 268.0
+margin_top = -60.0
+margin_right = -242.0
 script = ExtResource( 9 )
 
-[node name="Ability Prompt" type="Panel" parent="UI/HUD"]
-margin_left = 100.0
-margin_top = 750.0
-margin_right = 319.0
-margin_bottom = 973.0
+[node name="Ability Prompt" type="Panel" parent="UI/HUD/Control"]
+anchor_bottom = 1.0
+margin_top = 74.0
+margin_right = 251.0
+margin_bottom = -84.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 custom_styles/panel = ExtResource( 19 )
 script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="NameText" type="Label" parent="UI/HUD/Ability Prompt"]
-margin_left = 10.0
-margin_top = 6.0
-margin_right = 210.0
-margin_bottom = 43.0
-custom_fonts/font = ExtResource( 31 )
+[node name="NameText" type="Label" parent="UI/HUD/Control/Ability Prompt"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -102.0
+margin_top = 15.0
+margin_right = 100.0
+margin_bottom = 65.0
+custom_fonts/font = ExtResource( 33 )
 text = "asdf"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DescriptionText" type="Label" parent="UI/HUD/Ability Prompt"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -99.5
-margin_top = -173.0
-margin_right = 100.5
-margin_bottom = -13.0
+[node name="DescriptionText" type="Label" parent="UI/HUD/Control/Ability Prompt"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -77.5
+margin_right = -14.0
+margin_bottom = -34.5
 custom_fonts/font = ExtResource( 31 )
 text = "asdfasdfasdf"
 autowrap = true
 
-[node name="Button" type="Button" parent="UI/HUD/Ability Prompt"]
+[node name="DetailsText" type="Label" parent="UI/HUD/Control/Ability Prompt"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -19.5
+margin_right = 229.0
+margin_bottom = 29.5
+custom_fonts/font = ExtResource( 31 )
+text = "asdfasdfasdf"
+autowrap = true
+
+[node name="Button" type="Button" parent="UI/HUD/Control/Ability Prompt"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = -29.0
-margin_right = -16.0
-margin_bottom = -9.0
-custom_styles/pressed = ExtResource( 32 )
-custom_styles/normal = ExtResource( 19 )
+margin_left = 19.0
+margin_top = -72.0
+margin_right = -13.0
+margin_bottom = -33.0
 custom_fonts/font = ExtResource( 31 )
+custom_styles/hover = ExtResource( 32 )
+custom_styles/pressed = ExtResource( 32 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 2 )
 text = "Confirm"
+
+[node name="Game Over" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+script = ExtResource( 39 )
+
+[node name="TextureRect" type="TextureRect" parent="UI/Game Over"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="UI/Game Over"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -385.0
+margin_top = 64.0
+margin_right = 378.0
+margin_bottom = 331.0
+custom_fonts/font = ExtResource( 38 )
+text = "It's all over..."
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Game Over"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -272.5
+margin_top = -472.0
+margin_right = 272.5
+margin_bottom = -112.0
+alignment = 1
+
+[node name="NewMissionButton" type="Button" parent="UI/Game Over/VBoxContainer"]
+margin_right = 545.0
+margin_bottom = 178.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 33 )
+custom_styles/hover = ExtResource( 32 )
+custom_styles/pressed = ExtResource( 32 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 2 )
+text = "New Mission"
+
+[node name="ExitGameButton" type="Button" parent="UI/Game Over/VBoxContainer"]
+margin_top = 182.0
+margin_right = 545.0
+margin_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 33 )
+custom_styles/hover = ExtResource( 32 )
+custom_styles/pressed = ExtResource( 32 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 2 )
+text = "Leave the Battlefield"
 
 [node name="AbilityLifecycleManager" type="Node" parent="."]
 script = ExtResource( 11 )
 selector_path = NodePath("../Selector")
 ability_lifecyle_scene = ExtResource( 5 )
-ability_prompt_path = NodePath("../UI/HUD/Ability Prompt")
+ability_prompt_path = NodePath("../UI/HUD/Control/Ability Prompt")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 follow_viewport_enable = true
@@ -307,21 +384,19 @@ texture = ExtResource( 14 )
 expand = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -3124.0
-margin_top = -1480.0
-margin_right = 2670.0
-margin_bottom = 1779.0
+visible = false
+margin_left = -3129.0
+margin_top = -1624.0
+margin_right = 2665.0
+margin_bottom = 1635.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade in"
 "anims/fade in" = SubResource( 1 )
 
-[connection signal="update_attr" from="Cover/Grenadier" to="Cover/Grenadier/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Gunner" to="Cover/Gunner/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Helicopter" to="Cover/Helicopter/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Marksman" to="Cover/Marksman/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Medic" to="Cover/Medic/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
-[connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
-[connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]
+[connection signal="on_deselect" from="Selector" to="UI/HUD/Control/Abilities Bar" method="_on_Selector_on_deselect"]
+[connection signal="on_select_player" from="Selector" to="UI/HUD/Control/Abilities Bar" method="_on_Selector_on_select_player"]
+[connection signal="pressed" from="UI/HUD/Control/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]
+[connection signal="pressed" from="UI/Game Over/VBoxContainer/NewMissionButton" to="UI/Game Over" method="_on_NewMissionButton_pressed"]
+[connection signal="pressed" from="UI/Game Over/VBoxContainer/ExitGameButton" to="UI/Game Over" method="_on_ExitGameButton_pressed"]

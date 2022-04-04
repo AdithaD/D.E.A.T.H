@@ -1,6 +1,8 @@
 extends PlayerUnit
 
 var disabled_countdown = 0
+export (int) var evac_duration
+var loaded_civilians = []
 
 func disable_for_amount_of_turns(turn_amount):
 	disabled_countdown = turn_amount
@@ -19,7 +21,17 @@ func update_turn_effects():
 
 func on_disable():
 	visible = false
+	remove_from_group("player_unit")
 	pass
 func on_reenable():
+	add_to_group("player_unit")
 	visible = true
 	pass
+
+func on_end_turn():
+	if loaded_civilians.size() > 0:
+		for civilian in loaded_civilians:
+			god.evacuate_civilian(civilian)
+
+		
+		disable_for_amount_of_turns(evac_duration)

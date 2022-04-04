@@ -33,10 +33,5 @@ func bind_lifecycle(new_lifecycle):
 	
 	lifecycle.connect("doing", self, "display_ability_voice_line")
 
-#func _on_Unit_update_attr():
-#update_status_text()
-	#pass # Replace with function body.
-
-
-func _on_Gunner_update_attr():
-	pass # Replace with function body.
+func _on_Unit_update_attr():
+	$MarkedIcon.visible = player.is_marked

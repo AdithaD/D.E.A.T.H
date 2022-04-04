@@ -23,5 +23,6 @@ func select_tile():
 		SoundEngine.play_button_sound()
 	pass
 
-func _exit_tree():
+func on_destroy():
 	get_node("/root/World/Overlay").clear_overlay();
+	.on_destroy()

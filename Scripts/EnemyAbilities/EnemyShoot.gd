@@ -13,7 +13,7 @@ export (int) var bullet_speed = 600
 export (float) var burst_delay = 0.05
 export (int) var bullet_length = 20
 
-export (int) var shoot_player_chance = 0.7
+export (int) var shoot_player_chance = 0.85
 export (int) var shoot_best_target_chance = 0.6
 
 func _use_ai_ability(source):
@@ -44,6 +44,7 @@ func submit_tracer_burst(start_pos, target_pos, length, speed, amount, offset):
 	
 func _generate_target(source):
 	var players = ai.get_players_in_range(shoot_range, source.grid_position)
+
 	var civilians = ai.get_civilians_in_range(shoot_range, source.grid_position)
 	var targets
 

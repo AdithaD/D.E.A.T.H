@@ -1,7 +1,6 @@
 extends Ability
 
 export (int) var heal_amount = 1
-export (int) var penetration = 0
 
 func _use_ability(_source, target):
 	#randomize()
@@ -9,3 +8,12 @@ func _use_ability(_source, target):
 	target.heal_damage(heal_amount)
 	print("heal")
 	finish_doing()
+
+func get_details(lifecycle):
+	var super = .get_details(lifecycle) + "\n"
+	
+	super += "Heal Amount = %s \n" % heal_amount
+	super += "Range: %s \n" % select_range
+	
+	return super
+\

@@ -28,6 +28,8 @@ var is_dead = false
 signal update_attr
 signal used_ability
 
+signal death
+
 enum SPRITE_DIRECTIONS {BOTTOM_LEFT, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT}
 
 # Called when the node enters the scene tree for the first time.
@@ -49,7 +51,11 @@ func new_turn(finish_turn):
 			
 		action_points = actions_points_per_turn
 		dist_moved = 0
+	
 		emit_signal('update_attr')
+
+func on_end_turn():
+	pass
 
 func update_turn_effects():
 	for ability in abilities:
@@ -87,7 +93,7 @@ func die():
 	$DeathSprite.visible = true
 	$AnimatedSprite.visible = false
 	$DeathSprite.play()
-	
+	emit_signal('death')
 	
 
 func heal_damage(heal_amount):
@@ -102,6 +108,7 @@ func apply_mark(turns):
 	if turns > mark_length:
 		mark_length = turns
 	is_marked = true
+	emit_signal("update_attr")
 	
 func do_move(path):
 	var prev_loc = grid_position
@@ -132,6 +139,9 @@ func change_dir_sprite(vector):
 			set_sprite_index(SPRITE_DIRECTIONS.BOTTOM_LEFT)
 		else:
 			set_sprite_index(SPRITE_DIRECTIONS.TOP_RIGHT)
+			
+func notify_miss():
+	$PlayerUI.display_miss()
 
 func set_sprite_index(index):
 	$AnimatedSprite.frame = index

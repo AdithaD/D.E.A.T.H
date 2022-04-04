@@ -8,6 +8,10 @@ func init(par_god):
 	god = par_god
 	obstacles_dict = obstacle_array_to_dict(god.get_obstacle_locations())
 
+func init_obs(par_god, obs):
+	god = par_god
+	obstacles_dict = obstacle_array_to_dict(obs)
+
 func get_reachable(start, dist):
 	var explored = {start: 0}
 	var queue = [start]
