@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/selector2.png-68d6dca4cfe52935fa7439e464d3a35d.stex"
+path="res://.import/marked icon.png-5a07353c5ef6322949abefbabd5f8472.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/selector2.png"
-dest_files=[ "res://.import/selector2.png-68d6dca4cfe52935fa7439e464d3a35d.stex" ]
+source_file="res://Assets/Sprites/UI/marked icon.png"
+dest_files=[ "res://.import/marked icon.png-5a07353c5ef6322949abefbabd5f8472.stex" ]
 
 [params]
 

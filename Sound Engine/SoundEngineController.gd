@@ -7,14 +7,20 @@ var menu_music = load("res://Assets/Sounds/Music/DEATHmainmenu.wav")
 var cinematic_music = load("res://Assets/Sounds/Music/DEATHcinematic.wav")
 
 #sfx goes here:
-var death_sfx = load("")
+
+#abilities:
 var fire_weapon_rifle = load("res://Assets/Sounds/SFX/Weapon Sounds/riflesfx.mp3")
 var fire_weapon_machinegun = load("")
 var fire_weapon_sniper = load("res://Assets/Sounds/SFX/Weapon Sounds/snipersfx.mp3")
 var medic_heal = load("res://Assets/Sounds/SFX/Player/playerheal.wav")
 var evacuate_sfx = load("")
-var enemy_hurt_sfx = load("")
+
+#enemies:
+var enemy_hurt_sfx = load("res://Assets/Sounds/SFX/Enemy/enemyhurt.wav")
+var enemy_death_sfx = load("res://Assets/Sounds/SFX/Enemy/enemydeath.wav")
 var explosion_sfx = load("res://Assets/Sounds/SFX/Weapon Sounds/explosion.wav")
+
+#other:
 var footsteps = load("res://Assets/Sounds/SFX/Player/running sfx.wav")
 var civilian_screams = load ("res://Assets/Sounds/SFX/Civilians/civilianscreams.wav")
 var button_sfx = load ("res://Assets/Sounds/SFX/UI/buttonpresssfx.wav")
@@ -32,8 +38,8 @@ func _ready():
 func stop_sfxPlayer():
 	$SfxPlayer.stop()
 	
-func play_death_sfx():
-	$SfxEnemy.stream = death_sfx
+func play_enemyDeath_sfx():
+	$SfxEnemy.stream = enemy_death_sfx
 	$SfxEnemy.play()
 
 func play_fire_rifle_sfx():
@@ -83,6 +89,10 @@ func play_button_sound():
 func play_playerhurt_sfx():
 	$SfxPlayer.stream = player_hurt_sfx
 	$SfxPlayer.play()
+	
+func play_enemyHurt_sfx():
+	$SfxEnemy.stream = enemy_hurt_sfx
+	$SfxEnemy.play()
 	
 func play_medicHeal():
 	$SfxPlayerWeapon.stream = medic_heal

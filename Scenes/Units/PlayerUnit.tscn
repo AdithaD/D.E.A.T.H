@@ -1,9 +1,50 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Abilities/Move.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Fonts/pixeloid font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scripts/UI/PlayerUI.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/move.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "text float off"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("VoiceLine:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VoiceLine:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -10 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VoiceLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="PlayerUnit" type="Node2D" groups=[
 "player_unit",
@@ -33,15 +74,25 @@ margin_left = 2.00307
 margin_top = 58.2067
 margin_right = 2.00307
 margin_bottom = 58.2067
+custom_fonts/font = ExtResource( 3 )
 align = 1
 valign = 1
 
 [node name="VoiceLine" type="Label" parent="PlayerUI"]
+modulate = Color( 1, 1, 1, 0.9 )
 margin_right = 40.0
 margin_bottom = 14.0
+custom_fonts/font = ExtResource( 3 )
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VoiceLineTimer" type="Timer" parent="PlayerUI"]
 wait_time = 3.0
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerUI"]
+"anims/text float off" = SubResource( 1 )
 
 [connection signal="update_attr" from="." to="PlayerUI" method="_on_PlayerUnit_update_attr"]

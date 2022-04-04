@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Mark/mark bottom left.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl bottom left.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Shinji/helen bottom left.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom left.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Cinematic/cinematic3.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Fonts/pixeloid cinematic.tres" type="DynamicFont" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fade in"
@@ -22,6 +23,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 0.0588235, 0.0705882, 0.101961, 0 ), Color( 0.0588235, 0.0705882, 0.101961, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RichTextLabel:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
 }
 
 [node name="Node2D" type="Node2D"]
@@ -105,11 +118,14 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-margin_left = 711.493
-margin_top = 783.647
-margin_right = 1189.49
-margin_bottom = 1261.65
-text = "Tasked with evacuating as many survivors as possible, the elite soldiers of D.E.A.T.H. must make their final stand."
+margin_left = 241.892
+margin_top = 729.297
+margin_right = 1738.89
+margin_bottom = 1207.3
+custom_fonts/normal_font = ExtResource( 8 )
+visible_characters = 0
+percent_visible = 0.0
+text = "Tasked with evacuating as many survivors as possible, the elite soldiers of D.E.A.T.H. must make their final stand. These four heroes must fight tooth and nail to secure as many lives as possible from the clutches of the enemy."
 __meta__ = {
 "_edit_use_anchors_": false
 }

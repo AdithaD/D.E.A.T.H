@@ -73,6 +73,10 @@ func moveTo(x: int, y: int):
 	
 func take_damage(dmg):
 	health -= dmg
+	if health > 0 :
+		SoundEngine.play_enemyHurt_sfx()
+	elif health <= 0 :
+		SoundEngine.play_enemyDeath_sfx()
 	emit_signal("update_attr")
 
 func on_used_ability(index):
