@@ -24,7 +24,7 @@ func _ready():
 	health = max_health
 	abilities = $Abilities.get_children()
 	ai = $AI
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 	emit_signal('update_attr')
 
 func new_turn():
@@ -39,7 +39,6 @@ func new_turn():
 	
 func do_move(path):
 	grid_position = path[-1]
-	print(grid_position)
 	for loc in path:
 		yield(world_move_to(god.grid_to_world(loc)), "completed")
 	
@@ -47,7 +46,7 @@ func do_move(path):
 func world_move_to(loc):
 	var diff = loc - position
 	var steps = int(move_animation_time/move_interval)
-	for i in range(0, steps):
+	for _i in range(0, steps):
 		yield(get_tree().create_timer(move_interval), "timeout")
 		position += diff/steps
 	

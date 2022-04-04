@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Abilities/AbilityLifecycle.gd"
 }, {
+"base": "Node",
+"class": "BFSAI",
+"language": "GDScript",
+"path": "res://Scripts/EnemyScripts/EnemyAI/BFSAI.gd"
+}, {
+"base": "EnemyUnit",
+"class": "Civilian",
+"language": "GDScript",
+"path": "res://Scripts/Civilians/Civilian.gd"
+}, {
 "base": "Node2D",
 "class": "Enemy",
 "language": "GDScript",
@@ -58,6 +68,8 @@ _global_script_class_icons={
 "Ability": "",
 "AbilityButton": "",
 "AbilityLifecycle": "",
+"BFSAI": "",
+"Civilian": "",
 "Enemy": "",
 "EnemyAbility": "",
 "EnemyUnit": "",
@@ -69,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="D. E. A. T. H"
-run/main_scene="res://Scenes/World.tscn"
+run/main_scene="res://Scenes/Cinematic/Cinematic scene 1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
