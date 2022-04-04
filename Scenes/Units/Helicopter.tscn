@@ -21,6 +21,7 @@ animations = [ {
 
 [node name="Helicopter" groups=["flying_player_unit"] instance=ExtResource( 1 )]
 script = ExtResource( 6 )
+tiles_per_turn = 10
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 texture = ExtResource( 5 )

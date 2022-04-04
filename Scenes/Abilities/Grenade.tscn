@@ -9,6 +9,7 @@ script = ExtResource( 2 )
 ability_name = "Grenade"
 ability_description = "Lob a grenade"
 icon = ExtResource( 1 )
+select_range = 8
 voice_lines = [ "Stand clear!", "Pulling the pin!", "Oh shit, I threw the pin!" ]
 selector = ExtResource( 3 )
 target_type = 3

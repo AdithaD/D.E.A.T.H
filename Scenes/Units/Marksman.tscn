@@ -50,7 +50,6 @@ icon = ExtResource( 5 )
 select_range = 80
 use_sound = ExtResource( 11 )
 voice_lines = [ "Taking za shot!", "I can see you!", "I've got you in my sights" ]
-cooldown_duration = 2
 selector = ExtResource( 6 )
 damage = 5
 penetration = 2

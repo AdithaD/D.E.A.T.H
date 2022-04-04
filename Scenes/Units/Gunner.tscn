@@ -58,7 +58,7 @@ ability_description = "Unleash a hail of bullets on the enemy."
 icon = ExtResource( 5 )
 use_sound = ExtResource( 6 )
 voice_lines = [ "Rapid fire!", "Quantity over quality!", "Eat lead!" ]
-damage = 5
+damage = 4
 penetration = 1
 burst_number = 6
 burst_delay = 0.02
@@ -67,7 +67,6 @@ bullet_length = 10
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 12 )]
 icon = ExtResource( 13 )
 use_sound = ExtResource( 14 )
-select_range = 8
 
 [node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/Grenade" index="0"]
 visible = false
