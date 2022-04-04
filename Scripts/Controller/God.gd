@@ -143,6 +143,12 @@ func get_enemy_locations():
 	for enemy in get_enemy_nodes():
 		out.append(enemy.grid_position)
 	return out
+
+func get_flying_player_locations():
+	var out = []
+	for player in get_flying_player_nodes():
+		out.append(player.grid_position)
+	return out
 	
 func get_unwalkable_tiles():
 	var unwalkable_tiles = []
