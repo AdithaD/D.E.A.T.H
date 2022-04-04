@@ -63,13 +63,14 @@ func new_turn():
 		emit_signal('turn_complete')
 		
 func take_damage(dmg):
-	health -= dmg
-	if health > 0 :
-		SoundEngine.play_enemyHurt_sfx()
-	elif health <= 0 :
-		SoundEngine.play_enemyDeath_sfx()
-		die()
-	emit_signal("update_attr")
+	if(!is_dead):
+		health -= dmg
+		if health > 0 :
+			SoundEngine.play_enemyHurt_sfx()
+		elif health <= 0 :
+			SoundEngine.play_enemyDeath_sfx()
+			die()
+		emit_signal("update_attr")
 	
 func die():
 	is_dead = true
