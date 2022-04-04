@@ -144,8 +144,16 @@ func get_flying_player_nodes(alive=true):
 	else:
 		return player_nodes
 
-func get_enemy_nodes():
-	return get_tree().get_nodes_in_group("enemy")
+func get_enemy_nodes(alive=true):
+	var enemy_nodes = get_tree().get_nodes_in_group("enemy")
+	if alive:
+		var list = []
+		for e in enemy_nodes:
+			if !e.is_dead:
+				list.append(e)
+		return list
+	else:
+		return enemy_nodes
 	
 func get_player_locations():
 	var out = []
