@@ -37,6 +37,7 @@ animations = [ {
 } ]
 
 [node name="Gunner" instance=ExtResource( 1 )]
+max_health = 10
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 position = Vector2( 0, -19 )
@@ -56,16 +57,18 @@ target_type = 2
 ability_name = "Rain Hell"
 ability_description = "Unleash a hail of bullets on the enemy."
 icon = ExtResource( 5 )
+select_range = 8
 use_sound = ExtResource( 6 )
 voice_lines = [ "Rapid fire!", "Quantity over quality!", "Eat lead!" ]
-damage = 4
-penetration = 1
+damage = 6
+penetration = 2
 burst_number = 6
 burst_delay = 0.02
 bullet_length = 10
 
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 12 )]
 icon = ExtResource( 13 )
+select_range = 10
 use_sound = ExtResource( 14 )
 
 [node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/Grenade" index="0"]

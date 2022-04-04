@@ -25,6 +25,7 @@ script = ExtResource( 2 )
 
 [node name="EnemyShootAir" type="Node" parent="Abilities" index="1"]
 script = ExtResource( 7 )
+select_range = 12
 use_sound = ExtResource( 9 )
 damage = 4
 tracer = ExtResource( 8 )

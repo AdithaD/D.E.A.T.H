@@ -70,24 +70,24 @@ script = ExtResource( 8 )
 ability_name = "Follow Me"
 ability_description = "Tell a civilian to follow you"
 icon = ExtResource( 7 )
+select_range = 3
 voice_lines = [ "Come with me!", "We're here to help!" ]
 action_cost = 0
 cooldown_duration = 0
 selector = ExtResource( 10 )
 target_type = 4
-select_range = 3
 
 [node name="Stay" type="Node" parent="Abilities"]
 script = ExtResource( 11 )
 ability_name = "Stay"
 ability_description = "Tell a civilian to stop following you. But they have minds of their own...."
 icon = ExtResource( 9 )
+select_range = 3
 voice_lines = [ "I have to go.", "It's not wise to follow me anymore" ]
 action_cost = 0
 cooldown_duration = 0
 selector = ExtResource( 10 )
 target_type = 4
-select_range = 3
 
 [node name="PlayerUI" type="Control" parent="."]
 margin_left = -46.0

@@ -25,15 +25,16 @@ animations = [ {
 script = ExtResource( 5 )
 
 [node name="EnemyShoot" parent="Abilities" index="1" instance=ExtResource( 2 )]
+select_range = 15
 use_sound = ExtResource( 4 )
 damage = 2
 penetration = 1
-shoot_range = 8
 
 [node name="EnemyMark" type="Node" parent="Abilities" index="2"]
 script = ExtResource( 11 )
+select_range = 12
 use_sound = ExtResource( 3 )
-mark_range = 8
+mark_range = 10
 mark_turns = 2
 
 [node name="VoiceLine" parent="EnemyUI" index="2"]

@@ -37,6 +37,7 @@ animations = [ {
 } ]
 
 [node name="Grenadier" instance=ExtResource( 2 )]
+max_health = 8
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 position = Vector2( 2, -20 )
@@ -50,6 +51,7 @@ script = ExtResource( 1 )
 ability_name = "Rocket Launcher"
 ability_description = "Destroy cover and deal damage in an area."
 icon = ExtResource( 12 )
+select_range = 18
 use_sound = ExtResource( 7 )
 voice_lines = [ "Watch the back blast!", "Going explosive", "Christmas is coming early..." ]
 action_cost = 2
@@ -57,7 +59,7 @@ cooldown_duration = 3
 selector = ExtResource( 8 )
 target_type = 3
 area_of_effect = 2
-damage = 4
+damage = 3
 
 [node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/RocketLauncher" index="0"]
 visible = false
@@ -67,6 +69,7 @@ frame = 1
 
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 9 )]
 icon = ExtResource( 14 )
+select_range = 10
 use_sound = ExtResource( 7 )
 
 [node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/Grenade" index="0"]
