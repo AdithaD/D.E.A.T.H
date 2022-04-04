@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -35,6 +35,20 @@
 [ext_resource path="res://Assets/Fonts/pixeloid bold heading.tres" type="DynamicFont" id=33]
 [ext_resource path="res://Assets/Fonts/pixeloid cinematic.tres" type="DynamicFont" id=34]
 [ext_resource path="res://Assets/Sprites/UI/overlay.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Sprites/info_display_accent.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Sprites/info_display_accent_disable.png" type="Texture" id=37]
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 36 )
+region_rect = Rect2( 0, 0, 220, 220 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 37 )
+region_rect = Rect2( 0, 0, 220, 220 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 36 )
+region_rect = Rect2( 0, 0, 220, 220 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade in"
@@ -215,10 +229,11 @@ margin_bottom = 159.0
 custom_fonts/font = ExtResource( 34 )
 
 [node name="NextTurn" type="Button" parent="UI/HUD/TurnUI"]
-margin_left = 1500.0
-margin_top = 170.0
-margin_right = 1700.0
+margin_left = 1424.0
+margin_top = 136.0
+margin_right = 1746.0
 margin_bottom = 210.0
+custom_fonts/font = ExtResource( 33 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/normal = ExtResource( 19 )
 text = "Next Button"
@@ -239,10 +254,12 @@ rect_scale = Vector2( 2, 2 )
 script = ExtResource( 9 )
 
 [node name="Ability Prompt" type="Panel" parent="UI/HUD"]
-margin_left = 21.0
-margin_top = 352.0
-margin_right = 384.0
-margin_bottom = 888.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = -268.0
+margin_right = 467.0
+margin_bottom = 268.0
 custom_styles/panel = ExtResource( 19 )
 script = ExtResource( 12 )
 
@@ -288,10 +305,12 @@ margin_left = 19.0
 margin_top = -72.0
 margin_right = -13.0
 margin_bottom = -33.0
-custom_fonts/font = ExtResource( 33 )
-custom_styles/pressed = ExtResource( 32 )
-custom_styles/normal = ExtResource( 19 )
 custom_fonts/font = ExtResource( 31 )
+custom_styles/hover = ExtResource( 32 )
+custom_styles/pressed = ExtResource( 32 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 2 )
 text = "Confirm"
 
 [node name="AbilityLifecycleManager" type="Node" parent="."]
@@ -314,9 +333,9 @@ texture = ExtResource( 14 )
 expand = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -3124.0
+margin_left = -3120.0
 margin_top = -1480.0
-margin_right = 2670.0
+margin_right = 2674.0
 margin_bottom = 1779.0
 color = Color( 0, 0, 0, 1 )
 

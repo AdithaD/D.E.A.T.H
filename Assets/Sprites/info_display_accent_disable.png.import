@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explosion 2.png-24bfd530dd423a472f8c84d45be4a64e.stex"
+path="res://.import/info_display_accent_disable.png-39e9c7058837cccf9e58cf27493a6a49.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Explosion/explosion 2.png"
-dest_files=[ "res://.import/explosion 2.png-24bfd530dd423a472f8c84d45be4a64e.stex" ]
+source_file="res://Assets/Sprites/info_display_accent_disable.png"
+dest_files=[ "res://.import/info_display_accent_disable.png-39e9c7058837cccf9e58cf27493a6a49.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
