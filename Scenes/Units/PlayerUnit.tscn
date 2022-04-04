@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Abilities/Move.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Fonts/pixeloid font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scripts/UI/PlayerUI.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/move.png" type="Texture" id=5]
-[ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/UI/HealthDisplay.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/follow me.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Abilities/FollowMe.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/stop follow.png" type="Texture" id=9]
@@ -13,6 +13,11 @@
 [ext_resource path="res://Scripts/Abilities/Stay.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Sprites/UI/marked icon.png" type="Texture" id=12]
 [ext_resource path="res://Resource/UnitDeath.tres" type="SpriteFrames" id=13]
+[ext_resource path="res://Assets/Action_Icon.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/ac_used.png" type="Texture" id=15]
+[ext_resource path="res://Scenes/Units/ActionPointDisplay.gd" type="Script" id=16]
+[ext_resource path="res://Assets/Sprites/UI/HealthSegmentEmpty.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/UI/player_health_segment.png" type="Texture" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "text float off"
@@ -36,10 +41,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 3 ),
+"times": PoolRealArray( 0, 2.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -10 ) ]
+"values": [ Vector2( 27.0416, -8.02851 ), Vector2( 26.04, -23.082 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("VoiceLine:modulate")
@@ -48,7 +53,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.5, 3 ),
+"times": PoolRealArray( 1.5, 2.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -70,24 +75,24 @@ script = ExtResource( 8 )
 ability_name = "Follow Me"
 ability_description = "Tell a civilian to follow you"
 icon = ExtResource( 7 )
+select_range = 3
 voice_lines = [ "Come with me!", "We're here to help!" ]
 action_cost = 0
 cooldown_duration = 0
 selector = ExtResource( 10 )
 target_type = 4
-select_range = 3
 
 [node name="Stay" type="Node" parent="Abilities"]
 script = ExtResource( 11 )
 ability_name = "Stay"
 ability_description = "Tell a civilian to stop following you. But they have minds of their own...."
 icon = ExtResource( 9 )
+select_range = 3
 voice_lines = [ "I have to go.", "It's not wise to follow me anymore" ]
 action_cost = 0
 cooldown_duration = 0
 selector = ExtResource( 10 )
 target_type = 4
-select_range = 3
 
 [node name="PlayerUI" type="Control" parent="."]
 margin_left = -46.0
@@ -107,19 +112,14 @@ margin_bottom = 58.2067
 custom_fonts/font = ExtResource( 3 )
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VoiceLine" type="Label" parent="PlayerUI"]
-modulate = Color( 1, 1, 1, 0.9 )
-margin_right = 40.0
-margin_bottom = 15.0
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 26.04
+margin_top = -23.082
+margin_right = 66.04
+margin_bottom = -8.08196
 custom_fonts/font = ExtResource( 3 )
-percent_visible = 0.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VoiceLineTimer" type="Timer" parent="PlayerUI"]
 wait_time = 3.0
@@ -139,10 +139,49 @@ visible = false
 frames = ExtResource( 13 )
 frame = 2
 
-[node name="HealthDisplay" parent="." instance=ExtResource( 6 )]
+[node name="HealthDisplay" type="Node2D" parent="."]
 position = Vector2( -19, -31 )
+script = ExtResource( 6 )
+
+[node name="HealthBarEmpty" type="TextureRect" parent="HealthDisplay"]
+margin_right = 40.0
+margin_bottom = 6.0
+rect_scale = Vector2( 1, 0.5 )
+texture = ExtResource( 17 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureRect" parent="HealthDisplay"]
+margin_right = 40.0
+margin_bottom = 6.0
+rect_scale = Vector2( 1, 0.5 )
+texture = ExtResource( 18 )
+stretch_mode = 2
+
+[node name="ActionPointUI" type="Node2D" parent="."]
+position = Vector2( -20, -41 )
+scale = Vector2( 0.3, 0.5 )
+script = ExtResource( 16 )
+segment_size = 32
+
+[node name="ActionEmpty" type="TextureRect" parent="ActionPointUI"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_scale = Vector2( 1, 0.5 )
+texture = ExtResource( 15 )
+stretch_mode = 2
+
+[node name="ActionFull" type="TextureRect" parent="ActionPointUI"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_scale = Vector2( 1, 0.5 )
+texture = ExtResource( 14 )
+stretch_mode = 2
 
 [node name="PlayerSound" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="update_attr" from="." to="PlayerUI" method="_on_Unit_update_attr"]
 [connection signal="update_attr" from="." to="HealthDisplay" method="_on_Unit_update_attr"]
+[connection signal="update_attr" from="." to="ActionPointUI" method="_on_Unit_update_attr"]
