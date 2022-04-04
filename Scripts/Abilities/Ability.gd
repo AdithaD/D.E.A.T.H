@@ -44,6 +44,14 @@ func use_ability(player, target):
 
 func _use_ability(_player, _target):
 	pass
+	
+func get_details(lifecycle):
+	var details = ""
+	
+	details += 'Action Cost: %s \n' % action_cost
+	details += 'Cooldown: %s turns \n' % cooldown_duration
+	
+	return details
 
 func finish_doing():
 	emit_signal('finished_doing')

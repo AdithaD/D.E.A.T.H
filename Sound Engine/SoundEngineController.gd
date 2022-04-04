@@ -1,6 +1,6 @@
 extends Node
 
-#music goes here:
+var rng = RandomNumberGenerator.new()
 
 var combat_music = load("res://Assets/Sounds/Music/DEATH.wav")
 var menu_music = load("res://Assets/Sounds/Music/DEATHmainmenu.wav")
@@ -25,7 +25,8 @@ var footsteps = load("res://Assets/Sounds/SFX/Player/running sfx.wav")
 var civilian_screams = load ("res://Assets/Sounds/SFX/Civilians/civilianscreams.wav")
 var button_sfx = load ("res://Assets/Sounds/SFX/UI/buttonpresssfx.wav")
 var player_hurt_sfx = load ("res://Assets/Sounds/SFX/Player/playerhurt.wav")
-
+var player_hurt_sfx2 = load ("res://Assets/Sounds/SFX/Player/hurt sound 2.wav")
+var player_hurt_sfx3 = load ("res://Assets/Sounds/SFX/Player/hurt sound 1.wav")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -33,7 +34,7 @@ var player_hurt_sfx = load ("res://Assets/Sounds/SFX/Player/playerhurt.wav")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	rng.randomize()
 
 func stop_sfxPlayer():
 	$SfxPlayer.stop()
@@ -87,7 +88,13 @@ func play_button_sound():
 	$SfxUI.play()
 	
 func play_playerhurt_sfx():
-	$SfxPlayer.stream = player_hurt_sfx
+
+	var my_random_number = randi() % 2
+	
+	if my_random_number == 0 :
+		$SfxPlayer.stream = player_hurt_sfx2
+	if my_random_number == 1 :
+		$SfxPlayer.stream = player_hurt_sfx3	
 	$SfxPlayer.play()
 	
 func play_enemyHurt_sfx():

@@ -73,6 +73,8 @@ func _on_Secondary_Selector_select(selected):
 func move_to_doing():
 	emit_signal('doing')
 	
+	secondary_selector.deselect()
+	
 	state = LIFECYCLE.doing
 	
 	active_ability.use_ability(player, target)

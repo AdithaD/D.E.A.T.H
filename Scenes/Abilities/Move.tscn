@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Abilities/Move.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Abilities/Move.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/move.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Abilities/MoveSelector.tscn" type="PackedScene" id=3]
+
 
 [node name="Move" type="Node"]
 script = ExtResource( 1 )

@@ -44,6 +44,7 @@ func submit_tracer_burst(start_pos, target_pos, length, speed, amount, offset):
 	
 func _generate_target(source):
 	var players = ai.get_players_in_range(shoot_range, source.grid_position)
+
 	var civilians = ai.get_civilians_in_range(shoot_range, source.grid_position)
 	var targets
 
