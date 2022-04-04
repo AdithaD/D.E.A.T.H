@@ -187,76 +187,72 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="CosmeticOverlay" type="TextureRect" parent="UI/HUD"]
-margin_right = 230.0
-margin_bottom = 135.0
-rect_scale = Vector2( 8, 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 35 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 1
 
-[node name="TurnUI" type="Control" parent="UI/HUD"]
+[node name="Control" type="Control" parent="UI/HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 52.0
+margin_top = 45.0
+margin_right = -46.0
+margin_bottom = -52.0
+
+[node name="TurnUI" type="Control" parent="UI/HUD/Control"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -568.0
-margin_bottom = 680.0
+anchor_bottom = 1.0
+margin_left = -292.0
 script = ExtResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="TurnNumberLabel" type="Label" parent="UI/HUD/TurnUI"]
+[node name="TurnNumberLabel" type="Label" parent="UI/HUD/Control/TurnUI"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -216.0
-margin_right = 216.0
-margin_bottom = 192.0
+margin_left = -144.0
+margin_top = 40.0
+margin_right = 120.0
+margin_bottom = 99.0
 custom_fonts/font = ExtResource( 34 )
 
-[node name="NextTurn" type="Button" parent="UI/HUD/TurnUI"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -161.0
-margin_top = -37.0
-margin_right = 161.0
-margin_bottom = 37.0
+[node name="NextTurn" type="Button" parent="UI/HUD/Control/TurnUI"]
+anchor_right = 1.0
+margin_left = -6.0
+margin_top = 139.0
+margin_right = -6.0
+margin_bottom = 174.0
 custom_fonts/font = ExtResource( 33 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/normal = ExtResource( 19 )
-text = "Next Button"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Next Turn"
 
-[node name="Abilities Bar" type="HBoxContainer" parent="UI/HUD"]
-anchor_left = 0.5
+[node name="Abilities Bar" type="HBoxContainer" parent="UI/HUD/Control"]
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -610.0
-margin_top = -190.0
-margin_right = -304.0
-margin_bottom = -150.0
-rect_scale = Vector2( 2, 2 )
+margin_left = 268.0
+margin_top = -60.0
+margin_right = -242.0
 script = ExtResource( 9 )
 
-[node name="Ability Prompt" type="Panel" parent="UI/HUD"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 104.0
-margin_top = -268.0
-margin_right = 467.0
-margin_bottom = 268.0
+[node name="Ability Prompt" type="Panel" parent="UI/HUD/Control"]
+anchor_bottom = 1.0
+margin_top = 74.0
+margin_right = 251.0
+margin_bottom = -84.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 custom_styles/panel = ExtResource( 19 )
 script = ExtResource( 12 )
 
-[node name="NameText" type="Label" parent="UI/HUD/Ability Prompt"]
-margin_left = 19.0
-margin_top = 8.0
-margin_right = 329.0
-margin_bottom = 58.0
+[node name="NameText" type="Label" parent="UI/HUD/Control/Ability Prompt"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -102.0
+margin_top = 15.0
+margin_right = 100.0
+margin_bottom = 65.0
 custom_fonts/font = ExtResource( 33 )
 text = "asdf"
 valign = 1
@@ -264,29 +260,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DescriptionText" type="Label" parent="UI/HUD/Ability Prompt"]
+[node name="DescriptionText" type="Label" parent="UI/HUD/Control/Ability Prompt"]
 anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 19.0
-margin_top = -180.0
-margin_right = 339.0
-margin_bottom = -20.0
+margin_left = 20.0
+margin_top = -77.5
+margin_right = -14.0
+margin_bottom = -34.5
 custom_fonts/font = ExtResource( 31 )
 text = "asdfasdfasdf"
 autowrap = true
 
-[node name="DetailsText" type="Label" parent="UI/HUD/Ability Prompt"]
+[node name="DetailsText" type="Label" parent="UI/HUD/Control/Ability Prompt"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 19.0
-margin_top = 28.0
-margin_right = 339.0
-margin_bottom = 188.0
+margin_left = 20.0
+margin_top = -19.5
+margin_right = 229.0
+margin_bottom = 29.5
 custom_fonts/font = ExtResource( 31 )
 text = "asdfasdfasdf"
 autowrap = true
 
-[node name="Button" type="Button" parent="UI/HUD/Ability Prompt"]
+[node name="Button" type="Button" parent="UI/HUD/Control/Ability Prompt"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -315,6 +312,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 14 )
 expand = true
+stretch_mode = 1
 
 [node name="Label" type="Label" parent="UI/Game Over"]
 anchor_left = 0.5
@@ -370,7 +368,7 @@ text = "Leave the Battlefield"
 script = ExtResource( 11 )
 selector_path = NodePath("../Selector")
 ability_lifecyle_scene = ExtResource( 5 )
-ability_prompt_path = NodePath("../UI/HUD/Ability Prompt")
+ability_prompt_path = NodePath("../UI/HUD/Control/Ability Prompt")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 follow_viewport_enable = true
@@ -397,8 +395,8 @@ color = Color( 0, 0, 0, 1 )
 autoplay = "fade in"
 "anims/fade in" = SubResource( 1 )
 
-[connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
-[connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
-[connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]
+[connection signal="on_deselect" from="Selector" to="UI/HUD/Control/Abilities Bar" method="_on_Selector_on_deselect"]
+[connection signal="on_select_player" from="Selector" to="UI/HUD/Control/Abilities Bar" method="_on_Selector_on_select_player"]
+[connection signal="pressed" from="UI/HUD/Control/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]
 [connection signal="pressed" from="UI/Game Over/VBoxContainer/NewMissionButton" to="UI/Game Over" method="_on_NewMissionButton_pressed"]
 [connection signal="pressed" from="UI/Game Over/VBoxContainer/ExitGameButton" to="UI/Game Over" method="_on_ExitGameButton_pressed"]

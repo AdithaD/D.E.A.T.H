@@ -4,4 +4,6 @@
 
 [node name="Ability Button" type="TextureButton"]
 margin_bottom = 40.0
+size_flags_horizontal = 3
+expand = true
 script = ExtResource( 1 )
