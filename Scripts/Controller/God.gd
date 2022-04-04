@@ -77,6 +77,8 @@ func evacuate_civilian(civilian):
 	
 	civilian.queue_free()
 
+func get_civilian_nodes():
+	return get_tree().get_nodes_in_group("civilian")
 func get_player_nodes():
 #	return player_units
 	return get_tree().get_nodes_in_group("player_unit")

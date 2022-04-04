@@ -20,7 +20,7 @@ func _ready():
 	
 func _use_ai_ability(source):
 	enemy = source
-	var path = get_move()
+	var path = ai.get_move(source, min_dist)
 	
 	if(len(path) >= 2):
 			yield(do_move(path.slice(1,len(path) - 1)), "completed")
@@ -45,19 +45,7 @@ func world_move_to(loc):
 		enemy.position += diff/steps
 	
 	enemy.position = loc
-	
 
-func get_move():
-	bfs.init(god)
-	var reachable = bfs.get_reachable(enemy.grid_position, enemy.get_moveable_distance())
-	
-	var best = [enemy.grid_position, 0]
-
-	for tile in reachable:
-		if ai.evaluate_tile(tile) > best[1] and ai.get_dist_to_closest_player(tile) >= min_dist:
-			best = [tile, ai.evaluate_tile(tile)]
-		
-	return bfs.find_path(enemy.grid_position, best[0])
 
 func change_dir_sprite(vector):
 	if(abs(vector.x) >= abs(vector.y)):

@@ -24,7 +24,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Abilities/AbilityLifecycle.gd"
 }, {
-"base": "Node2D",
+"base": "Node",
+"class": "BFSAI",
+"language": "GDScript",
+"path": "res://Scripts/EnemyScripts/EnemyAI/BFSAI.gd"
+}, {
+"base": "EnemyUnit",
 "class": "Civilian",
 "language": "GDScript",
 "path": "res://Scripts/Civilians/Civilian.gd"
@@ -63,6 +68,7 @@ _global_script_class_icons={
 "Ability": "",
 "AbilityButton": "",
 "AbilityLifecycle": "",
+"BFSAI": "",
 "Civilian": "",
 "Enemy": "",
 "EnemyAbility": "",

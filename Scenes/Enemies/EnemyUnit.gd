@@ -54,6 +54,7 @@ func new_turn():
 			var turn = ai.generate_turn(abilities)
 			
 			for ability in turn:
+				emit_signal("used_ability", ability)
 				ability.use_ai_ability(self)
 				yield(ability, "finished_doing")
 		
@@ -80,10 +81,6 @@ func spend_action_points(action_cost: int):
 #		end_turn.call_func()
 
 	pass
-
-
-func on_used_ability(_index):
-	emit_signal("used_ability")
 
 func set_grid_position(new_grid):
 	grid_position = new_grid

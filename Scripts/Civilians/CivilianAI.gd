@@ -9,3 +9,9 @@ func generate_turn(abilities):
 		other_ability  = other_abilities[randi() % len(other_abilities)]
 		
 	return [move_ability, other_ability]
+
+func get_target_locations():
+	var locations = []
+	for ea in god.get_evacuation_areas():
+		locations.append(ea.grid_position)
+	return locations

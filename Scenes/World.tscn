@@ -90,16 +90,13 @@ position = Vector2( 192, -80 )
 position = Vector2( 144, -104 )
 
 [node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
-position = Vector2( 48, -136 )
+position = Vector2( 160, -176 )
 
 [node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
 position = Vector2( 160, -64 )
 
 [node name="Civilian" parent="Cover" instance=ExtResource( 28 )]
-position = Vector2( 32, -128 )
-max_health = 5
-actions_points_per_turn = 2
-tiles_per_turn = 5
+position = Vector2( 112, -200 )
 
 [node name="Medic" parent="Cover" instance=ExtResource( 20 )]
 position = Vector2( 128, -80 )

@@ -18,7 +18,8 @@ func create_ability_button(player, ability_index):
 	ability_button.player = player
 	ability_button.ability_index = ability_index
 	add_child(ability_button)
-	player.abilities[ability_index].connect("ability_used", self, "regenerate_buttons")
+	if(player.abilities[ability_index].get_signal_connection_list("ability_used").size() == 0):
+		player.abilities[ability_index].connect("ability_used", self, "regenerate_buttons")
 
 func regenerate_buttons():
 	for child in get_children():
