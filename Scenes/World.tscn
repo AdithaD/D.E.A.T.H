@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -52,10 +52,49 @@ region_rect = Rect2( 0, 0, 220, 220 )
 texture = ExtResource( 36 )
 region_rect = Rect2( 0, 0, 220, 220 )
 
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Game Over:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
 [sub_resource type="Animation" id=1]
 resource_name = "fade in"
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("UI/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -65,6 +104,58 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "fade out"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Game Over:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [node name="World" type="Node2D"]
@@ -329,15 +420,31 @@ texture = ExtResource( 14 )
 expand = true
 stretch_mode = 1
 
-[node name="Label" type="Label" parent="UI/Game Over"]
+[node name="Control" type="Control" parent="UI/Game Over"]
+anchor_right = 1.0
+margin_bottom = 224.0
+
+[node name="Label" type="Label" parent="UI/Game Over/Control"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -385.0
-margin_top = 64.0
-margin_right = 378.0
-margin_bottom = 331.0
+margin_left = -381.5
+margin_right = 381.5
+margin_bottom = 184.0
 custom_fonts/font = ExtResource( 38 )
 text = "It's all over..."
+align = 1
+valign = 1
+
+[node name="CiviliansSavedLabel" type="Label" parent="UI/Game Over/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -57.5
+margin_top = -15.0
+margin_right = 57.5
+custom_fonts/font = ExtResource( 31 )
+text = "Civilians Saved:"
 align = 1
 valign = 1
 
@@ -346,15 +453,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -272.5
-margin_top = -472.0
-margin_right = 272.5
-margin_bottom = -112.0
+margin_left = -281.0
+margin_top = -296.0
+margin_right = 295.0
+margin_bottom = -64.0
 alignment = 1
 
 [node name="NewMissionButton" type="Button" parent="UI/Game Over/VBoxContainer"]
-margin_right = 545.0
-margin_bottom = 178.0
+margin_right = 576.0
+margin_bottom = 114.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 33 )
@@ -366,9 +473,9 @@ custom_styles/normal = SubResource( 2 )
 text = "New Mission"
 
 [node name="ExitGameButton" type="Button" parent="UI/Game Over/VBoxContainer"]
-margin_top = 182.0
-margin_right = 545.0
-margin_bottom = 360.0
+margin_top = 118.0
+margin_right = 576.0
+margin_bottom = 232.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 33 )
@@ -378,6 +485,14 @@ custom_styles/focus = SubResource( 4 )
 custom_styles/disabled = SubResource( 3 )
 custom_styles/normal = SubResource( 2 )
 text = "Leave the Battlefield"
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+visible = false
+margin_left = -3129.0
+margin_top = -1624.0
+margin_right = 2665.0
+margin_bottom = 1635.0
+color = Color( 0, 0, 0, 0 )
 
 [node name="AbilityLifecycleManager" type="Node" parent="."]
 script = ExtResource( 11 )
@@ -398,17 +513,11 @@ rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 14 )
 expand = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-margin_left = -3129.0
-margin_top = -1624.0
-margin_right = 2665.0
-margin_bottom = 1635.0
-color = Color( 0, 0, 0, 1 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade in"
+anims/RESET = SubResource( 5 )
 "anims/fade in" = SubResource( 1 )
+"anims/fade out" = SubResource( 6 )
 
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Control/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Control/Abilities Bar" method="_on_Selector_on_select_player"]

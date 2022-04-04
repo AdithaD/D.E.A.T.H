@@ -15,7 +15,13 @@ func select_tile():
 		selection = floor_tile_map.world_to_map(mouse_pos)
 		get_node("/root/World/Overlay").set_overlay(aoe.generate_AoE(selection, area_of_effect), 1)
 		emit_signal("on_select_tile", selection)
+
+
+func select_player():
+	.select_player()
 	
+	if(selection != null):
+		get_node("/root/World/Overlay").set_overlay(aoe.generate_AoE(selection.grid_position, area_of_effect), 1)
 func grid_distance(a, b):
 	return abs(a.x - b.x) + abs(a.y - b.y)
 

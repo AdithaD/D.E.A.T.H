@@ -3,6 +3,9 @@ extends Control
 var player
 var lifecycle
 
+export (NodePath) var health_display
+export (NodePath) var action_point_display
+
 func _ready():
 	player = get_parent()
 	$VoiceLine.visible = false
@@ -27,7 +30,10 @@ func display_ability_voice_line():
 		
 		display_voice_line(voice_line)
 
-
+func on_death():
+	get_node(health_display).visible = false
+	get_node(action_point_display).visible = false
+		
 func bind_lifecycle(new_lifecycle):
 	lifecycle = new_lifecycle
 	

@@ -63,7 +63,12 @@ func check_game_over():
 
 func game_over():
 	$UI/HUD.visible = false
+	
+	$AnimationPlayer.play("fade out")
+	yield($AnimationPlayer, "animation_finished")
+
 	$"UI/Game Over".visible = true
+	
 
 func init_entities():
 	for en in get_enemy_nodes():	

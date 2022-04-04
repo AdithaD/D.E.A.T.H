@@ -89,12 +89,15 @@ func take_damage(dmg):
 	emit_signal("update_attr")
 	
 func die():
-	is_dead = true
-	$DeathSprite.set_frame(0)
-	$DeathSprite.visible = true
-	$AnimatedSprite.visible = false
-	$DeathSprite.play()
-	emit_signal('death')
+	if !is_dead:
+		is_dead = true
+		$DeathSprite.set_frame(0)
+		$DeathSprite.visible = true
+		$AnimatedSprite.visible = false
+		$DeathSprite.play()
+		
+		$PlayerUI.on_death()
+		emit_signal('death')
 	
 
 func heal_damage(heal_amount):
