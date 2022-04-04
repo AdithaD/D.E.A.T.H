@@ -124,5 +124,7 @@ func conduct_civilian_turn():
 	
 func _on_NextTurn_pressed():
 	should_force_end_turn = true
-	player_unit_counter.resume()
+	
+	if player_unit_counter is GDScriptFunctionState:
+		player_unit_counter.resume()
 	pass # Replace with function body.

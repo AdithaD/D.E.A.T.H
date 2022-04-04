@@ -76,3 +76,7 @@ func get_move(unit, min_dist):
 			best = [tile, evaluate_tile(tile)]
 		
 	return bfs.find_path(unit.grid_position, best[0])
+
+func grid_distance(a, b):
+	return abs(a.x - b.x) + abs(a.y - b.y)
+	
