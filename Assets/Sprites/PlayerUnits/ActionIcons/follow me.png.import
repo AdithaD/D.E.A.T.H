@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/follow.png-f58819a49adebee9630be24fbd1421e6.stex"
+path="res://.import/follow me.png-7579689fe63def5a97bba498faa719de.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/PlayerUnits/ActionIcons/follow.png"
-dest_files=[ "res://.import/follow.png-f58819a49adebee9630be24fbd1421e6.stex" ]
+source_file="res://Assets/Sprites/PlayerUnits/ActionIcons/follow me.png"
+dest_files=[ "res://.import/follow me.png-7579689fe63def5a97bba498faa719de.stex" ]
 
 [params]
 
