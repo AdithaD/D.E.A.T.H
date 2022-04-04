@@ -256,11 +256,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="update_attr" from="Cover/Grenadier" to="Cover/Grenadier/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Gunner" to="Cover/Gunner/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Helicopter" to="Cover/Helicopter/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Marksman" to="Cover/Marksman/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Medic" to="Cover/Medic/PlayerUI" method="_on_PlayerUnit_update_attr"]
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
 [connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]

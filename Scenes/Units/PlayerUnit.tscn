@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Abilities/Move.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/move.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Sprites/body.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Abilities/FollowMe.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/heal.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "text float off"
@@ -48,10 +50,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="PlayerUnit" type="Node2D" groups=[
-"damageable",
-"player_unit",
-]]
+[node name="PlayerUnit" type="Node2D" groups=["damageable", "player_unit"]]
 script = ExtResource( 1 )
 max_health = 10
 actions_points_per_turn = 2
@@ -61,6 +60,13 @@ tiles_per_turn = 5
 
 [node name="Move" parent="Abilities" instance=ExtResource( 2 )]
 icon = ExtResource( 5 )
+
+[node name="Follow Me" type="Node" parent="Abilities"]
+script = ExtResource( 8 )
+icon = ExtResource( 9 )
+action_cost = 0
+cooldown_duration = 0
+target_type = 4
 
 [node name="PlayerUI" type="Control" parent="."]
 margin_left = -46.0

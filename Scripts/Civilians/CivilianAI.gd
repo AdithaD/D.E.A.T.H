@@ -1,5 +1,7 @@
 extends BFSAI
 
+onready var civilian = get_parent()
+
 func generate_turn(abilities):
 	var move_ability = abilities[0]
 	
@@ -11,7 +13,10 @@ func generate_turn(abilities):
 	return [move_ability, other_ability]
 
 func get_target_locations():
-	var locations = []
-	for ea in god.get_evacuation_areas():
-		locations.append(ea.grid_position)
-	return locations
+	if(civilian.follow_target != null):
+		return [civilian.follow_target.grid_position]
+	else:
+		var locations = []
+		for ea in god.get_evacuation_areas():
+			locations.append(ea.grid_position)
+		return locations
