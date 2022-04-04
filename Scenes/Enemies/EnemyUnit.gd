@@ -73,8 +73,10 @@ func take_damage(dmg):
 	
 func die():
 	is_dead = true
+	$DeathSprite.set_frame(0)
 	$DeathSprite.visible = true
 	$AnimatedSprite.visible = false
+	$DeathSprite.play()
 
 func get_moveable_distance():
 	return tiles_per_turn - dist_moved

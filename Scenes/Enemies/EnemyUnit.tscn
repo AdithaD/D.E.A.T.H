@@ -5,8 +5,8 @@
 [ext_resource path="res://Scripts/EnemyAbilities/EnemyMove.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Enemies/EnemyUI.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Resource/UnitDeath.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/Sprites/body.png" type="Texture" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "text float off"
@@ -108,12 +108,12 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyUI"]
 "anims/text float off" = SubResource( 1 )
 
+[node name="DeathSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = ExtResource( 6 )
+
 [node name="HealthDisplay" parent="." instance=ExtResource( 7 )]
 position = Vector2( -20, -45 )
-
-[node name="DeathSprite" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 11 )
 
 [node name="EnemySound" type="AudioStreamPlayer2D" parent="."]
 

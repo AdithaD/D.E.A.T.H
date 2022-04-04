@@ -5,17 +5,25 @@
 [ext_resource path="res://Assets/Sprites/UI/HealthSegmentEmpty.png" type="Texture" id=3]
 
 [node name="HealthDisplay" type="Node2D"]
-position = Vector2( 0, -6 )
+position = Vector2( 4, -6 )
 script = ExtResource( 1 )
 
 [node name="HealthBarEmpty" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 6.0
+rect_scale = Vector2( 1, 0.5 )
 texture = ExtResource( 3 )
 stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HealthBar" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 6.0
+rect_scale = Vector2( 1, 0.5 )
 texture = ExtResource( 2 )
 stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
