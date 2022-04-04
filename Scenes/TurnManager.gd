@@ -27,7 +27,7 @@ func new_turn():
 
 func conduct_turn():
 	yield(conduct_player_turn(), "completed")
-	yield(conduct_civilian_turn(), "completed")
+	conduct_civilian_turn()
 	yield(conduct_enemy_turn(), "completed")
 	
 	new_turn()
@@ -85,9 +85,7 @@ func conduct_civilian_turn():
 	for civilian in god.get_civilian_nodes():
 		if civilian.has_method("new_turn"):
 			get_node("/root/World/UserCamera").focus_on(civilian.position)
-			yield(get_tree().create_timer(0.4), "timeout")
 			civilian.new_turn()
-			yield(get_tree().create_timer(1.2), "timeout")	
 			
 func _on_NextTurn_pressed():
 	should_force_end_turn = true

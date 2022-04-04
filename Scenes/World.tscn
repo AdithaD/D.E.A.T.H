@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Scenes/Units/Helicopter.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Enemies/Artillery.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/Enemies/AntiAir.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scripts/CivilianSpawning.gd" type="Script" id=26]
 [ext_resource path="res://Scenes/Evacuation Area.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Civilian.tscn" type="PackedScene" id=28]
 
@@ -32,6 +33,17 @@
 script = ExtResource( 6 )
 obstacle_map_path = NodePath("Cover")
 floor_map_path = NodePath("Tiles")
+
+[node name="Spawner" type="Node" parent="."]
+
+[node name="CivilianSpawner" type="Node" parent="Spawner"]
+script = ExtResource( 26 )
+civilian_types = [ ExtResource( 28 ) ]
+spawn_target = NodePath("../../Cover")
+
+[node name="EnemySpawner" type="Node" parent="Spawner"]
+
+[node name="Timer" type="Timer" parent="Spawner/EnemySpawner"]
 
 [node name="TurnManager" type="Node" parent="."]
 script = ExtResource( 17 )

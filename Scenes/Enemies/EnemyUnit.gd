@@ -25,6 +25,7 @@ var is_dead = false
 var end_turn
 signal update_attr
 signal used_ability
+signal turn_complete
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,7 +60,7 @@ func new_turn():
 				yield(ability, "finished_doing")
 		
 		emit_signal('update_attr')
-
+		emit_signal('turn_complete')
 func take_damage(dmg):
 	health -= dmg
 	if(health <= 0):

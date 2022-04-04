@@ -28,6 +28,8 @@ func _ready():
 	cover.init(obstacle_tile_map, cover_map)
 	set_process_input(true)
 	
+	$Spawner/CivilianSpawner.spawn_civilians(self)
+	
 	init_entities()	
 	init_world()
 
