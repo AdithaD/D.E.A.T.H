@@ -22,6 +22,14 @@ func _use_ai_ability(source):
 		for unit in units:
 			if tiles_affected.find(unit.grid_position) != -1:
 				unit.take_damage(damage)
+		
+		$ExplosionAnimation.set_frame(1)
+		$ExplosionAnimation.position = god.grid_to_world(target)
+		SoundEngine.play_explosion_sfx()
+		$ExplosionAnimation.visible = true
+		$ExplosionAnimation.play()
+		yield($ExplosionAnimation, "animation_finished")
+		$ExplosionAnimation.visible = false
 	
 	finish_doing()
 	
