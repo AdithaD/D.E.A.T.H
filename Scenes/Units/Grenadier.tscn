@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Explosives.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Units/PlayerUnit.tscn" type="PackedScene" id=2]
@@ -9,8 +9,7 @@
 [ext_resource path="res://Assets/Sprites/rocket_launcher.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Abilities/AoESelector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Abilities/Grenade.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/Abilities/GunShoot.gd" type="Script" id=10]
-[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/Fire weapon.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Abilities/Shoot.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -22,13 +21,7 @@ animations = [ {
 
 [node name="Grenadier" instance=ExtResource( 2 )]
 
-[node name="Shoot" type="Node" parent="Abilities" index="1"]
-script = ExtResource( 10 )
-ability_name = "Shoot"
-ability_description = "Take aim and fire."
-icon = ExtResource( 11 )
-voice_lines = [ "Firing on target", "Lock n' load", "Engaging hostile" ]
-damage = 3
+[node name="Shoot" parent="Abilities" index="1" instance=ExtResource( 10 )]
 
 [node name="RocketLauncher" type="Node" parent="Abilities" index="2"]
 script = ExtResource( 1 )

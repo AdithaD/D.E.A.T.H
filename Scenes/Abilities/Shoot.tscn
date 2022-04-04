@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/Fire weapon.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Abilities/GunShoot.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Abilities/Tracer.tscn" type="PackedScene" id=3]
+
+[node name="Shoot" type="Node"]
+script = ExtResource( 2 )
+ability_name = "Shoot"
+ability_description = "Take aim and fire."
+icon = ExtResource( 1 )
+voice_lines = [ "Firing on target", "Lock n' load", "Engaging hostile" ]
+damage = 3
+tracer = ExtResource( 3 )

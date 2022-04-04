@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -29,6 +29,8 @@
 [ext_resource path="res://Scenes/Evacuation Area.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Civilian.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scenes/EnemySpawner.gd" type="Script" id=29]
+[ext_resource path="res://Scenes/Effects.gd" type="Script" id=30]
+[ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=31]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -66,6 +68,9 @@ position = Vector2( 320, -160 )
 
 [node name="SpawnPoint4" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
 position = Vector2( 320, -96 )
+
+[node name="Effects" type="Node" parent="."]
+script = ExtResource( 30 )
 
 [node name="TurnManager" type="Node" parent="."]
 script = ExtResource( 17 )
@@ -131,9 +136,6 @@ position = Vector2( 160, -64 )
 
 [node name="Civilian" parent="Cover" instance=ExtResource( 28 )]
 position = Vector2( 112, -200 )
-max_health = 0
-actions_points_per_turn = 0
-tiles_per_turn = 0
 
 [node name="Medic" parent="Cover" instance=ExtResource( 20 )]
 position = Vector2( 128, -80 )
@@ -169,12 +171,14 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 120.0
 margin_bottom = 32.0
+custom_fonts/font = ExtResource( 31 )
 
 [node name="NextTurn" type="Button" parent="UI/HUD/TurnUI"]
 margin_left = 16.0
 margin_top = 48.0
 margin_right = 105.0
 margin_bottom = 68.0
+custom_fonts/font = ExtResource( 31 )
 text = "Next Button"
 
 [node name="Abilities Bar" type="HBoxContainer" parent="UI/HUD"]
@@ -200,6 +204,7 @@ margin_left = 5.0
 margin_top = 6.0
 margin_right = 211.0
 margin_bottom = 43.0
+custom_fonts/font = ExtResource( 31 )
 text = "asdf"
 valign = 1
 __meta__ = {
@@ -215,6 +220,7 @@ margin_left = -103.5
 margin_top = -173.0
 margin_right = 101.5
 margin_bottom = -13.0
+custom_fonts/font = ExtResource( 31 )
 text = "asdfasdfasdf"
 autowrap = true
 

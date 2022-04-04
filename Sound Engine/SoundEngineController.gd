@@ -10,10 +10,10 @@ var cinematic_music = load("res://Assets/Sounds/Music/DEATHcinematic.wav")
 
 #abilities:
 var fire_weapon_rifle = load("res://Assets/Sounds/SFX/Weapon Sounds/riflesfx.mp3")
-var fire_weapon_machinegun = load("")
+# var fire_weapon_machinegun = load("")
 var fire_weapon_sniper = load("res://Assets/Sounds/SFX/Weapon Sounds/snipersfx.mp3")
 var medic_heal = load("res://Assets/Sounds/SFX/Player/playerheal.wav")
-var evacuate_sfx = load("")
+# var evacuate_sfx = load("")
 
 #enemies:
 var enemy_hurt_sfx = load("res://Assets/Sounds/SFX/Enemy/enemyhurt.wav")
@@ -50,9 +50,9 @@ func play_enemy_rifle_sfx():
 	$SfxEnemyWeapon.stream = fire_weapon_rifle
 	$SfxEnemyWeapon.play()
 	
-func play_fire_machinegun_sfx():
-	$SfxPlayerWeapon.stream = fire_weapon_machinegun
-	$SfxPlayerWeapon.play()
+#func play_fire_machinegun_sfx():
+#	$SfxPlayerWeapon.stream = fire_weapon_machinegun
+#	$SfxPlayerWeapon.play()
 
 func play_fire_sniper_sfx():
 	$SfxPlayerWeapon.stream = fire_weapon_sniper

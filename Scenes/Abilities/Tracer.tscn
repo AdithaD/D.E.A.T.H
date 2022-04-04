@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Abilities/Tracer.gd" type="Script" id=1]
+
+[node name="Tracer" type="Line2D"]
+z_index = 5
+width = 2.0
+default_color = Color( 0.858824, 0.886275, 0.654902, 1 )
+script = ExtResource( 1 )
