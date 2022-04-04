@@ -1,0 +1,27 @@
+extends Timer
+
+var timer_time_left = get_time_left()
+	
+func timer_change_scene() -> void:
+		get_tree().change_scene("res://Scenes/Cinematic/Cinemativ scene3.tscn")
+
+func _process(delta):
+	timer_time_left = get_time_left()
+	if timer_time_left < 1:
+			timer_change_scene()
+			
+	
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+
+# Called when the node enters the scene tree for the first time.
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
