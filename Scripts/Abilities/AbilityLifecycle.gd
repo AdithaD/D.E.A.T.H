@@ -72,7 +72,6 @@ func _on_Secondary_Selector_select(selected):
 
 func move_to_doing():
 	emit_signal('doing')
-	
 	secondary_selector.deselect()
 	
 	state = LIFECYCLE.doing
@@ -85,7 +84,8 @@ func on_finished_doing():
 	queue_free()
 
 func _on_Secondary_Selector_deselect():
-	emit_signal('selecting')
+	if target == null:
+		emit_signal('selecting')
 	
 func _on_Secondary_Selector_quit_selection():
 	primary_selector.listen_to_input = true

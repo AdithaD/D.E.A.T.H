@@ -24,7 +24,9 @@ script = ExtResource( 5 )
 
 [node name="EnemyShoot" parent="Abilities" index="1" instance=ExtResource( 2 )]
 use_sound = ExtResource( 3 )
-damage = 2
+action_cost = 2
+damage = 3
+penetration = 1
 shoot_range = 8
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]

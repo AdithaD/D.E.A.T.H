@@ -39,6 +39,9 @@ script = ExtResource( 2 )
 [node name="EnemyShootAOE" type="Node" parent="Abilities" index="1"]
 script = ExtResource( 3 )
 use_sound = ExtResource( 8 )
+action_cost = 2
+cooldown_duration = 2
+damage = 3
 
 [node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/EnemyShootAOE" index="0"]
 visible = false

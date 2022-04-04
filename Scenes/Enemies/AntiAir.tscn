@@ -26,6 +26,7 @@ script = ExtResource( 2 )
 [node name="EnemyShootAir" type="Node" parent="Abilities" index="1"]
 script = ExtResource( 7 )
 use_sound = ExtResource( 9 )
+damage = 4
 tracer = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
