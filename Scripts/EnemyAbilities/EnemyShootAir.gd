@@ -1,7 +1,7 @@
 extends EnemyShoot
 
 func _generate_target(source):
-	var players = ai.get_flying_players_in_range(shoot_range, source.grid_position)
+	var players = ai.get_flying_players_in_range(shoot_range, source.grid_position, true)
 	
 	if len(players) == 0:
 		return null

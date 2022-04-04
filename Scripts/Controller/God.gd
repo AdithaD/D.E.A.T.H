@@ -86,12 +86,27 @@ func evacuate_civilian(civilian):
 
 func get_civilian_nodes():
 	return get_tree().get_nodes_in_group("civilian")
-func get_player_nodes():
+func get_player_nodes(alive=true):
 #	return player_units
-	return get_tree().get_nodes_in_group("player_unit")
-	
-func get_flying_player_nodes():
-	return get_tree().get_nodes_in_group("flying_player_unit")
+	var player_nodes =  get_tree().get_nodes_in_group("player_unit")
+	if alive:
+		var list = []
+		for p in player_nodes:
+			if !p.is_dead:
+				list.append(p)
+		return list
+	else:
+		return player_nodes
+func get_flying_player_nodes(alive=true):
+	var player_nodes =  get_tree().get_nodes_in_group("player_unit")
+	if alive:
+		var list = []
+		for p in player_nodes:
+			if !p.is_dead:
+				list.append(p)
+		return list
+	else:
+		return player_nodes
 
 func get_enemy_nodes():
 	return get_tree().get_nodes_in_group("enemy")
