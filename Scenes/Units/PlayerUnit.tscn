@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Abilities/Move.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/stop follow.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Abilities/RangeSelector.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/Abilities/Stay.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Sprites/UI/marked icon.png" type="Texture" id=12]
 [ext_resource path="res://Resource/UnitDeath.tres" type="SpriteFrames" id=13]
 
 [sub_resource type="Animation" id=1]
@@ -126,6 +127,12 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerUI"]
 "anims/text float off" = SubResource( 1 )
+
+[node name="MarkedIcon" type="Sprite" parent="PlayerUI"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.862745 )
+position = Vector2( 46.071, 40 )
+texture = ExtResource( 12 )
 
 [node name="DeathSprite" type="AnimatedSprite" parent="."]
 visible = false

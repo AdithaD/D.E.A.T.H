@@ -134,7 +134,7 @@ func get_player_nodes(alive=true):
 	else:
 		return player_nodes
 func get_flying_player_nodes(alive=true):
-	var player_nodes =  get_tree().get_nodes_in_group("player_unit")
+	var player_nodes =  get_tree().get_nodes_in_group("flying_player_unit")
 	if alive:
 		var list = []
 		for p in player_nodes:

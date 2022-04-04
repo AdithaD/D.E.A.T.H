@@ -35,6 +35,5 @@ func clear_hit_chance():
 	$HitChanceLabel.text = ""
 
 func _on_Unit_update_attr():
-#	update_status_text()
-	pass # Replace with function body.
+	$MarkedIcon.visible = unit.is_marked
 
