@@ -1,4 +1,5 @@
 extends BFSAI
+class_name GruntAI
 
 var player_bonus = 2000
 var civilian_bonus = 100
@@ -44,11 +45,11 @@ func evaluate_tile(pos):
 	
 	var shoot_range = 0
 	
-	if(get_parent().get_node("Abilities").get_node_or_null("EnemyShoot")):
+	var abilities = get_parent().get_node("Abilities")
+	if(abilities.get_node_or_null("EnemyShoot")):
 		var enemyshoot = get_parent().get_node("Abilities").get_node("EnemyShoot")
 		shoot_range = enemyshoot.shoot_range
 		penetration = enemyshoot.penetration
-	
 	
 	var players_in_range = get_players_in_range(shoot_range, pos)
 	var civilians_in_range = get_civilians_in_range(shoot_range, pos)
@@ -57,7 +58,7 @@ func evaluate_tile(pos):
 		score = float(player_bonus)
 		score += get_highest_hitchance(pos, players_in_range, penetration) * hit_chance_score_multiplier
 		for player in get_players_in_range(unit_check_acc_range, pos):
-			score -= get_hitchance(pos, player, penetration) * enemy_hit_chance_score_multiplier
+			score -= get_hitchance(pos, player, 0) * enemy_hit_chance_score_multiplier
 			
 		return score
 		
