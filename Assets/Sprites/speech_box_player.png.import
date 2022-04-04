@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rubble.png-2bca241c78a7a13031af93df08f0e99d.stex"
+path="res://.import/speech_box_player.png-c8a6d0224902178f82486cbe49a8d39d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/rubble.png"
-dest_files=[ "res://.import/rubble.png-2bca241c78a7a13031af93df08f0e99d.stex" ]
+source_file="res://Assets/Sprites/speech_box_player.png"
+dest_files=[ "res://.import/speech_box_player.png-c8a6d0224902178f82486cbe49a8d39d.stex" ]
 
 [params]
 
