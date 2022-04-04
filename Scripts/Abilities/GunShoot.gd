@@ -18,6 +18,8 @@ func _use_ability(source, target):
 	var rand = god.get_hit_chance(source.grid_position, target.grid_position, penetration, !target.can_cover, target.is_marked)
 	if(randf() < rand):
 		target.take_damage(damage)
+	else:
+		target.notify_miss()
 		
 	print('drawing line')
 	submit_tracer_burst(source.global_position, target.global_position, bullet_length, bullet_speed, burst_number, 0.05)

@@ -102,7 +102,10 @@ func apply_mark(turns):
 		mark_length = turns
 	is_marked = true
 	emit_signal("update_attr")
-	
+
+func notify_miss():
+	$EnemyUI.display_miss()
+
 func play_sound(sound):
 	$EnemySound.stream = sound
 	$EnemySound.play()

@@ -37,3 +37,9 @@ func clear_hit_chance():
 func _on_Unit_update_attr():
 	$MarkedIcon.visible = unit.is_marked
 
+func display_miss():
+	$MissText.visible = true
+	$MissTextAnimator.play("text float off")
+	yield($MissTextAnimator, "animation_finished")
+	$MissText.visible = false
+	pass

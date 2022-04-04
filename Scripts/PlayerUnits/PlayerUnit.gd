@@ -139,6 +139,9 @@ func change_dir_sprite(vector):
 			set_sprite_index(SPRITE_DIRECTIONS.BOTTOM_LEFT)
 		else:
 			set_sprite_index(SPRITE_DIRECTIONS.TOP_RIGHT)
+			
+func notify_miss():
+	$PlayerUI.display_miss()
 
 func set_sprite_index(index):
 	$AnimatedSprite.frame = index
