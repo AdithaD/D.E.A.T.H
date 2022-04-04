@@ -47,7 +47,7 @@ func evaluate_tile(pos):
 	
 	var abilities = get_parent().get_node("Abilities")
 	if(abilities.get_node_or_null("EnemyShoot")):
-		var enemyshoot = get_parent().get_node("Abilities").get_node("EnemyShoot")
+		var enemyshoot = abilities.get_node("EnemyShoot")
 		shoot_range = enemyshoot.shoot_range
 		penetration = enemyshoot.penetration
 	
