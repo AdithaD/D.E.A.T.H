@@ -15,6 +15,7 @@ volume_db = -4.0
 [node name="SfxEnemyWeapon" type="AudioStreamPlayer" parent="."]
 
 [node name="SfxCivilian" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0

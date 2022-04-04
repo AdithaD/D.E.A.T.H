@@ -35,9 +35,11 @@ icon = ExtResource( 5 )
 use_sound = ExtResource( 11 )
 voice_lines = [ "Taking za shot!", "I can see you!", "I've got you in my sights" ]
 cooldown_duration = 2
-damage = 3
+damage = 5
 penetration = 4
 tracer = ExtResource( 4 )
+burst_number = 1
+bullet_length = 40
 
 [node name="Grenade" parent="Abilities" index="2" instance=ExtResource( 10 )]
 icon = ExtResource( 12 )

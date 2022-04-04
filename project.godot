@@ -87,7 +87,7 @@ _global_script_class_icons={
 [application]
 
 config/name="D. E. A. T. H"
-run/main_scene="res://Scenes/Cinematic/Cinematic scene 1.tscn"
+run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -102,7 +102,6 @@ gdscript/warnings/return_value_discarded=false
 
 window/size/width=1920
 window/size/height=1080
-window/size/borderless=true
 
 [input]
 
