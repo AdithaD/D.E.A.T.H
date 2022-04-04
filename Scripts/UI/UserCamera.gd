@@ -6,6 +6,7 @@ export (float) var focus_zoom = 2.5;
 export (float) var move_speed_scaling
 
 var should_move = false
+var inputKey
 
 func _ready():
 	zoom = Vector2(default_zoom, default_zoom)
@@ -30,7 +31,10 @@ func _input(event):
 			if(event.pressed):
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			else:
-				Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if event is InputEventMouseMotion and should_move:
 		position += event.relative * move_speed_scaling
+		
+
+
 

@@ -57,7 +57,7 @@ tracks/2/keys = {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 6 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0

@@ -41,10 +41,8 @@ func world_move_to(loc):
 	var diff = loc - enemy.position
 	var steps = int(move_animation_time/move_interval)
 	for _i in range(0, steps):
-		SoundEngine.play_footsteps_sfx()
 		yield(get_tree().create_timer(move_interval), "timeout")
 		enemy.position += diff/steps
-		SoundEngine.stop_sfxPlayer()
 	
 	enemy.position = loc
 
