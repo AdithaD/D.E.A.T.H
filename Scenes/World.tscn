@@ -57,7 +57,6 @@ floor_map_path = NodePath("Tiles")
 
 [node name="CivilianSpawner" type="Node" parent="Spawner"]
 script = ExtResource( 26 )
-amount_to_spawn = 1
 civilian_types = [ ExtResource( 28 ) ]
 spawn_target = NodePath("../../Cover")
 
@@ -166,11 +165,15 @@ position = Vector2( 0, -1 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 8 )
+big_view_zoom = 1.0
 default_zoom = 0.5
 focus_zoom = 0.3
 move_speed_scaling = 0.4
 
 [node name="Tween" type="Tween" parent="UserCamera"]
+
+[node name="Centre" type="Node2D" parent="UserCamera"]
+position = Vector2( -360, -7 )
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../Cover")
@@ -285,19 +288,14 @@ margin_bottom = -415.997
 rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 14 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = -3124.0
 margin_top = -1480.0
 margin_right = 2670.0
 margin_bottom = 1779.0
 color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade in"

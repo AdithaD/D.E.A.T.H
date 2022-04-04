@@ -7,6 +7,10 @@ func on_evacuation():
 	print('civilian %s is celebrating' % self)
 	pass
 
+func new_turn_yield(end_turn):
+	yield(new_turn(), "completed")
+	end_turn.call_func()
+
 func play_sound(sound):
 	$CivilianSound.stream = sound
 	$CivilianSound.play()

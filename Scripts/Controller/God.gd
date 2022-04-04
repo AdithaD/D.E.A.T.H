@@ -129,7 +129,7 @@ func get_cover_obstacles():
 		
 
 func get_obstacle_locations():
-	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles()
+	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles() + get_civilian_nodes()
 
 func world_to_grid(world):
 	return floor_tile_map.world_to_map(world)
@@ -164,7 +164,10 @@ func hit_chance_func(x):
 	var value = 1 - log(x + 1) / log(5)
 	return clamp(value, 0, 0.95)
 	
-	
+func get_centre():
+	var rect = floor_tile_map.get_used_rect()
+	return Vector2(rect.position.x + rect.size.x / 2, rect.position.y + rect.size.y / 2)
+
 class Cover:
 	var obstacle_tile_map
 	var cover_map
