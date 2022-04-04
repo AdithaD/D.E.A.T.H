@@ -125,6 +125,10 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 "anims/text float off" = SubResource( 1 )
 
+[node name="DeathSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = ExtResource( 3 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, -20 )
 frames = SubResource( 2 )
@@ -136,10 +140,7 @@ position = Vector2( -17, -36 )
 script = ExtResource( 11 )
 
 [node name="CivilianSound" type="AudioStreamPlayer2D" parent="."]
-
-[node name="DeathSprite" type="AnimatedSprite" parent="."]
-visible = false
-frames = ExtResource( 3 )
+volume_db = -6.0
 
 [connection signal="update_attr" from="." to="UI" method="_on_Unit_update_attr"]
 [connection signal="update_attr" from="." to="HealthDisplay" method="_on_Unit_update_attr"]
