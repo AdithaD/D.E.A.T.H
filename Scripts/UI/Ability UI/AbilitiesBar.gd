@@ -37,6 +37,8 @@ func _on_Selector_on_select_player(new_selected_player):
 
 func _on_Selector_on_deselect():
 	selected_player = null
+	for child in get_children():
+		child.queue_free()
 	pass # Replace with function body.
 
 

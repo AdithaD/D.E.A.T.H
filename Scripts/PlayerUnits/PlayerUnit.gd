@@ -28,6 +28,8 @@ var is_dead = false
 signal update_attr
 signal used_ability
 
+signal death
+
 enum SPRITE_DIRECTIONS {BOTTOM_LEFT, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT}
 
 # Called when the node enters the scene tree for the first time.
@@ -87,7 +89,7 @@ func die():
 	$DeathSprite.visible = true
 	$AnimatedSprite.visible = false
 	$DeathSprite.play()
-	
+	emit_signal('death')
 	
 
 func heal_damage(heal_amount):

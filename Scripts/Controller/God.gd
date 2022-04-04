@@ -5,12 +5,16 @@ extends Node
 export (NodePath) var obstacle_map_path
 export (NodePath) var floor_map_path
 export (int) var mark_acc_increase = 20
+
+export (Array, PackedScene) var players
+
 onready var obstacle_tile_map = get_node(obstacle_map_path)
 
 onready var floor_tile_map = get_node(floor_map_path)
 var cover
 
 var civlians_evacuated = 0
+var players_killed = 0
 
 # all other obstacles are 0 over
 var cover_map = {
@@ -30,6 +34,8 @@ func _ready():
 	cover.init(obstacle_tile_map, cover_map)
 	set_process_input(true)
 	
+	spawn_players()
+	
 	$Spawner/CivilianSpawner.spawn_civilians(self)
 	
 	init_entities()	
@@ -37,6 +43,27 @@ func _ready():
 
 	$TurnManager.new_turn()
 
+
+func spawn_players():
+	for i in range(0, players.size()):
+		var player = players[i].instance()
+		player.connect("death", self, "increment_dead_count")
+		$Cover.add_child(player)
+		
+		var snapped_pos = world_to_grid($Spawner/PlayerSpawnPoints.get_child(i).global_position)
+		player.position = grid_to_world(snapped_pos)
+
+func increment_dead_count():
+	players_killed += 1
+	check_game_over()
+
+func check_game_over():
+	if players_killed == players.size() and get_civilian_nodes().size == 0:
+		game_over()
+
+func game_over():
+	$UI/HUD.visible = false
+	$"UI/Game Over".visible = true
 
 func init_entities():
 	for en in get_enemy_nodes():	
@@ -130,6 +157,12 @@ func get_enemy_locations():
 	var out = []
 	for enemy in get_enemy_nodes():
 		out.append(enemy.grid_position)
+	return out
+
+func get_flying_player_locations():
+	var out = []
+	for player in get_flying_player_nodes():
+		out.append(player.grid_position)
 	return out
 	
 func get_unwalkable_tiles():

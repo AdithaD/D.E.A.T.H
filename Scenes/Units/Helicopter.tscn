@@ -19,9 +19,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Helicopter" groups=[
-"flying_player_unit",
-] instance=ExtResource( 1 )]
+[node name="Helicopter" groups=["flying_player_unit"] instance=ExtResource( 1 )]
 script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
@@ -62,6 +60,3 @@ margin_bottom = 58.212
 [node name="VoiceLine" parent="PlayerUI" index="1"]
 margin_top = -20.0
 margin_bottom = -6.0
-
-[node name="DeathSprite" parent="." index="4"]
-visible = false

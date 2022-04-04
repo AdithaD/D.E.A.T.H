@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -37,6 +37,8 @@
 [ext_resource path="res://Assets/Sprites/UI/overlay.png" type="Texture" id=35]
 [ext_resource path="res://Assets/Sprites/info_display_accent.png" type="Texture" id=36]
 [ext_resource path="res://Assets/Sprites/info_display_accent_disable.png" type="Texture" id=37]
+[ext_resource path="res://Assets/Fonts/pixeloid bold title.tres" type="DynamicFont" id=38]
+[ext_resource path="res://Scenes/Game Over.gd" type="Script" id=39]
 
 [sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 36 )
@@ -69,8 +71,26 @@ tracks/0/keys = {
 script = ExtResource( 6 )
 obstacle_map_path = NodePath("Cover")
 floor_map_path = NodePath("Tiles")
+players = [ ExtResource( 22 ), ExtResource( 13 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 20 ) ]
 
 [node name="Spawner" type="Node" parent="."]
+
+[node name="PlayerSpawnPoints" type="Node" parent="Spawner"]
+
+[node name="SpawnPoint" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 32, -192 )
+
+[node name="SpawnPoint5" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 32, -160 )
+
+[node name="SpawnPoint2" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 96, -144 )
+
+[node name="SpawnPoint3" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 96, -176 )
+
+[node name="SpawnPoint4" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 64, -208 )
 
 [node name="CivilianSpawner" type="Node" parent="Spawner"]
 script = ExtResource( 26 )
@@ -153,28 +173,8 @@ position = Vector2( 48, -136 )
 area_of_effect = 1
 is_active = true
 
-[node name="Grenadier" parent="Cover" instance=ExtResource( 22 )]
-position = Vector2( 192, -80 )
-max_health = 10
-
-[node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
-position = Vector2( 144, -104 )
-max_health = 10
-
-[node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
-position = Vector2( 160, -176 )
-max_health = 10
-
-[node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
-position = Vector2( 160, -64 )
-max_health = 10
-
 [node name="Civilian" parent="Cover" instance=ExtResource( 28 )]
 position = Vector2( 112, -200 )
-
-[node name="Medic" parent="Cover" instance=ExtResource( 20 )]
-position = Vector2( 128, -80 )
-max_health = 10
 
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
@@ -200,9 +200,6 @@ floor_map_path = NodePath("../Tiles")
 [node name="HUD" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CosmeticOverlay" type="TextureRect" parent="UI/HUD"]
 margin_right = 230.0
@@ -313,6 +310,69 @@ custom_styles/disabled = SubResource( 3 )
 custom_styles/normal = SubResource( 2 )
 text = "Confirm"
 
+[node name="Game Over" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+script = ExtResource( 39 )
+
+[node name="TextureRect" type="TextureRect" parent="UI/Game Over"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 14 )
+expand = true
+
+[node name="Label" type="Label" parent="UI/Game Over"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -385.0
+margin_top = 64.0
+margin_right = 378.0
+margin_bottom = 331.0
+custom_fonts/font = ExtResource( 38 )
+text = "It's all over..."
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Game Over"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -272.5
+margin_top = -472.0
+margin_right = 272.5
+margin_bottom = -112.0
+alignment = 1
+
+[node name="NewMissionButton" type="Button" parent="UI/Game Over/VBoxContainer"]
+margin_right = 545.0
+margin_bottom = 178.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 33 )
+custom_styles/hover = ExtResource( 32 )
+custom_styles/pressed = ExtResource( 32 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 2 )
+text = "New Mission"
+
+[node name="ExitGameButton" type="Button" parent="UI/Game Over/VBoxContainer"]
+margin_top = 182.0
+margin_right = 545.0
+margin_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 33 )
+custom_styles/hover = ExtResource( 32 )
+custom_styles/pressed = ExtResource( 32 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 2 )
+text = "Leave the Battlefield"
+
 [node name="AbilityLifecycleManager" type="Node" parent="."]
 script = ExtResource( 11 )
 selector_path = NodePath("../Selector")
@@ -333,21 +393,18 @@ texture = ExtResource( 14 )
 expand = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -3120.0
-margin_top = -1480.0
-margin_right = 2674.0
-margin_bottom = 1779.0
+margin_left = -3129.0
+margin_top = -1624.0
+margin_right = 2665.0
+margin_bottom = 1635.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade in"
 "anims/fade in" = SubResource( 1 )
 
-[connection signal="update_attr" from="Cover/Grenadier" to="Cover/Grenadier/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Gunner" to="Cover/Gunner/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Helicopter" to="Cover/Helicopter/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Marksman" to="Cover/Marksman/PlayerUI" method="_on_PlayerUnit_update_attr"]
-[connection signal="update_attr" from="Cover/Medic" to="Cover/Medic/PlayerUI" method="_on_PlayerUnit_update_attr"]
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
 [connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]
+[connection signal="pressed" from="UI/Game Over/VBoxContainer/NewMissionButton" to="UI/Game Over" method="_on_NewMissionButton_pressed"]
+[connection signal="pressed" from="UI/Game Over/VBoxContainer/ExitGameButton" to="UI/Game Over" method="_on_ExitGameButton_pressed"]

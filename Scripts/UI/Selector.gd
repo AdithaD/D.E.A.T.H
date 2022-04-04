@@ -59,7 +59,6 @@ func _process(_delta):
 			deselect()
 		if(Input.is_action_just_pressed("confirm_select") && listen_to_input):
 			emit_signal("on_confirm_select")
-			emit_signal("on_confirm_select")
 
 	else:
 		if Input.is_action_just_pressed("deselect"):
@@ -103,8 +102,8 @@ func select_player():
 				emit_signal("on_select_player", selection)
 				camera.focus_on(unit.global_position)
 				break			
-
 	pass
+
 func select_enemy():
 	var mouse_pos = get_global_mouse_position()
 	var tile = floor_tile_map.world_to_map(mouse_pos)
