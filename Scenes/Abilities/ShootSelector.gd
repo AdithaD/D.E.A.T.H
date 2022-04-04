@@ -15,3 +15,8 @@ func deselect():
 	$Line2D.clear_points()
 	.deselect()
 
+func on_destroy():
+	if selection != null:
+		selection.get_node("EnemyUI").clear_hit_chance()
+	$Line2D.clear_points()
+	.on_destroy()

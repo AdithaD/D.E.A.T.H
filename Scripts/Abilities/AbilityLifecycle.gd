@@ -82,11 +82,17 @@ func move_to_doing():
 	
 func cancel():
 	emit_signal('cancel')
+	clean_up()
+
+func clean_up():
+	if secondary_selector != null:
+		secondary_selector.on_destroy()
+	queue_free()
 	
 func on_finished_doing():
 	state = LIFECYCLE.complete
 	primary_selector.listen_to_input = true
-	queue_free()
+	clean_up()
 
 func _on_Secondary_Selector_deselect():
 	if target == null:
@@ -95,4 +101,4 @@ func _on_Secondary_Selector_deselect():
 func _on_Secondary_Selector_quit_selection():
 	primary_selector.listen_to_input = true
 	cancel()
-	queue_free()
+

@@ -24,5 +24,5 @@ func deselect():
 	.deselect()
 
 func on_destroy():
-	get_node("/root/World/Overlay").clear_overlay_of(1);
+	get_node("/root/World/Overlay").clear_overlay();
 	.on_destroy()

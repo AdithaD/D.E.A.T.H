@@ -56,7 +56,7 @@ func can_select_cover(selection):
 func can_select_enemy(selection):	
 	return grid_distance(selection.grid_position, lifecycle.player.grid_position) <= select_range
 
-func deselect():
-	if overlay_set:
-		get_node("/root/World/Overlay").clear_overlay();
-	.deselect()
+#func deselect():
+#	if overlay_set:
+#		get_node("/root/World/Overlay").clear_overlay();
+#	.deselect()
