@@ -2,7 +2,7 @@ extends EnemyAbility
 
 export (int) var damage = 1
 export (int) var penetration = 0
-export (int) var shoot_range = 10
+export (int) var shoot_range = 12
 
 var god
 
@@ -19,7 +19,7 @@ func _use_ai_ability(source):
 	finish_doing()
 	
 func _generate_target(source):
-	var players = ai.get_players_in_range(shoot_range, source.grid_position)
+	var players = ai.get_flying_players_in_range(shoot_range, source.grid_position)
 	
 	if len(players) == 0:
 		return null
