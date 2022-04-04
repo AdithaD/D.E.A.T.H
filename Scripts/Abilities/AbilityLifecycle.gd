@@ -59,6 +59,8 @@ func start():
 	secondary_selector.set_select_mode(active_ability.target_type)
 	secondary_selector.listen_to_input = true
 	
+	secondary_selector.init()
+	
 	emit_signal('selecting')
 
 func on_Secondary_Selector_confirm_select():
@@ -78,6 +80,9 @@ func move_to_doing():
 	
 	active_ability.use_ability(player, target)
 	
+func cancel():
+	emit_signal('cancel')
+	
 func on_finished_doing():
 	state = LIFECYCLE.complete
 	primary_selector.listen_to_input = true
@@ -89,5 +94,5 @@ func _on_Secondary_Selector_deselect():
 	
 func _on_Secondary_Selector_quit_selection():
 	primary_selector.listen_to_input = true
-	emit_signal('cancel')
+	cancel()
 	queue_free()

@@ -38,6 +38,9 @@ func _ready():
 	pass # Replace with function body.
 
 
+func init():
+	pass
+
 func deselect():
 	selection = null
 	camera.unfocus()
@@ -181,6 +184,10 @@ func can_select_enemy(_selection):
 func set_select_mode(new_type):
 	target_type = new_type
 	deselect()
+	
+func on_destroy():
+	pass
 
 func quit_selection():
+	on_destroy()
 	emit_signal("on_quit_selection")

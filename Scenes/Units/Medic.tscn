@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Units/PlayerUnit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Abilities/Shoot.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Assets/Sprites/Explosion/explosion 4.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Sprites/Explosion/explosion 6.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Sprites/Explosion/explosion 1.png" type="Texture" id=19]
+[ext_resource path="res://Scenes/Abilities/RangeSelector.tscn" type="PackedScene" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -53,6 +54,7 @@ icon = ExtResource( 11 )
 select_range = 6
 use_sound = ExtResource( 12 )
 voice_lines = [ "I'm patching you up", "Hold still", "Stop being such a crybaby" ]
+selector = ExtResource( 20 )
 target_type = 0
 heal_amount = 3
 
