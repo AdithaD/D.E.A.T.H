@@ -84,8 +84,17 @@ func evacuate_civilian(civilian):
 	
 	civilian.queue_free()
 
-func get_civilian_nodes():
-	return get_tree().get_nodes_in_group("civilian")
+func get_civilian_nodes(alive=true):
+	var civilian_nodes = get_tree().get_nodes_in_group("civilian")
+	if alive:
+		var list = []
+		for p in civilian_nodes:
+			if !p.is_dead:
+				list.append(p)
+		return list
+	else:
+		return civilian_nodes
+
 func get_player_nodes(alive=true):
 #	return player_units
 	var player_nodes =  get_tree().get_nodes_in_group("player_unit")
