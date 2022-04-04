@@ -53,7 +53,7 @@ tracks/2/keys = {
 "player_unit",
 ]]
 script = ExtResource( 1 )
-max_health = 10
+max_health = 7
 actions_points_per_turn = 2
 tiles_per_turn = 5
 
