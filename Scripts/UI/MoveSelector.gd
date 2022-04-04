@@ -20,7 +20,7 @@ func select_tile():
 	if reachable.find(grid_pos) != -1:
 		selection = floor_tile_map.world_to_map(mouse_pos)
 		emit_signal("on_select_tile", selection)
-	
+		SoundEngine.play_button_sound()
 	pass
 
 func _exit_tree():

@@ -5,7 +5,8 @@ export (int) var penetration = 0
 
 func _use_ability(source, target):
 	#randomize()
-	var god = get_tree().root.get_child(0)
+	var god = get_node("/root/World")
 	target.heal_damage(heal_amount)
 	print("heal")
+	SoundEngine.play_medicHeal()
 	finish_doing()

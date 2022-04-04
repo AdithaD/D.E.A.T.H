@@ -85,6 +85,7 @@ func _process(_delta):
 		
 		if(selection):
 			print("selected %s" % selection)
+			SoundEngine.play_button_sound()
 	
 
 func select_player():
