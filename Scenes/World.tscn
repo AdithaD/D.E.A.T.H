@@ -59,7 +59,6 @@ floor_map_path = NodePath("Tiles")
 
 [node name="CivilianSpawner" type="Node" parent="Spawner"]
 script = ExtResource( 26 )
-amount_to_spawn = 1
 civilian_types = [ ExtResource( 28 ) ]
 spawn_target = NodePath("../../Cover")
 
@@ -168,11 +167,15 @@ position = Vector2( 0, -1 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 8 )
+big_view_zoom = 1.0
 default_zoom = 0.5
 focus_zoom = 0.3
 move_speed_scaling = 0.4
 
 [node name="Tween" type="Tween" parent="UserCamera"]
+
+[node name="Centre" type="Node2D" parent="UserCamera"]
+position = Vector2( -360, -7 )
 
 [node name="Selector" parent="." instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../Cover")
@@ -218,7 +221,6 @@ margin_right = 1700.0
 margin_bottom = 210.0
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/normal = ExtResource( 19 )
-custom_fonts/font = ExtResource( 31 )
 text = "Next Button"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -248,9 +250,9 @@ __meta__ = {
 }
 
 [node name="NameText" type="Label" parent="UI/HUD/Ability Prompt"]
-margin_left = 5.0
+margin_left = 10.0
 margin_top = 6.0
-margin_right = 211.0
+margin_right = 210.0
 margin_bottom = 43.0
 custom_fonts/font = ExtResource( 31 )
 text = "asdf"
@@ -264,9 +266,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -103.5
+margin_left = -99.5
 margin_top = -173.0
-margin_right = 101.5
+margin_right = 100.5
 margin_bottom = -13.0
 custom_fonts/font = ExtResource( 31 )
 text = "asdfasdfasdf"
@@ -296,7 +298,6 @@ follow_viewport_enable = true
 follow_viewport_scale = 0.4
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
-visible = false
 margin_left = -3128.0
 margin_top = -1496.0
 margin_right = -1208.0
@@ -304,27 +305,18 @@ margin_bottom = -415.997
 rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 14 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 margin_left = -3124.0
 margin_top = -1480.0
 margin_right = 2670.0
 margin_bottom = 1779.0
 color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade in"
 "anims/fade in" = SubResource( 1 )
 
-[connection signal="update_attr" from="Cover/AntiAir" to="Cover/AntiAir/HealthDisplay" method="_on_Unit_update_attr"]
-[connection signal="update_attr" from="Cover/Artillery" to="Cover/Artillery/HealthDisplay" method="_on_Unit_update_attr"]
 [connection signal="update_attr" from="Cover/Grenadier" to="Cover/Grenadier/PlayerUI" method="_on_PlayerUnit_update_attr"]
 [connection signal="update_attr" from="Cover/Gunner" to="Cover/Gunner/PlayerUI" method="_on_PlayerUnit_update_attr"]
 [connection signal="update_attr" from="Cover/Helicopter" to="Cover/Helicopter/PlayerUI" method="_on_PlayerUnit_update_attr"]

@@ -84,14 +84,38 @@ func evacuate_civilian(civilian):
 	
 	civilian.queue_free()
 
-func get_civilian_nodes():
-	return get_tree().get_nodes_in_group("civilian")
-func get_player_nodes():
+func get_civilian_nodes(alive=true):
+	var civilian_nodes = get_tree().get_nodes_in_group("civilian")
+	if alive:
+		var list = []
+		for p in civilian_nodes:
+			if !p.is_dead:
+				list.append(p)
+		return list
+	else:
+		return civilian_nodes
+
+func get_player_nodes(alive=true):
 #	return player_units
-	return get_tree().get_nodes_in_group("player_unit")
-	
-func get_flying_player_nodes():
-	return get_tree().get_nodes_in_group("flying_player_unit")
+	var player_nodes =  get_tree().get_nodes_in_group("player_unit")
+	if alive:
+		var list = []
+		for p in player_nodes:
+			if !p.is_dead:
+				list.append(p)
+		return list
+	else:
+		return player_nodes
+func get_flying_player_nodes(alive=true):
+	var player_nodes =  get_tree().get_nodes_in_group("player_unit")
+	if alive:
+		var list = []
+		for p in player_nodes:
+			if !p.is_dead:
+				list.append(p)
+		return list
+	else:
+		return player_nodes
 
 func get_enemy_nodes():
 	return get_tree().get_nodes_in_group("enemy")
@@ -129,7 +153,7 @@ func get_cover_obstacles():
 		
 
 func get_obstacle_locations():
-	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles()
+	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles() + get_civilian_nodes()
 
 func world_to_grid(world):
 	return floor_tile_map.world_to_map(world)
@@ -164,7 +188,10 @@ func hit_chance_func(x):
 	var value = 1 - log(x + 1) / log(5)
 	return clamp(value, 0, 0.95)
 	
-	
+func get_centre():
+	var rect = floor_tile_map.get_used_rect()
+	return Vector2(rect.position.x + rect.size.x / 2, rect.position.y + rect.size.y / 2)
+
 class Cover:
 	var obstacle_tile_map
 	var cover_map

@@ -13,6 +13,9 @@ export (int) var bullet_speed = 600
 export (float) var burst_delay = 0.05
 export (int) var bullet_length = 20
 
+export (int) var shoot_player_chance = 0.7
+export (int) var shoot_best_target_chance = 0.6
+
 func _use_ai_ability(source):
 	#randomize()
 	print('enemy shooting')
@@ -41,16 +44,29 @@ func submit_tracer_burst(start_pos, target_pos, length, speed, amount, offset):
 	
 func _generate_target(source):
 	var players = ai.get_players_in_range(shoot_range, source.grid_position)
-	
-	if len(players) == 0:
+	var civilians = ai.get_civilians_in_range(shoot_range, source.grid_position)
+	var targets
+
+	if len(players) == 0 and len(civilians) == 0:
 		return null
+	elif len(civilians) == 0:
+		targets = players
+	elif len(players) == 0:
+		targets = civilians
+	elif(randf() < shoot_player_chance):
+		targets = players
+	else:
+		targets = civilians
 	
-	players.shuffle()
+	targets.shuffle()
+	
+	if(randf() > shoot_best_target_chance):
+		return targets[0]
 	
 	var best_target = [null, -1]
-	for player in players:
-		var hit_chance = god.get_hit_chance(source.grid_position, player.grid_position, penetration, !player.can_cover, player.is_marked)
+	for target in targets:
+		var hit_chance = god.get_hit_chance(source.grid_position, target.grid_position, penetration, !target.can_cover, target.is_marked)
 		if hit_chance  > best_target[1]:
-			best_target = [player, hit_chance]
+			best_target = [target, hit_chance]
 	
 	return best_target[0]

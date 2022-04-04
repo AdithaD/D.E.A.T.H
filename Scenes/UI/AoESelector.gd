@@ -14,7 +14,7 @@ func select_tile():
 	
 	if grid_distance(grid_pos, lifecycle.player.grid_position) <= select_range:
 		selection = floor_tile_map.world_to_map(mouse_pos)
-		get_node("/root/World/Overlay").set_overlay(aoe.generate_AoE(selection, area_of_effect))
+		get_node("/root/World/Overlay").set_overlay(aoe.generate_AoE(selection, area_of_effect), 1)
 		emit_signal("on_select_tile", selection)
 	
 func grid_distance(a, b):

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Abilities/ShootSelector.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/selector2.png" type="Texture" id=3]
+
+[node name="ShootSelector" type="Node2D"]
+script = ExtResource( 1 )
+selector_image = ExtResource( 3 )
+target_type = 1
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 3.0
+default_color = Color( 0.584314, 0.0352941, 0.176471, 0.482353 )

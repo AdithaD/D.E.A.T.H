@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Enemies/EnemyUnit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/EnemyScripts/EnemyAI/GruntAI.gd" type="Script" id=2]
@@ -25,8 +25,8 @@ script = ExtResource( 2 )
 
 [node name="EnemyShootAir" type="Node" parent="Abilities" index="1"]
 script = ExtResource( 7 )
-tracer = ExtResource( 8 )
 use_sound = ExtResource( 9 )
+tracer = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
 position = Vector2( 0, -19 )

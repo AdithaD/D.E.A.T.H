@@ -34,16 +34,23 @@ func get_dist_to_closest_target(pos):
 	
 	return closest
 	
-func get_players_in_range(ability_range, pos):
+func get_players_in_range(ability_range, pos, alive=true):
 	var in_range = []
-	for player in god.get_player_nodes():
+	for player in god.get_player_nodes(alive):
 		if bfs.grid_distance(player.grid_position, pos) <= ability_range:
 			in_range.append(player)
 	return in_range
 
-func get_flying_players_in_range(ability_range, pos):
+func get_civilians_in_range(ability_range, pos):
 	var in_range = []
-	for player in god.get_flying_player_nodes():
+	for civilian in god.get_civilian_nodes():
+		if bfs.grid_distance(civilian.grid_position, pos) <= ability_range:
+			in_range.append(civilian)
+	return in_range
+
+func get_flying_players_in_range(ability_range, pos, alive=true):
+	var in_range = []
+	for player in god.get_flying_player_nodes(alive):
 		if bfs.grid_distance(player.grid_position, pos) <= ability_range:
 			in_range.append(player)
 	return in_range

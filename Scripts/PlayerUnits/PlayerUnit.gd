@@ -18,7 +18,7 @@ var abilities = []
 
 var grid_position
 var god
-var is_marked
+var is_marked = false
 var mark_length = 0
 
 var end_turn

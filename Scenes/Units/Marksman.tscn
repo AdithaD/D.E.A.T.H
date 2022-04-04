@@ -5,7 +5,8 @@
 [ext_resource path="res://Scripts/Abilities/GunShoot.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Abilities/Tracer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/Fire sniper round.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/Explosion/explosion 2.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Abilities/ShootSelector.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 2.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Mark/mark top right.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Mark/mark top left.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Mark/mark bottom right.png" type="Texture" id=9]
@@ -29,7 +30,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 18 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 14 ), ExtResource( 19 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": false,
 "name": "default",
 "speed": 7.0
@@ -49,11 +50,13 @@ icon = ExtResource( 5 )
 use_sound = ExtResource( 11 )
 voice_lines = [ "Taking za shot!", "I can see you!", "I've got you in my sights" ]
 cooldown_duration = 2
+selector = ExtResource( 6 )
 damage = 5
 penetration = 4
 tracer = ExtResource( 4 )
 burst_number = 1
 bullet_length = 40
+select_range = 80
 
 [node name="Grenade" parent="Abilities" index="2" instance=ExtResource( 10 )]
 icon = ExtResource( 12 )

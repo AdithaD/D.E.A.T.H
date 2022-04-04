@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Abilities/Move.tscn" type="PackedScene" id=2]
@@ -6,7 +6,13 @@
 [ext_resource path="res://Scripts/UI/PlayerUI.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/move.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Resource/UnitDeath.tres" type="SpriteFrames" id=7]
+[ext_resource path="res://Assets/Sprites/body.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Abilities/FollowMe.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/follow.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Abilities/RangeSelector.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/Abilities/Stay.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/stop.png" type="Texture" id=12]
+[ext_resource path="res://Resource/UnitDeath.tres" type="SpriteFrames" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "text float off"
@@ -48,10 +54,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="PlayerUnit" type="Node2D" groups=[
-"damageable",
-"player_unit",
-]]
+[node name="PlayerUnit" type="Node2D" groups=["damageable", "player_unit"]]
 script = ExtResource( 1 )
 max_health = 7
 actions_points_per_turn = 2
@@ -61,6 +64,30 @@ tiles_per_turn = 5
 
 [node name="Move" parent="Abilities" instance=ExtResource( 2 )]
 icon = ExtResource( 5 )
+
+[node name="Follow Me" type="Node" parent="Abilities"]
+script = ExtResource( 8 )
+ability_name = "Follow Me"
+ability_description = "Tell a civilian to follow you"
+icon = ExtResource( 9 )
+voice_lines = [ "Come with me!", "We're here to help!" ]
+action_cost = 0
+cooldown_duration = 0
+selector = ExtResource( 10 )
+target_type = 4
+select_range = 3
+
+[node name="Stay" type="Node" parent="Abilities"]
+script = ExtResource( 11 )
+ability_name = "Stay"
+ability_description = "Tell a civilian to stop following you. But they have minds of their own...."
+icon = ExtResource( 12 )
+voice_lines = [ "I have to go.", "It's not wise to follow me anymore" ]
+action_cost = 0
+cooldown_duration = 0
+selector = ExtResource( 10 )
+target_type = 4
+select_range = 3
 
 [node name="PlayerUI" type="Control" parent="."]
 margin_left = -46.0
@@ -103,7 +130,7 @@ one_shot = true
 
 [node name="DeathSprite" type="AnimatedSprite" parent="."]
 visible = false
-frames = ExtResource( 7 )
+frames = ExtResource( 13 )
 frame = 2
 
 [node name="HealthDisplay" parent="." instance=ExtResource( 6 )]

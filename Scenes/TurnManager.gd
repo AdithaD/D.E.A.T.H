@@ -11,6 +11,7 @@ var state = TURN_STATE.new
 signal update_turn(state)
 
 var player_unit_counter
+var civilian_unit_counter
 var should_force_end_turn = false
 
 func _ready():
@@ -30,6 +31,7 @@ func conduct_turn():
 	get_node("../Spawner/EnemySpawner").spawn(turn)
 		
 	yield(conduct_player_turn(), "completed")
+
 	yield(conduct_civilian_turn(),"completed")
 	yield(conduct_enemy_turn(), "completed")
 	
@@ -43,9 +45,21 @@ func count_players():
 	while done_count < god.get_player_nodes().size() && !should_force_end_turn:
 		yield()
 		done_count+=1
-	
+		print(done_count)
 
 	pass
+	
+func count_civilians():
+	var done_count = 0	
+	print(god.get_civilian_nodes().size())
+	while done_count < god.get_civilian_nodes().size():
+		yield()
+		done_count+=1
+		print(done_count)
+
+	
+	pass
+	
 	
 func conduct_player_turn():
 	state = TURN_STATE.player
@@ -67,7 +81,8 @@ func conduct_player_turn():
 func increment_counter():
 	player_unit_counter = player_unit_counter.resume()
 	
-	
+func increment_civilian_counter():
+	civilian_unit_counter = civilian_unit_counter.resume()
 func conduct_enemy_turn():
 	state = TURN_STATE.enemy
 	print('Enemy Turn Start')
@@ -84,15 +99,17 @@ func conduct_enemy_turn():
 func conduct_civilian_turn():
 	state = TURN_STATE.civilian
 	print('Civilian Turn Start')
+	
+	get_node("../UserCamera").centre_zoom_out()
 
 	emit_signal("update_turn", state)	
-	
+	civilian_unit_counter = count_civilians()
 	for civilian in god.get_civilian_nodes():
 		if civilian.has_method("new_turn"):
-			get_node("/root/World/UserCamera").focus_on(civilian.position)
-			civilian.new_turn()
-			yield(civilian, "turn_complete")
-			
+			#get_node("/root/World/UserCamera").focus_on(civilian.position)
+			civilian.new_turn_yield(funcref(self, "increment_civilian_counter"))
+	yield(civilian_unit_counter, "completed")
+	
 func _on_NextTurn_pressed():
 	should_force_end_turn = true
 	player_unit_counter.resume()
