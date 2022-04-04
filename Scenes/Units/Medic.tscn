@@ -59,8 +59,8 @@ use_sound = ExtResource( 13 )
 
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 10 )]
 icon = ExtResource( 14 )
-use_sound = ExtResource( 5 )
 select_range = 8
+use_sound = ExtResource( 5 )
 
 [node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/Grenade" index="0"]
 visible = false

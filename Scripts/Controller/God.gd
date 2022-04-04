@@ -37,7 +37,7 @@ func _ready():
 	spawn_players()
 	
 	$Spawner/CivilianSpawner.spawn_civilians(self)
-	
+	$Spawner/EnemySpawner.force_spawn(0)
 	init_entities()	
 	init_world()
 
@@ -58,7 +58,7 @@ func increment_dead_count():
 	check_game_over()
 
 func check_game_over():
-	if players_killed == players.size() and get_civilian_nodes().size == 0:
+	if players_killed == players.size() or get_civilian_nodes().size() == 0:
 		game_over()
 
 func game_over():

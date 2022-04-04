@@ -5,6 +5,8 @@ export (String) var ability_name = "Ability"
 export (String) var ability_description = "Ability Description"
 export (Texture) var icon
 
+export (int) var select_range = 10
+
 export (AudioStream) var use_sound
 
 export (Array, String) var voice_lines

@@ -33,9 +33,10 @@ func conduct_turn():
 	yield(conduct_player_turn(), "completed")
 
 	yield(conduct_civilian_turn(),"completed")
-	yield(conduct_enemy_turn(), "completed")
 	
-
+	var enemy_turn = conduct_enemy_turn()
+	if enemy_turn is GDScriptFunctionState:
+		yield(enemy_turn, "completed")
 
 	new_turn()
 
@@ -65,19 +66,30 @@ func conduct_player_turn():
 	state = TURN_STATE.player
 	print('Player Turn Start')
 	
-	get_node("/root/World/UserCamera").move_to(god.get_player_nodes()[0].position)
-	get_node("/root/World/UserCamera").unfocus()
-	for player in god.get_player_nodes():
+	var players = god.get_player_nodes()
+	god.check_game_over()
+	
+	if players.size() > 0:
+		get_node("/root/World/UserCamera").move_to(players[0].position)
+		get_node("/root/World/UserCamera").unfocus()
 		
-		if player.has_method("new_turn"):
-			player.new_turn(funcref(self, "increment_counter"))
-	
-	emit_signal("update_turn", state)	
-	
-	player_unit_counter = count_players()
-	yield(player_unit_counter, "completed")
-	pass
-	
+
+		for player in players:
+			
+			if player.has_method("new_turn"):
+				player.new_turn(funcref(self, "increment_counter"))
+		
+		emit_signal("update_turn", state)	
+		
+		player_unit_counter = count_players()
+		yield(player_unit_counter, "completed")
+		
+		for player in players:
+			player.on_end_turn()
+		pass
+	else:
+		god.game_over()
+		
 func increment_counter():
 	player_unit_counter = player_unit_counter.resume()
 	

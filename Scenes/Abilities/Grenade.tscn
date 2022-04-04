@@ -12,4 +12,3 @@ icon = ExtResource( 1 )
 voice_lines = [ "Stand clear!", "Pulling the pin!", "Oh shit, I threw the pin!" ]
 selector = ExtResource( 3 )
 target_type = 3
-select_range = 5
