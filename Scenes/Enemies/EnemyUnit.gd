@@ -1,5 +1,6 @@
 extends Node2D
 class_name EnemyUnit
+export (int) var difficulty = 2
 
 export (int) var max_health
 export (int) var actions_points_per_turn

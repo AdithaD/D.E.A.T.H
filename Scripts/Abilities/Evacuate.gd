@@ -8,6 +8,8 @@ func _use_ability(player, target):
 	player.loaded_civilians.append(target)
 	target.remove_from_group("civilian")
 	target.visible = false
+	
+	finish_doing()
 
 func _ability_conditions(player):
 	var ea = get_evacuation_area(player.grid_position)

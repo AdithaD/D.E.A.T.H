@@ -32,6 +32,7 @@ animations = [ {
 } ]
 
 [node name="Artillery" instance=ExtResource( 1 )]
+difficulty = 5
 
 [node name="AI" type="Node2D" parent="." index="0"]
 script = ExtResource( 2 )

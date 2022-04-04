@@ -84,7 +84,7 @@ position = Vector2( 32, -192 )
 position = Vector2( 32, -160 )
 
 [node name="SpawnPoint2" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
-position = Vector2( 96, -144 )
+position = Vector2( 64, -128 )
 
 [node name="SpawnPoint3" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
 position = Vector2( 96, -176 )
@@ -100,8 +100,8 @@ spawn_target = NodePath("../../Cover")
 [node name="EnemySpawner" type="Node" parent="Spawner"]
 script = ExtResource( 29 )
 enemies = [ ExtResource( 25 ), ExtResource( 24 ), ExtResource( 7 ), ExtResource( 21 ) ]
-difficulties = [ 5, 4, 3, 2 ]
-turn_multiplier = 2
+base_difficulty = 10
+difficulty_cap = 50
 spawn_target = NodePath("../../Cover")
 
 [node name="Timer" type="Timer" parent="Spawner/EnemySpawner"]
@@ -110,6 +110,9 @@ spawn_target = NodePath("../../Cover")
 
 [node name="SpawnPoint" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
 position = Vector2( -352, -544 )
+
+[node name="SpawnPoint5" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
+position = Vector2( 880, 104 )
 
 [node name="SpawnPoint2" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
 position = Vector2( -832, -320 )
@@ -155,6 +158,12 @@ tile_data = PoolIntArray( -1835057, 6, 0, -1835037, 3, 0, -1835012, 6, 0, -19005
 script = ExtResource( 3 )
 tile_set = ExtResource( 2 )
 texture_offset = Vector2( 0, -32 )
+
+[node name="Civilian" parent="Cover" instance=ExtResource( 28 )]
+position = Vector2( 48, -120 )
+
+[node name="Civilian2" parent="Cover" instance=ExtResource( 28 )]
+position = Vector2( 16, -136 )
 
 [node name="Evacuation Area" parent="Cover" instance=ExtResource( 27 )]
 position = Vector2( 48, -136 )
@@ -205,23 +214,29 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -292.0
+margin_bottom = -332.0
 script = ExtResource( 18 )
 
 [node name="TurnNumberLabel" type="Label" parent="UI/HUD/Control/TurnUI"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -144.0
-margin_top = 40.0
-margin_right = 120.0
-margin_bottom = 99.0
+anchor_right = 1.0
+margin_bottom = 59.0
 custom_fonts/font = ExtResource( 34 )
+text = "Turn 0"
+
+[node name="CiviliansSavedLabel" type="Label" parent="UI/HUD/Control/TurnUI"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -7.5
+margin_bottom = 7.5
+custom_fonts/font = ExtResource( 31 )
+text = "Civilians Saved:"
 
 [node name="NextTurn" type="Button" parent="UI/HUD/Control/TurnUI"]
+anchor_top = 1.0
 anchor_right = 1.0
-margin_left = -6.0
-margin_top = 139.0
-margin_right = -6.0
-margin_bottom = 174.0
+anchor_bottom = 1.0
+margin_top = -35.0
 custom_fonts/font = ExtResource( 33 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/normal = ExtResource( 19 )

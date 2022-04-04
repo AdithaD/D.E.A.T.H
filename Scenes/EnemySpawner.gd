@@ -1,11 +1,12 @@
 extends Node
 
 export (Array, PackedScene) var enemies
-export (Array, int) var difficulties
-
+var enemy_inst = []
 export (int) var base_difficulty = 8
-export (int) var turn_multiplier = 0.4
+export (float) var turn_multiplier = 0.4
 export (int) var turn_spawn_period = 2
+
+export (int) var difficulty_cap
 
 export (NodePath) var spawn_target
 
@@ -19,11 +20,16 @@ var aoe = preload("res://Scripts/AoE.gd")
 
 func _ready():
 	spawn_points = $"Spawn Points".get_children()
-	for i in range(0, enemies.size()):
-		if difficulty_dictionary.has(difficulties[i]):
-			difficulty_dictionary[difficulties[i]].append(enemies[i])
+	
+	for e in enemies:
+		enemy_inst.append(e.instance())
+	
+	for i in range(0, enemy_inst.size()):
+		var difficulty = enemy_inst[i].difficulty
+		if difficulty_dictionary.has(difficulty):
+			difficulty_dictionary[difficulty].append(enemy_inst[i])
 		else:
-			difficulty_dictionary[difficulties[i]] = [enemies[i]]
+			difficulty_dictionary[difficulty] = [enemy_inst[i]]
 func spawn(turn):
 	if turn_spawn_period == 0:
 		force_spawn(turn)
@@ -33,6 +39,12 @@ func spawn(turn):
 func force_spawn(turn):
 	var turn_difficulty = base_difficulty + turn * turn_multiplier
 	
+	var existant_difficulty=0
+	for e in god.get_enemy_nodes():
+		existant_difficulty += e.difficulty
+	
+	turn_difficulty = clamp(turn_difficulty, 0, difficulty_cap - existant_difficulty)
+	
 	var enemy_combination = generate_enemy_combination(turn_difficulty)
 	
 	var spawn_node = get_node(spawn_target)
@@ -41,7 +53,7 @@ func force_spawn(turn):
 		var free_tiles = aoe.get_free_tiles_in_AoE(spawn_point, 1, god)
 		
 		var spawn_grid = free_tiles[randi() % free_tiles.size()]
-		var enemy_inst = enemy.instance()
+		var enemy_inst = enemies[enemy_inst.find(enemy)].instance()
 		enemy_inst.position = god.grid_to_world(spawn_grid)
 		god.init_entity(enemy_inst)
 		spawn_node.add_child(enemy_inst)

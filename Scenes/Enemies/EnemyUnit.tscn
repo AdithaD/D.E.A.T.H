@@ -93,7 +93,7 @@ tracks/2/keys = {
 script = ExtResource( 1 )
 max_health = 5
 actions_points_per_turn = 2
-tiles_per_turn = 5
+tiles_per_turn = 8
 
 [node name="Abilities" type="Node2D" parent="."]
 

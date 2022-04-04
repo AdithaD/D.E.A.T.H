@@ -66,6 +66,11 @@ func conduct_player_turn():
 	state = TURN_STATE.player
 	print('Player Turn Start')
 	
+	var inactives = get_tree().get_nodes_in_group("inactive_unit")
+	
+	for i in inactives:
+		i.new_turn(null)
+	
 	var players = god.get_player_nodes()
 	god.check_game_over()
 	
@@ -85,7 +90,9 @@ func conduct_player_turn():
 		yield(player_unit_counter, "completed")
 		
 		for player in players:
-			player.on_end_turn()
+			var end = player.on_end_turn()
+			if end is GDScriptFunctionState:
+				yield(end, "completed")
 		pass
 	else:
 		god.game_over()
@@ -113,6 +120,7 @@ func conduct_civilian_turn():
 	print('Civilian Turn Start')
 	
 	get_node("../UserCamera").centre_zoom_out()
+	yield(get_tree().create_timer(0.5), "timeout")
 
 	emit_signal("update_turn", state)	
 	civilian_unit_counter = count_civilians()

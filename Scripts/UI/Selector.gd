@@ -186,7 +186,6 @@ func set_select_mode(new_type):
 	deselect()
 	
 func on_destroy():
-	queue_free()
 	pass
 
 func quit_selection():

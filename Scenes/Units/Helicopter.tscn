@@ -23,6 +23,7 @@ animations = [ {
 script = ExtResource( 6 )
 max_health = 10
 tiles_per_turn = 10
+evac_duration = 2
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 texture = ExtResource( 5 )

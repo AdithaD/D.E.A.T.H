@@ -45,7 +45,8 @@ func new_turn(finish_turn):
 	update_turn_effects()
 	if(!can_be_controlled()):
 		emit_signal('update_attr')
-		finish_turn.call_func()
+		if(finish_turn != null):
+			finish_turn.call_func()
 	else:
 		end_turn = finish_turn
 			

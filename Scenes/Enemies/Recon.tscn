@@ -39,9 +39,7 @@ mark_turns = 2
 
 [node name="VoiceLine" parent="EnemyUI" index="2"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 0.0
 margin_top = -10.0
-margin_right = 40.0
 margin_bottom = 5.0
 percent_visible = 1.0
 
