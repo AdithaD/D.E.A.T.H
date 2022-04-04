@@ -22,7 +22,7 @@ func get_target_locations():
 
 
 func evaluate_tile(pos):
-	return float(1)/max(get_move_dist_to_closest_target(pos), 1)
+	return float(1)/max(get_dist_to_closest_target(pos), 1)
 			
 func get_dist_to_closest_target(pos):
 	var target_locations = get_target_locations()
