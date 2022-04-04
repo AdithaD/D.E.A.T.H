@@ -104,6 +104,7 @@ func apply_mark(turns):
 	if turns > mark_length:
 		mark_length = turns
 	is_marked = true
+	emit_signal("update_attr")
 	
 func do_move(path):
 	var prev_loc = grid_position

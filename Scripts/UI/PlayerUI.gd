@@ -34,5 +34,4 @@ func bind_lifecycle(new_lifecycle):
 	lifecycle.connect("doing", self, "display_ability_voice_line")
 
 func _on_Unit_update_attr():
-#update_status_text()
-	pass 
+	$MarkedIcon.visible = player.is_marked

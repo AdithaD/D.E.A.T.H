@@ -100,7 +100,8 @@ func set_grid_position(new_grid):
 func apply_mark(turns):
 	if turns > mark_length:
 		mark_length = turns
-	is_marked = true 
+	is_marked = true
+	emit_signal("update_attr")
 	
 func play_sound(sound):
 	$EnemySound.stream = sound
