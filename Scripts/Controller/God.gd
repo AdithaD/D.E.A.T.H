@@ -144,14 +144,29 @@ func get_flying_player_nodes(alive=true):
 	else:
 		return player_nodes
 
-func get_enemy_nodes():
-	return get_tree().get_nodes_in_group("enemy")
+func get_enemy_nodes(alive=true):
+	var enemy_nodes = get_tree().get_nodes_in_group("enemy")
+	if alive:
+		var list = []
+		for e in enemy_nodes:
+			if !e.is_dead:
+				list.append(e)
+		return list
+	else:
+		return enemy_nodes
 	
 func get_player_locations():
 	var out = []
 	for player in get_player_nodes():
 		out.append(player.grid_position)
 	return out
+
+func get_civilian_locations():
+	var out = []
+	for civilian in get_civilian_nodes():
+		out.append(civilian.grid_position)
+	return out
+	
 	
 func get_enemy_locations():
 	var out = []
@@ -186,7 +201,7 @@ func get_cover_obstacles():
 		
 
 func get_obstacle_locations():
-	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles() + get_civilian_nodes()
+	return get_cover_obstacles() + get_player_locations() + get_enemy_locations() + get_unwalkable_tiles() + get_civilian_locations()
 
 func world_to_grid(world):
 	return floor_tile_map.world_to_map(world)
