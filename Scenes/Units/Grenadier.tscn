@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Explosives.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Units/PlayerUnit.tscn" type="PackedScene" id=2]
@@ -6,14 +6,18 @@
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren top right.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom left.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom right.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/rocket_launcher.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/explosion.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/Abilities/AoESelector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Abilities/Grenade.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Abilities/Shoot.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/Fire weapon.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/rocket.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/riflesfx.mp3" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/grenade.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -22,12 +26,14 @@ animations = [ {
 [node name="Grenadier" instance=ExtResource( 2 )]
 
 [node name="Shoot" parent="Abilities" index="1" instance=ExtResource( 10 )]
+use_sound = ExtResource( 13 )
 
 [node name="RocketLauncher" type="Node" parent="Abilities" index="2"]
 script = ExtResource( 1 )
 ability_name = "Rocket Launcher"
 ability_description = "Destroy cover and deal damage in an area."
-icon = ExtResource( 7 )
+icon = ExtResource( 12 )
+use_sound = ExtResource( 7 )
 voice_lines = [ "Watch the back blast!", "Going explosive", "Christmas is coming early..." ]
 action_cost = 2
 cooldown_duration = 3
@@ -37,10 +43,9 @@ area_of_effect = 2
 damage = 4
 
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 9 )]
+icon = ExtResource( 14 )
+use_sound = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 position = Vector2( 2, -20 )
 frames = SubResource( 1 )
-
-[node name="DeathSprite" parent="." index="3"]
-visible = false

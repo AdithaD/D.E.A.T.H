@@ -1,12 +1,56 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Enemies/EnemyUnit.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/pixeloid font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/EnemyAbilities/EnemyMove.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Enemies/EnemyUI.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Sprites/body.png" type="Texture" id=11]
 
-[node name="EnemyUnit" type="Node2D" groups=["damageable", "enemy"]]
+[sub_resource type="Animation" id=1]
+resource_name = "text float off"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("VoiceLine:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VoiceLine:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -10 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VoiceLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="EnemyUnit" type="Node2D" groups=[
+"damageable",
+"enemy",
+]]
 script = ExtResource( 1 )
 max_health = 5
 actions_points_per_turn = 2
@@ -25,6 +69,9 @@ margin_right = 100.0
 margin_bottom = -43.0
 rect_scale = Vector2( 0.998463, 0.996449 )
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DisplayText" type="Label" parent="EnemyUI"]
 anchor_right = 1.0
@@ -33,16 +80,26 @@ margin_left = 2.00307
 margin_top = 58.2067
 margin_right = 2.00307
 margin_bottom = 58.2067
+custom_fonts/font = ExtResource( 2 )
 align = 1
 valign = 1
 
 [node name="VoiceLine" type="Label" parent="EnemyUI"]
+modulate = Color( 1, 1, 1, 0.9 )
 margin_right = 40.0
-margin_bottom = 14.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 2 )
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VoiceLineTimer" type="Timer" parent="EnemyUI"]
 wait_time = 3.0
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyUI"]
+"anims/text float off" = SubResource( 1 )
 
 [node name="HealthDisplay" parent="." instance=ExtResource( 7 )]
 position = Vector2( -20, -45 )
@@ -50,6 +107,8 @@ position = Vector2( -20, -45 )
 [node name="DeathSprite" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 11 )
+
+[node name="EnemySound" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="update_attr" from="." to="EnemyUI" method="_on_Unit_update_attr"]
 [connection signal="update_attr" from="." to="HealthDisplay" method="_on_Unit_update_attr"]

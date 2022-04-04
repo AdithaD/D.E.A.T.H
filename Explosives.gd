@@ -28,5 +28,7 @@ func _use_ability(_source, target):
 	for tile in tiles_affected:
 		if obstacle_tilemap.get_cellv(tile) != -1:
 			obstacle_tilemap.set_cellv(tile, obstacle_tilemap.tile_set.find_tile_by_name("rubble"))
+			
+	SoundEngine.play_explosion_sfx()
 	
 	finish_doing()

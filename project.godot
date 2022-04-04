@@ -98,6 +98,7 @@ SoundEngine="*res://Sound Engine/SoundEngine.tscn"
 
 window/size/width=1920
 window/size/height=1080
+window/size/borderless=true
 
 [input]
 

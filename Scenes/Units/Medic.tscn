@@ -1,14 +1,19 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Units/PlayerUnit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Abilities/Shoot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Medic/medi bottom left.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Abilities/Heal.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/explosion.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/Fire weapon.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Medi/medi top left.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Medi/medi top right.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Medi/medi bottom right.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Abilities/Grenade.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/heal.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sounds/SFX/Player/playerheal.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/riflesfx.mp3" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/grenade.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -32,12 +37,16 @@ __meta__ = {
 ability_name = "Heal"
 ability_description = "Apply basic first aid to your allies"
 icon = ExtResource( 11 )
+use_sound = ExtResource( 12 )
 voice_lines = [ "I'm patching you up", "Hold still", "Stop being such a crybaby" ]
 target_type = 0
 
 [node name="Shoot" parent="Abilities" index="2" instance=ExtResource( 2 )]
+use_sound = ExtResource( 13 )
 
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 10 )]
+icon = ExtResource( 14 )
+use_sound = ExtResource( 5 )
 
 [node name="DeathSprite" parent="." index="3"]
 visible = false

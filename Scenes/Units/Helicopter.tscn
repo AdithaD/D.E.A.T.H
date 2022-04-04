@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Units/Helicopter.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/evacuation.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Abilities/Shoot.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Sounds/SFX/Player/running sfx.wav" type="AudioStream" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -17,7 +18,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Helicopter" groups=["flying_player_unit"] instance=ExtResource( 1 )]
+[node name="Helicopter" groups=[
+"flying_player_unit",
+] instance=ExtResource( 1 )]
 script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
@@ -39,6 +42,7 @@ script = ExtResource( 4 )
 ability_name = "Evacuate"
 ability_description = "Pick up a civilian from an evacuation area."
 icon = ExtResource( 7 )
+use_sound = ExtResource( 9 )
 voice_lines = [ "Let's get you out of here", "It's alright, you're safe now" ]
 cooldown_duration = 2
 target_type = 4

@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Sprites/Enemies/AntiAir/air bottom left.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/EnemyAbilities/EnemyShootAir.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Abilities/Tracer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/snipersfx.mp3" type="AudioStream" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -25,6 +26,7 @@ script = ExtResource( 2 )
 [node name="EnemyShootAir" type="Node" parent="Abilities" index="1"]
 script = ExtResource( 7 )
 tracer = ExtResource( 8 )
+use_sound = ExtResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
 position = Vector2( 0, -19 )

@@ -24,6 +24,8 @@ var cover_map = {
 var unwalkable_tile_names = ["waterr.tres 4"]
 
 func _ready():
+	
+	SoundEngine.play_combat_music()
 	cover = Cover.new()
 	cover.init(obstacle_tile_map, cover_map)
 	set_process_input(true)
