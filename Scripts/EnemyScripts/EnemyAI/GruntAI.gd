@@ -33,7 +33,7 @@ func get_hitchance(pos, target, penetration=0):
 	return god.get_hit_chance(pos, target.grid_position, penetration, !target.can_cover, target.is_marked)
 			
 
-func evaulate_tile(pos):
+func evaluate_tile(pos):
 	# can get within range of player/civ?
 	# NO?
 	# move closer
@@ -43,9 +43,12 @@ func evaulate_tile(pos):
 	var in_range = false
 	
 	var shoot_range = 0
-	if(get_parent().get_node_or_null("EnemyShoot")):
-		shoot_range = get_parent().get_node("EnemyShoot").shoot_range
-		penetration = get_parent().get_node("EnemyShoot").penetration
+	
+	if(get_parent().get_node("Abilities").get_node_or_null("EnemyShoot")):
+		var enemyshoot = get_parent().get_node("Abilities").get_node("EnemyShoot")
+		shoot_range = enemyshoot.shoot_range
+		penetration = enemyshoot.penetration
+	
 	
 	var players_in_range = get_players_in_range(shoot_range, pos)
 	var civilians_in_range = get_civilians_in_range(shoot_range, pos)
@@ -65,3 +68,4 @@ func evaulate_tile(pos):
 		return score
 	
 	score = float(1)/max(get_dist_to_closest_target(pos), 1) * player_bonus
+	return score
