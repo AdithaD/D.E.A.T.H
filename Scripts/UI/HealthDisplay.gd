@@ -32,7 +32,7 @@ func update():
 			healthbarempty.visible = false
 		else:
 			healthbar.visible = true
-			healthbarempty.visible = false
+			healthbarempty.visible = true
 			healthbar.rect_size.x = get_parent().health * segment_size
 
 func _on_Unit_update_attr():
