@@ -101,3 +101,7 @@ func apply_mark(turns):
 	if turns > mark_length:
 		mark_length = turns
 	is_marked = true 
+	
+func play_sound(sound):
+	$EnemySound.stream = sound
+	$EnemySound.play()

@@ -10,7 +10,10 @@ func _process(_delta):
 	if timer_time_left < 1:
 			timer_change_scene()
 			
-
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.scancode != KEY_ENTER:
+			timer_change_scene()
 	
 
 

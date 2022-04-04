@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/backgroung scene.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Cinematic/cinematic.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Cinematic/CinematicStart.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Fonts/pixeloid cinematic.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/Fonts/pixeloid font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=7]
 
 [node name="Opening Scene" type="Node2D"]
 script = ExtResource( 4 )
@@ -27,6 +28,17 @@ margin_right = 700.854
 margin_bottom = 277.551
 rect_scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 32.5514
+margin_top = 25.8166
+margin_right = 795.551
+margin_bottom = 84.8166
+custom_fonts/font = ExtResource( 7 )
+text = "Press any keyboard button to skip"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -55,7 +67,7 @@ script = ExtResource( 2 )
 margin_top = -1.5874
 margin_right = 1920.0
 margin_bottom = 1078.41
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.00588235, 0.00705882, 0.0101961, 0.9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

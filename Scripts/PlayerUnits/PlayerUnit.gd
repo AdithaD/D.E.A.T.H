@@ -135,3 +135,7 @@ func set_sprite_index(index):
 
 func _on_PlayerUnit_took_damage():
 	pass # Replace with function body.
+	
+func play_sound(sound):
+	$PlayerSound.stream = sound
+	$PlayerSound.play()

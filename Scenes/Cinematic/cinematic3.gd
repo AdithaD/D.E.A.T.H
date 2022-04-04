@@ -11,7 +11,10 @@ func _process(_delta):
 			timer_change_scene()
 			
 	
-
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.scancode != KEY_ENTER:
+			timer_change_scene()
 
 # Declare member variables here. Examples:
 # var a = 2

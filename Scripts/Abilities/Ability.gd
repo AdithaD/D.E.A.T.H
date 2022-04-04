@@ -5,6 +5,8 @@ export (String) var ability_name = "Ability"
 export (String) var ability_description = "Ability Description"
 export (Texture) var icon
 
+export (AudioStream) var use_sound
+
 export (Array, String) var voice_lines
 
 export (int) var action_cost = 1
@@ -35,7 +37,7 @@ func use_ability(player, target):
 	print('%s is using ability %s on %s' % [player, name, target])
 	if (can_use_ability(player)) :
 		_use_ability(player, target)
-
+		player.play_sound(use_sound)
 		player.spend_action_points(action_cost)
 		cooldown = cooldown_duration
 		emit_signal('ability_used')
