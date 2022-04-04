@@ -23,10 +23,11 @@ func _use_ai_ability(source):
 	var path = ai.get_move(source, min_dist)
 	
 	if(len(path) >= 2):
-			yield(do_move(path.slice(1,len(path) - 1)), "completed")
-			
+		yield(do_move(path.slice(1,len(path) - 1)), "completed")
+	else:
+		yield(get_tree().create_timer(move_interval), "timeout")
+	
 	finish_doing()
-	pass
 
 func do_move(path):
 	var prev_loc = enemy.grid_position
