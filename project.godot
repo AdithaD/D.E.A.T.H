@@ -69,12 +69,12 @@ _global_script_class_icons={
 [application]
 
 config/name="D. E. A. T. H"
-run/main_scene="res://Scenes/Cinematic/Cinematic scene 1.tscn"
+run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-CinematicMusicPlayer="*res://Scenes/Cinematic/CinematicMusicPlayer.tscn"
+SoundEngine="*res://Sound Engine/SoundEngine.tscn"
 
 [display]
 

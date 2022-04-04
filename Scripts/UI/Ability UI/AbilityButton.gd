@@ -22,6 +22,7 @@ func set_state():
 			
 func _on_Ability_Button_pressed():
 	lifecycle_manager.submit_ability(player, ability_index)
+	SoundEngine.play_button_sound()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

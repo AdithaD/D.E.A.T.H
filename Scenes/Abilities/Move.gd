@@ -20,7 +20,7 @@ func _use_ability(player, target):
 
 func _ready():
 #	randomize()
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 
 
 func _ability_conditions(player):

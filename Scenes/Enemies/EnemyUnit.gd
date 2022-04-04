@@ -35,7 +35,7 @@ func _ready():
 		ability.ai = ai
 			
 	emit_signal('update_attr')
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 	
 
 func new_turn():

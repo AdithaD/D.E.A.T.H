@@ -34,7 +34,7 @@ func _ready():
 	abilities = $Abilities.get_children()
 			
 	emit_signal('update_attr')
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 func new_turn(finish_turn):
 	end_turn = finish_turn
 		
@@ -66,6 +66,7 @@ func spend_action_points(action_cost: int):
 
 func take_damage(dmg):
 	health -= dmg
+	SoundEngine.play_playerhurt_sfx()
 	emit_signal("update_attr")
 	
 func heal_damage(heal_amount):
