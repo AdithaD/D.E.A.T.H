@@ -8,7 +8,6 @@ func _ready():
 func _on_Play_pressed():
 	get_tree().change_scene_to(game)
 
-
 func _on_Profiles_pressed():
 	$Main.visible = false
 	$Profiles.visible = true
@@ -20,7 +19,7 @@ func _on_Exit_pressed():
 
 func _on_Instructions_pressed():
 	$Main.visible = false
-	$Profiles.visible = true
+	$Instructions.visible = true
 
 
 func _on_Profiles_Back_pressed():
