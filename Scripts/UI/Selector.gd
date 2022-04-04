@@ -98,10 +98,11 @@ func select_player():
 	
 	for unit in player_units:
 		if unit.global_position == snapped_pos:
-			selection = unit
-			emit_signal("on_select_player", selection)
-			camera.focus_on(unit.global_position)
-			break			
+			if( can_select_player(unit) ):
+				selection = unit
+				emit_signal("on_select_player", selection)
+				camera.focus_on(unit.global_position)
+				break			
 
 	pass
 func select_enemy():
@@ -114,10 +115,11 @@ func select_enemy():
 
 	for enemy in enemies:
 		if enemy.global_position == snapped_pos:
-			selection = enemy
-			camera.focus_on(enemy.global_position)
-			emit_signal("on_select_enemy", selection)
-			break			
+			if( can_select_enemy(enemy) ):
+				selection = enemy
+				camera.focus_on(enemy.global_position)
+				emit_signal("on_select_enemy", selection)
+				break			
 			
 	
 	pass
@@ -132,10 +134,11 @@ func select_civilian():
 
 	for civ in civilians:
 		if civ.global_position == snapped_pos:
-			selection = civ
-			camera.focus_on(civ.global_position)
-			emit_signal("on_select_civilian", selection)
-			break			
+			if (can_select_civilian(civ)):
+				selection = civ
+				camera.focus_on(civ.global_position)
+				emit_signal("on_select_civilian", selection)
+				break			
 			
 	
 	pass
@@ -145,18 +148,36 @@ func select_cover():
 	var map_coords = obstacle_tile_map.world_to_map(mouse_pos)
 	
 	if(obstacle_tile_map.get_cellv(map_coords) != -1):
-		selection = map_coords
+		if(can_select_cover(map_coords)):
+			selection = map_coords
 
-		camera.focus_on(obstacle_tile_map.map_to_world(map_coords))
-		emit_signal("on_select_cover", selection)
+			camera.focus_on(obstacle_tile_map.map_to_world(map_coords))
+			emit_signal("on_select_cover", selection)
 	pass
 	
 func select_tile():
 	var mouse_pos = get_global_mouse_position()
-	selection = floor_tile_map.world_to_map(mouse_pos)
+	var tile = floor_tile_map.world_to_map(mouse_pos)
+	if(can_select_tile(tile)):
+		selection = tile
+		
+		emit_signal("on_select_tile", selection)
+		pass
 	
-	emit_signal("on_select_tile", selection)
-	pass
+func can_select_player(selection):	
+	return true
+
+func can_select_civilian(selection):	
+	return true
+	
+func can_select_tile(selection):	
+	return true
+	
+func can_select_cover(selection):	
+	return true
+	
+func can_select_enemy(selection):	
+	return true
 
 func set_select_mode(new_type):
 	target_type = new_type
