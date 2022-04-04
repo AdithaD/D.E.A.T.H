@@ -22,6 +22,9 @@ var is_marked
 var mark_length = 0
 
 var end_turn
+
+var is_dead = false
+
 signal update_attr
 signal used_ability
 
@@ -30,17 +33,25 @@ enum SPRITE_DIRECTIONS {BOTTOM_LEFT, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	health = max_health
+	$DeathSprite.visible=false
 	
 	abilities = $Abilities.get_children()
 			
 	emit_signal('update_attr')
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 func new_turn(finish_turn):
-	end_turn = finish_turn
-		
-	action_points = actions_points_per_turn
-	dist_moved = 0
-	
+	update_turn_effects()
+	if(!can_be_controlled()):
+		emit_signal('update_attr')
+		finish_turn.call_func()
+	else:
+		end_turn = finish_turn
+			
+		action_points = actions_points_per_turn
+		dist_moved = 0
+		emit_signal('update_attr')
+
+func update_turn_effects():
 	for ability in abilities:
 		ability.new_turn()
 		
@@ -49,8 +60,8 @@ func new_turn(finish_turn):
 	if(mark_length <= 0):
 		is_marked = false
 
-	emit_signal('update_attr')
-
+func can_be_controlled():
+	return !is_dead
 
 func get_moveable_distance():
 	return tiles_per_turn - dist_moved
@@ -58,7 +69,6 @@ func get_moveable_distance():
 func spend_action_points(action_cost: int):
 	action_points -= action_cost
 	emit_signal('update_attr')
-	print(action_points)
 	if (action_points <= 0):
 		end_turn.call_func()
 
@@ -66,13 +76,22 @@ func spend_action_points(action_cost: int):
 
 func take_damage(dmg):
 	health -= dmg
+	if(health <= 0):
+		die()
+	SoundEngine.play_playerhurt_sfx()
 	emit_signal("update_attr")
 	
+func die():
+	is_dead = true
+	$DeathSprite.visible = true
+	$AnimatedSprite.visible = false
+	
+
 func heal_damage(heal_amount):
 	health = min(health + heal_amount, max_health)
 	emit_signal("update_attr")
 
-func on_used_ability(index):
+func on_used_ability(_index):
 	emit_signal("used_ability")
 
 	
@@ -93,7 +112,7 @@ func do_move(path):
 func world_move_to(loc):
 	var diff = loc - position
 	var steps = int(move_animation_time/move_interval)
-	for i in range(0, steps):
+	for _i in range(0, steps):
 		yield(get_tree().create_timer(move_interval), "timeout")
 		position += diff/steps
 	
@@ -116,3 +135,7 @@ func set_sprite_index(index):
 
 func _on_PlayerUnit_took_damage():
 	pass # Replace with function body.
+	
+func play_sound(sound):
+	$PlayerSound.stream = sound
+	$PlayerSound.play()

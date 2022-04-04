@@ -18,12 +18,14 @@ func display_voice_line(voice_line):
 	$VoiceLine.text = voice_line
 	$VoiceLine.visible = true
 	$VoiceLineTimer.start()
+	$AnimationPlayer.play("text float off")
 	
 func display_ability_voice_line():
-	var index = randi() % lifecycle.active_ability.voice_lines.size()
-	var voice_line = lifecycle.active_ability.voice_lines[index]
-	
-	display_voice_line(voice_line)
+	if lifecycle.active_ability.voice_lines.size() > 0:
+		var index = randi() % lifecycle.active_ability.voice_lines.size()
+		var voice_line = lifecycle.active_ability.voice_lines[index]
+		
+		display_voice_line(voice_line)
 
 
 func bind_lifecycle(new_lifecycle):
@@ -31,7 +33,7 @@ func bind_lifecycle(new_lifecycle):
 	
 	lifecycle.connect("doing", self, "display_ability_voice_line")
 
-func _on_PlayerUnit_update_attr():
+func _on_Unit_update_attr():
 	update_status_text()
 	pass # Replace with function body.
 

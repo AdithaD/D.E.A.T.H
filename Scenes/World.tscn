@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -13,23 +13,37 @@
 [ext_resource path="res://Scripts/Abilities/AbilityLifecycleManager.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/UI/Ability UI/AbilityDescription.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Units/Gunner.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Assets/BACKGROUNMD.png" type="Texture" id=14]
+[ext_resource path="res://Assets/backgroung scene.png" type="Texture" id=14]
 [ext_resource path="res://Resource/overlay.tres" type="TileSet" id=15]
 [ext_resource path="res://Scenes/Overlay.gd" type="Script" id=16]
 [ext_resource path="res://Scenes/TurnManager.gd" type="Script" id=17]
 [ext_resource path="res://Scenes/TurnUI.gd" type="Script" id=18]
-[ext_resource path="res://Assets/Sounds/Music/DEATH.wav" type="AudioStream" id=19]
 [ext_resource path="res://Scenes/Units/Medic.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scripts/Abilities/Heal.gd" type="Script" id=21]
-[ext_resource path="res://Scenes/Enemies/Recon.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Enemies/Recon.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Units/Grenadier.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Units/Helicopter.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Enemies/Artillery.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/Enemies/AntiAir.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scripts/CivilianSpawning.gd" type="Script" id=26]
+[ext_resource path="res://Scenes/Evacuation Area.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/Civilian.tscn" type="PackedScene" id=28]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
 obstacle_map_path = NodePath("Cover")
 floor_map_path = NodePath("Tiles")
+
+[node name="Spawner" type="Node" parent="."]
+
+[node name="CivilianSpawner" type="Node" parent="Spawner"]
+script = ExtResource( 26 )
+amount_to_spawn = 1
+civilian_types = [ ExtResource( 28 ) ]
+spawn_target = NodePath("../../Cover")
+
+[node name="EnemySpawner" type="Node" parent="Spawner"]
+
+[node name="Timer" type="Timer" parent="Spawner/EnemySpawner"]
 
 [node name="TurnManager" type="Node" parent="."]
 script = ExtResource( 17 )
@@ -64,36 +78,43 @@ script = ExtResource( 3 )
 tile_set = ExtResource( 2 )
 texture_offset = Vector2( 0, -32 )
 
-[node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
-position = Vector2( 96, -16 )
-
-[node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
-position = Vector2( 64, -32 )
-
-[node name="Medic" parent="Cover" instance=ExtResource( 20 )]
-position = Vector2( 0, -16 )
-
-[node name="Heal" parent="Cover/Medic/Abilities" index="1"]
-script = ExtResource( 21 )
-ability_name = "Ability"
-ability_description = "Ability Description"
-voice_lines = [ "Healing!", "Heroes never die!" ]
-heal_amount = 3
-penetration = 0
-
-[node name="Grunt" parent="Cover" instance=ExtResource( 7 )]
-position = Vector2( 32, 48 )
-
-[node name="Recon" parent="Cover" instance=ExtResource( 22 )]
+[node name="AntiAir" parent="Cover" instance=ExtResource( 25 )]
 position = Vector2( 32, 32 )
 
 [node name="Artillery" parent="Cover" instance=ExtResource( 24 )]
-position = Vector2( -128, 32 )
+position = Vector2( 48, 8 )
 
-[node name="AntiAir" parent="Cover" instance=ExtResource( 25 )]
-position = Vector2( -128, 64 )
+[node name="Grunt" parent="Cover" instance=ExtResource( 7 )]
+position = Vector2( 32, -16 )
+
+[node name="Recon" parent="Cover" instance=ExtResource( 21 )]
+position = Vector2( 80, -24 )
+
+[node name="Evacuation Area" parent="Cover" instance=ExtResource( 27 )]
+position = Vector2( 48, -136 )
+area_of_effect = 1
+is_active = true
+
+[node name="Grenadier" parent="Cover" instance=ExtResource( 22 )]
+position = Vector2( 192, -80 )
+
+[node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
+position = Vector2( 144, -104 )
 
 [node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
+position = Vector2( 160, -176 )
+
+[node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
+position = Vector2( 160, -64 )
+
+[node name="Civilian" parent="Cover" instance=ExtResource( 28 )]
+position = Vector2( 112, -200 )
+max_health = 0
+actions_points_per_turn = 0
+tiles_per_turn = 0
+
+[node name="Medic" parent="Cover" instance=ExtResource( 20 )]
+position = Vector2( 128, -80 )
 
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
@@ -143,6 +164,7 @@ margin_left = -153.0
 margin_top = -76.0
 margin_right = 153.0
 margin_bottom = -36.0
+rect_scale = Vector2( 2, 2 )
 script = ExtResource( 9 )
 
 [node name="Ability Prompt" type="Panel" parent="UI/HUD"]
@@ -203,17 +225,15 @@ margin_bottom = -415.997
 rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 14 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Combat Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 19 )
-volume_db = -12.0
-autoplay = true
-
-[connection signal="update_attr" from="Cover/Medic" to="Cover/Medic/HealthDisplay" method="_on_PlayerUnit_update_attr"]
+[connection signal="update_attr" from="Cover/Grenadier" to="Cover/Grenadier/PlayerUI" method="_on_PlayerUnit_update_attr"]
+[connection signal="update_attr" from="Cover/Gunner" to="Cover/Gunner/PlayerUI" method="_on_PlayerUnit_update_attr"]
+[connection signal="update_attr" from="Cover/Helicopter" to="Cover/Helicopter/PlayerUI" method="_on_PlayerUnit_update_attr"]
+[connection signal="update_attr" from="Cover/Marksman" to="Cover/Marksman/PlayerUI" method="_on_PlayerUnit_update_attr"]
+[connection signal="update_attr" from="Cover/Medic" to="Cover/Medic/PlayerUI" method="_on_PlayerUnit_update_attr"]
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_deselect"]
 [connection signal="on_select_player" from="Selector" to="UI/HUD/Abilities Bar" method="_on_Selector_on_select_player"]
 [connection signal="pressed" from="UI/HUD/TurnUI/NextTurn" to="TurnManager" method="_on_NextTurn_pressed"]
-
-[editable path="Cover/Marksman"]
-[editable path="Cover/Gunner"]
-[editable path="Cover/Medic"]

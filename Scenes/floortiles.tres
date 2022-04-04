@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=8 format=2]
+[gd_resource type="TileSet" load_steps=9 format=2]
 
 [ext_resource path="res://Assets/TILEMAPS/CONCRETE FOUNDATION.png" type="Texture" id=1]
 [ext_resource path="res://Assets/TILEMAPS/ROAD NE-SW.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/TILEMAPS/waterr.tres" type="Texture" id=5]
 [ext_resource path="res://Assets/TILEMAPS/dirt tile.png" type="Texture" id=6]
 [ext_resource path="res://Assets/TILEMAPS/crackedtile.png" type="Texture" id=7]
+[ext_resource path="res://Assets/TILEMAPS/evacuationzone.tres" type="Texture" id=8]
 
 [resource]
 0/name = "CONCRETE FOUNDATION"
@@ -107,3 +108,17 @@
 6/shape_one_way_margin = 0.0
 6/shapes = [  ]
 6/z_index = 0
+7/name = "evacuationzone.tres 7"
+7/texture = ExtResource( 8 )
+7/tex_offset = Vector2( 0, -32 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 32, 64 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0

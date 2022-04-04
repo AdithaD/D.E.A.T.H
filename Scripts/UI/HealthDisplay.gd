@@ -33,10 +33,10 @@ func update():
 			healthbar.visible = true
 			healthbar.rect_size.x = get_parent().health * segment_size
 
-func _on_PlayerUnit_update_attr():
+func _on_Unit_update_attr():
 	update()
+	pass
 
 
-func _on_EnemyUnit_update_attr():
-	update()
+func _on_Civilian_update_attr():
 	pass # Replace with function body.

@@ -4,6 +4,7 @@ class_name EnemyAbility
 var ai
 
 func _use_ai_ability(source):
+	finish_doing()
 	pass
 
 func use_ai_ability(source):

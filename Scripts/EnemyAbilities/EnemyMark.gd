@@ -7,7 +7,7 @@ func _use_ai_ability(source):
 	#randomize()
 	var target = _generate_target(source)
 	if target != null:
-		var god = get_tree().root.get_child(0)
+		var god = get_node("/root/World")
 		if target.has_method("apply_mark"):
 			target.apply_mark(mark_turns)
 	

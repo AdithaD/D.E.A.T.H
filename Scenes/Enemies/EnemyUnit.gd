@@ -20,9 +20,12 @@ var mark_length = 0
 
 var ai
 
+var is_dead = false
+
 var end_turn
 signal update_attr
 signal used_ability
+signal turn_complete
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,26 +38,43 @@ func _ready():
 		ability.ai = ai
 			
 	emit_signal('update_attr')
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 	
 
 func new_turn():
-	ai.bfs.init(god)
-	
-	for ability in abilities:
-		ability.new_turn()
+	if(!is_dead):
+		ai.bfs.init(god)
 		
-	action_points = actions_points_per_turn
-	dist_moved = 0
-	
-	if(ai.has_method("generate_turn")):
-		var turn = ai.generate_turn(abilities)
+		for ability in abilities:
+			ability.new_turn()
+			
+		action_points = actions_points_per_turn
+		dist_moved = 0
 		
-		for ability in turn:
-			ability.use_ai_ability(self)
-			yield(ability, "finished_doing")
+		if(ai.has_method("generate_turn")):
+			var turn = ai.generate_turn(abilities)
+			
+			for ability in turn:
+				emit_signal("used_ability", ability)
+				ability.use_ai_ability(self)
+				yield(ability, "finished_doing")
+		
+		emit_signal('update_attr')
+		emit_signal('turn_complete')
+		
+func take_damage(dmg):
+	health -= dmg
+	if health > 0 :
+		SoundEngine.play_enemyHurt_sfx()
+	elif health <= 0 :
+		SoundEngine.play_enemyDeath_sfx()
+		die()
+	emit_signal("update_attr")
 	
-	emit_signal('update_attr')
+func die():
+	is_dead = true
+	$DeathSprite.visible = true
+	$AnimatedSprite.visible = false
 
 func get_moveable_distance():
 	return tiles_per_turn - dist_moved
@@ -62,7 +82,6 @@ func get_moveable_distance():
 func spend_action_points(action_cost: int):
 	action_points -= action_cost
 	emit_signal('update_attr')
-	print(action_points)
 #	if (action_points <= 0):
 #		end_turn.call_func()
 
@@ -70,10 +89,6 @@ func spend_action_points(action_cost: int):
 
 func moveTo(x: int, y: int):
 	pass
-	
-func take_damage(dmg):
-	health -= dmg
-	emit_signal("update_attr")
 
 func on_used_ability(index):
 	emit_signal("used_ability")
@@ -86,3 +101,7 @@ func apply_mark(turns):
 	if turns > mark_length:
 		mark_length = turns
 	is_marked = true 
+	
+func play_sound(sound):
+	$EnemySound.stream = sound
+	$EnemySound.play()

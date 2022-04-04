@@ -8,7 +8,7 @@ func _use_ai_ability(source):
 	#randomize()
 	var target = _generate_target(source)
 	if target != null:
-		var god = get_tree().root.get_child(0)
+		var god = get_node("/root/World")
 		var obstacle_tilemap = god.get_obstacle_tilemap()
 		var floor_tilemap = god.get_floor_tilemap()
 		
