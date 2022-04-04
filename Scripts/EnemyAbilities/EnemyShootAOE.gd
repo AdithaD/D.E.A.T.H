@@ -27,7 +27,7 @@ func _use_ai_ability(source):
 	
 # returns tile todo: make this actually find good target
 func _generate_target(source):
-	var players = ai.get_players_in_range(shoot_range, source.grid_position)
+	var players = ai.get_alive_players_in_range(shoot_range, source.grid_position)
 	
 	if(players.size() > 0):
 		var index  = randi() % players.size()

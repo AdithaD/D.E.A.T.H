@@ -40,7 +40,15 @@ func get_players_in_range(ability_range, pos):
 		if bfs.grid_distance(player.grid_position, pos) <= ability_range:
 			in_range.append(player)
 	return in_range
-
+	
+func get_alive_players_in_range(ability_range, pos):
+	var players = get_players_in_range(ability_range, pos)
+	var list = []
+	for p in players:
+		if !p.is_dead:
+			list.append(p)
+			
+	return list
 func get_flying_players_in_range(ability_range, pos):
 	var in_range = []
 	for player in god.get_flying_player_nodes():

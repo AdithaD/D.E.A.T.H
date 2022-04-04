@@ -15,7 +15,7 @@ func _use_ai_ability(source):
 	finish_doing()
 	
 func _generate_target(source):
-	var players = ai.get_players_in_range(mark_range, source.grid_position)
+	var players = ai.get_alive_players_in_range(mark_range, source.grid_position)
 	
 	if(players.size() > 0):
 		var index  = randi() % players.size()
