@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/PlayerUnits/PlayerUnit.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Abilities/Move.tscn" type="PackedScene" id=2]
@@ -8,8 +8,10 @@
 [ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Sprites/body.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Abilities/FollowMe.gd" type="Script" id=8]
-[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/heal.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/follow.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Abilities/RangeSelector.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/Abilities/Stay.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/stop.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "text float off"
@@ -64,8 +66,22 @@ icon = ExtResource( 5 )
 
 [node name="Follow Me" type="Node" parent="Abilities"]
 script = ExtResource( 8 )
+ability_name = "Follow Me"
+ability_description = "Tell a civilian to follow you"
 icon = ExtResource( 9 )
 voice_lines = [ "Come with me!", "We're here to help!" ]
+action_cost = 0
+cooldown_duration = 0
+selector = ExtResource( 10 )
+target_type = 4
+select_range = 3
+
+[node name="Stay" type="Node" parent="Abilities"]
+script = ExtResource( 11 )
+ability_name = "Stay"
+ability_description = "Tell a civilian to stop following you. But they have minds of their own...."
+icon = ExtResource( 12 )
+voice_lines = [ "I have to go.", "It's not wise to follow me anymore" ]
 action_cost = 0
 cooldown_duration = 0
 selector = ExtResource( 10 )

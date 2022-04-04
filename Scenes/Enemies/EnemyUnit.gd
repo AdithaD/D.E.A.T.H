@@ -87,10 +87,7 @@ func spend_action_points(action_cost: int):
 
 	pass
 
-func moveTo(x: int, y: int):
-	pass
-
-func on_used_ability(index):
+func on_used_ability(_index):
 	emit_signal("used_ability")
 
 func set_grid_position(new_grid):

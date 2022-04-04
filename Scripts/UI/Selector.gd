@@ -164,19 +164,19 @@ func select_tile():
 		emit_signal("on_select_tile", selection)
 		pass
 	
-func can_select_player(selection):	
+func can_select_player(_selection):	
 	return true
 
-func can_select_civilian(selection):	
+func can_select_civilian(_selection):	
 	return true
 	
-func can_select_tile(selection):	
+func can_select_tile(_selection):	
 	return true
 	
-func can_select_cover(selection):	
+func can_select_cover(_selection):	
 	return true
 	
-func can_select_enemy(selection):	
+func can_select_enemy(_selection):	
 	return true
 
 func set_select_mode(new_type):

@@ -13,3 +13,5 @@ func play_sound(sound):
 
 func follow(player):
 	follow_target = player
+func unfollow():
+	follow_target = null
