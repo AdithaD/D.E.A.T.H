@@ -5,6 +5,9 @@ extends Node
 export (NodePath) var obstacle_map_path
 export (NodePath) var floor_map_path
 export (int) var mark_acc_increase = 20
+
+export (Array, PackedScene) var players
+
 onready var obstacle_tile_map = get_node(obstacle_map_path)
 
 onready var floor_tile_map = get_node(floor_map_path)
@@ -30,12 +33,21 @@ func _ready():
 	cover.init(obstacle_tile_map, cover_map)
 	set_process_input(true)
 	
+	spawn_players()
+	
 	$Spawner/CivilianSpawner.spawn_civilians(self)
 	
 	init_entities()	
 	init_world()
 
 	$TurnManager.new_turn()
+
+
+func spawn_players():
+	for i in range(0, players.size()):
+		var player = players[i].instance()
+		$Cover.add_child(player)
+		player.global_position = $Spawner/PlayerSpawnPoints.get_child(i).global_position
 
 
 func init_entities():

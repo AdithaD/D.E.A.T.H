@@ -66,11 +66,30 @@ tracks/0/keys = {
 }
 
 [node name="World" type="Node2D"]
+position = Vector2( 1, 0 )
 script = ExtResource( 6 )
 obstacle_map_path = NodePath("Cover")
 floor_map_path = NodePath("Tiles")
+players = [ ExtResource( 22 ), ExtResource( 13 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 20 ) ]
 
 [node name="Spawner" type="Node" parent="."]
+
+[node name="PlayerSpawnPoints" type="Node" parent="Spawner"]
+
+[node name="SpawnPoint" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 32, -192 )
+
+[node name="SpawnPoint5" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 32, -160 )
+
+[node name="SpawnPoint2" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 96, -144 )
+
+[node name="SpawnPoint3" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 96, -176 )
+
+[node name="SpawnPoint4" type="Node2D" parent="Spawner/PlayerSpawnPoints"]
+position = Vector2( 64, -208 )
 
 [node name="CivilianSpawner" type="Node" parent="Spawner"]
 script = ExtResource( 26 )
@@ -153,28 +172,8 @@ position = Vector2( 48, -136 )
 area_of_effect = 1
 is_active = true
 
-[node name="Grenadier" parent="Cover" instance=ExtResource( 22 )]
-position = Vector2( 192, -80 )
-max_health = 10
-
-[node name="Gunner" parent="Cover" instance=ExtResource( 13 )]
-position = Vector2( 144, -104 )
-max_health = 10
-
-[node name="Helicopter" parent="Cover" instance=ExtResource( 23 )]
-position = Vector2( 160, -176 )
-max_health = 10
-
-[node name="Marksman" parent="Cover" instance=ExtResource( 10 )]
-position = Vector2( 160, -64 )
-max_health = 10
-
 [node name="Civilian" parent="Cover" instance=ExtResource( 28 )]
 position = Vector2( 112, -200 )
-
-[node name="Medic" parent="Cover" instance=ExtResource( 20 )]
-position = Vector2( 128, -80 )
-max_health = 10
 
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )

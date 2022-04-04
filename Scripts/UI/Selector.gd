@@ -59,7 +59,6 @@ func _process(_delta):
 			deselect()
 		if(Input.is_action_just_pressed("confirm_select") && listen_to_input):
 			emit_signal("on_confirm_select")
-			emit_signal("on_confirm_select")
 
 	else:
 		if Input.is_action_just_pressed("deselect"):

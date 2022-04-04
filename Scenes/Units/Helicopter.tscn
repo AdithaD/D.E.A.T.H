@@ -19,9 +19,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Helicopter" groups=[
-"flying_player_unit",
-] instance=ExtResource( 1 )]
+[node name="Helicopter" groups=["flying_player_unit"] instance=ExtResource( 1 )]
 script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
