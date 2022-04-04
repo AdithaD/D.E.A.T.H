@@ -37,6 +37,7 @@ animations = [ {
 } ]
 
 [node name="Marksman" instance=ExtResource( 1 )]
+max_health = 6
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 position = Vector2( 0, -17 )
@@ -60,6 +61,7 @@ bullet_length = 40
 
 [node name="Grenade" parent="Abilities" index="2" instance=ExtResource( 10 )]
 icon = ExtResource( 12 )
+select_range = 10
 use_sound = ExtResource( 13 )
 
 [node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/Grenade" index="0"]

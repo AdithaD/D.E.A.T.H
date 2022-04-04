@@ -4,6 +4,7 @@
 [ext_resource path="res://Assets/TILEMAPS/flag fr1.png" type="Texture" id=2]
 
 [resource]
+flags = 4
 frames = 2
 fps = 3.0
 frame_0/texture = ExtResource( 2 )

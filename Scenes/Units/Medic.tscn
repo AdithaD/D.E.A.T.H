@@ -38,6 +38,7 @@ animations = [ {
 } ]
 
 [node name="Medic" instance=ExtResource( 1 )]
+max_health = 8
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 position = Vector2( 0, -19 )
@@ -51,7 +52,7 @@ __meta__ = {
 ability_name = "Heal"
 ability_description = "Apply basic first aid to your allies"
 icon = ExtResource( 11 )
-select_range = 6
+select_range = 1
 use_sound = ExtResource( 12 )
 voice_lines = [ "I'm patching you up", "Hold still", "Stop being such a crybaby" ]
 selector = ExtResource( 20 )
@@ -63,6 +64,7 @@ use_sound = ExtResource( 13 )
 
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 10 )]
 icon = ExtResource( 14 )
+select_range = 10
 use_sound = ExtResource( 5 )
 
 [node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/Grenade" index="0"]
