@@ -47,16 +47,16 @@ script = ExtResource( 3 )
 ability_name = "Sniper Shot"
 ability_description = "Take aim and deliver a penetrating shot."
 icon = ExtResource( 5 )
+select_range = 80
 use_sound = ExtResource( 11 )
 voice_lines = [ "Taking za shot!", "I can see you!", "I've got you in my sights" ]
-cooldown_duration = 2
 selector = ExtResource( 6 )
 damage = 5
-penetration = 4
+penetration = 2
 tracer = ExtResource( 4 )
 burst_number = 1
+bullet_speed = 1800
 bullet_length = 40
-select_range = 80
 
 [node name="Grenade" parent="Abilities" index="2" instance=ExtResource( 10 )]
 icon = ExtResource( 12 )

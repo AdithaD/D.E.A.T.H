@@ -10,6 +10,7 @@ script = ExtResource( 2 )
 ability_name = "Shoot"
 ability_description = "Take aim and fire."
 icon = ExtResource( 1 )
+select_range = 15
 voice_lines = [ "Firing on target", "Lock n' load", "Engaging hostile" ]
 selector = ExtResource( 4 )
 damage = 3

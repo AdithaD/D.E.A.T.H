@@ -21,6 +21,7 @@ animations = [ {
 
 [node name="Helicopter" groups=["flying_player_unit"] instance=ExtResource( 1 )]
 script = ExtResource( 6 )
+tiles_per_turn = 10
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 texture = ExtResource( 5 )
@@ -47,7 +48,7 @@ ability_description = "Pick up a civilian from an evacuation area."
 icon = ExtResource( 7 )
 use_sound = ExtResource( 9 )
 voice_lines = [ "Let's get you out of here", "It's alright, you're safe now" ]
-cooldown_duration = 2
+cooldown_duration = 0
 target_type = 4
 max_evac_per_turn = 2
 

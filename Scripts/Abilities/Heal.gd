@@ -13,5 +13,7 @@ func get_details(lifecycle):
 	var super = .get_details(lifecycle) + "\n"
 	
 	super += "Heal Amount = %s \n" % heal_amount
+	super += "Range: %s \n" % select_range
 	
 	return super
+\

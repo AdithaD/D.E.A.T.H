@@ -109,16 +109,16 @@ spawn_target = NodePath("../../Cover")
 [node name="Spawn Points" type="Node" parent="Spawner/EnemySpawner"]
 
 [node name="SpawnPoint" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
-position = Vector2( 256, -144 )
+position = Vector2( -352, -544 )
 
 [node name="SpawnPoint2" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
-position = Vector2( 256, -96 )
+position = Vector2( -832, -320 )
 
 [node name="SpawnPoint3" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
-position = Vector2( 320, -160 )
+position = Vector2( -1088, 176 )
 
 [node name="SpawnPoint4" type="Node2D" parent="Spawner/EnemySpawner/Spawn Points"]
-position = Vector2( 320, -96 )
+position = Vector2( -1360, -136 )
 
 [node name="Effects" type="Node" parent="."]
 script = ExtResource( 30 )
@@ -156,25 +156,10 @@ script = ExtResource( 3 )
 tile_set = ExtResource( 2 )
 texture_offset = Vector2( 0, -32 )
 
-[node name="AntiAir" parent="Cover" instance=ExtResource( 25 )]
-position = Vector2( 32, 32 )
-
-[node name="Artillery" parent="Cover" instance=ExtResource( 24 )]
-position = Vector2( 48, 8 )
-
-[node name="Grunt" parent="Cover" instance=ExtResource( 7 )]
-position = Vector2( 32, -16 )
-
-[node name="Recon" parent="Cover" instance=ExtResource( 21 )]
-position = Vector2( 80, -24 )
-
 [node name="Evacuation Area" parent="Cover" instance=ExtResource( 27 )]
 position = Vector2( 48, -136 )
 area_of_effect = 1
 is_active = true
-
-[node name="Civilian" parent="Cover" instance=ExtResource( 28 )]
-position = Vector2( 112, -200 )
 
 [node name="UserCamera" type="Camera2D" parent="."]
 position = Vector2( 0, -1 )
@@ -211,25 +196,32 @@ __meta__ = {
 }
 
 [node name="TurnUI" type="Control" parent="UI/HUD"]
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
+margin_left = -568.0
+margin_bottom = 680.0
 script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TurnNumberLabel" type="Label" parent="UI/HUD/TurnUI"]
-margin_left = 1500.0
-margin_top = 100.0
-margin_right = 1612.0
-margin_bottom = 159.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -216.0
+margin_right = 216.0
+margin_bottom = 192.0
 custom_fonts/font = ExtResource( 34 )
 
 [node name="NextTurn" type="Button" parent="UI/HUD/TurnUI"]
-margin_left = 1424.0
-margin_top = 248.0
-margin_right = 1746.0
-margin_bottom = 322.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -161.0
+margin_top = -37.0
+margin_right = 161.0
+margin_bottom = 37.0
 custom_fonts/font = ExtResource( 33 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/normal = ExtResource( 19 )
@@ -311,6 +303,7 @@ custom_styles/normal = SubResource( 2 )
 text = "Confirm"
 
 [node name="Game Over" type="Control" parent="UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -393,6 +386,7 @@ texture = ExtResource( 14 )
 expand = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = -3129.0
 margin_top = -1624.0
 margin_right = 2665.0

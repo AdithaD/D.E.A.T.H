@@ -51,7 +51,11 @@ func new_turn(finish_turn):
 			
 		action_points = actions_points_per_turn
 		dist_moved = 0
+	
 		emit_signal('update_attr')
+
+func on_end_turn():
+	pass
 
 func update_turn_effects():
 	for ability in abilities:

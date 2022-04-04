@@ -50,9 +50,11 @@ __meta__ = {
 ability_name = "Heal"
 ability_description = "Apply basic first aid to your allies"
 icon = ExtResource( 11 )
+select_range = 6
 use_sound = ExtResource( 12 )
 voice_lines = [ "I'm patching you up", "Hold still", "Stop being such a crybaby" ]
 target_type = 0
+heal_amount = 3
 
 [node name="Shoot" parent="Abilities" index="2" instance=ExtResource( 2 )]
 use_sound = ExtResource( 13 )
@@ -60,7 +62,6 @@ use_sound = ExtResource( 13 )
 [node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 10 )]
 icon = ExtResource( 14 )
 use_sound = ExtResource( 5 )
-select_range = 8
 
 [node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/Grenade" index="0"]
 visible = false
