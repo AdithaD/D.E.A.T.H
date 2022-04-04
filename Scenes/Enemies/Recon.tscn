@@ -27,16 +27,17 @@ script = ExtResource( 5 )
 [node name="EnemyShoot" parent="Abilities" index="1" instance=ExtResource( 2 )]
 use_sound = ExtResource( 4 )
 damage = 2
-shoot_range = 5
+shoot_range = 8
 
 [node name="EnemyMark" type="Node" parent="Abilities" index="2"]
 script = ExtResource( 11 )
 use_sound = ExtResource( 3 )
+mark_range = 8
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
 position = Vector2( 0, -19 )
 frames = SubResource( 1 )
 animation = "Frames"
 
-[node name="HealthDisplay" parent="." index="4"]
+[node name="HealthDisplay" parent="." index="5"]
 position = Vector2( -21, -37 )
