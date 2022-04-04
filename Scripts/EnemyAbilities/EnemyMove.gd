@@ -15,7 +15,7 @@ enum SPRITE_DIRECTIONS {BOTTOM_LEFT, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT}
 
 func _ready():
 #	randomize()
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 	bfs = bfs_class.new()
 	
 func _use_ai_ability(source):

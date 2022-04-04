@@ -85,7 +85,8 @@ func _process(_delta):
 			Ability.TARGET_TYPE.civilian:
 				select_civilian()
 		if(selection):
-			print("Selected %s" % selection)
+			print("selected %s" % selection)
+			SoundEngine.play_button_sound()
 	
 
 func select_player():

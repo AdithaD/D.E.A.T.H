@@ -5,11 +5,12 @@ var timer_time_left = get_time_left()
 func timer_change_scene() -> void:
 		get_tree().change_scene("res://Scenes/Cinematic/Cinemativ scene2.tscn")
 
-func _process(delta):
+func _process(_delta):
 	timer_time_left = get_time_left()
 	if timer_time_left < 1:
 			timer_change_scene()
 			
+
 	
 
 

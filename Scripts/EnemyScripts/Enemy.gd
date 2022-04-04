@@ -24,7 +24,7 @@ func _ready():
 	health = max_health
 	abilities = $Abilities.get_children()
 	ai = $AI
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 	emit_signal('update_attr')
 
 func new_turn():

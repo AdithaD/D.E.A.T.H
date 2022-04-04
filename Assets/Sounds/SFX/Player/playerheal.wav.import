@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/playerheal.wav-275d22d763223ad2e0495472d7c0dfae.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/Player/playerheal.wav"
+dest_files=[ "res://.import/playerheal.wav-275d22d763223ad2e0495472d7c0dfae.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

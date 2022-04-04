@@ -11,7 +11,7 @@ var bfs
 func _ready():
 #	randomize()
 	bfs = bfs_class.new()
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 	host = get_parent()
 	
 func generate_turn(abilities):

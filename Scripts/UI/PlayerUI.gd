@@ -18,6 +18,7 @@ func display_voice_line(voice_line):
 	$VoiceLine.text = voice_line
 	$VoiceLine.visible = true
 	$VoiceLineTimer.start()
+	$AnimationPlayer.play("text float off")
 	
 func display_ability_voice_line():
 	if lifecycle.active_ability.voice_lines.size() > 0:

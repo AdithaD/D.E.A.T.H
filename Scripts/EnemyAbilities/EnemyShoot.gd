@@ -8,7 +8,8 @@ var god
 
 func _use_ai_ability(source):
 	#randomize()
-	god = get_tree().root.get_child(0)
+	print('enemy shooting')
+	god = get_node("/root/World")
 	var target = _generate_target(source)
 	if target != null:
 		var rand = god.get_hit_chance(source.grid_position, target.grid_position, penetration, !target.can_cover, target.is_marked)

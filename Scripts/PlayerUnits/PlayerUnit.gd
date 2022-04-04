@@ -38,8 +38,7 @@ func _ready():
 	abilities = $Abilities.get_children()
 			
 	emit_signal('update_attr')
-	god = get_tree().root.get_child(0)
-	
+	god = get_node("/root/World")
 func new_turn(finish_turn):
 	update_turn_effects()
 	if(!can_be_controlled()):
@@ -79,6 +78,7 @@ func take_damage(dmg):
 	health -= dmg
 	if(health <= 0):
 		die()
+	SoundEngine.play_playerhurt_sfx()
 	emit_signal("update_attr")
 	
 func die():

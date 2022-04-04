@@ -38,7 +38,7 @@ func _ready():
 		ability.ai = ai
 			
 	emit_signal('update_attr')
-	god = get_tree().root.get_child(0)
+	god = get_node("/root/World")
 	
 
 func new_turn():
@@ -61,9 +61,13 @@ func new_turn():
 		
 		emit_signal('update_attr')
 		emit_signal('turn_complete')
+		
 func take_damage(dmg):
 	health -= dmg
-	if(health <= 0):
+	if health > 0 :
+		SoundEngine.play_enemyHurt_sfx()
+	elif health <= 0 :
+		SoundEngine.play_enemyDeath_sfx()
 		die()
 	emit_signal("update_attr")
 	
@@ -82,6 +86,12 @@ func spend_action_points(action_cost: int):
 #		end_turn.call_func()
 
 	pass
+
+func moveTo(x: int, y: int):
+	pass
+
+func on_used_ability(index):
+	emit_signal("used_ability")
 
 func set_grid_position(new_grid):
 	grid_position = new_grid

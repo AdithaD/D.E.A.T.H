@@ -81,14 +81,17 @@ _global_script_class_icons={
 [application]
 
 config/name="D. E. A. T. H"
-run/main_scene="res://Scenes/World.tscn"
+run/main_scene="res://Scenes/Cinematic/Cinematic scene 1.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SoundEngine="*res://Sound Engine/SoundEngine.tscn"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-window/stretch/mode="viewport"
 
 [input]
 
@@ -109,7 +112,7 @@ move_camera={
 }
 confirm_select={
 "deadzone": 0.51,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
 
