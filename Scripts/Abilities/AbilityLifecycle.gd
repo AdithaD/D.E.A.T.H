@@ -74,7 +74,7 @@ func _on_Secondary_Selector_select(selected):
 
 func move_to_doing():
 	emit_signal('doing')
-	secondary_selector.deselect()
+	secondary_selector.on_destroy()
 	
 	state = LIFECYCLE.doing
 	
