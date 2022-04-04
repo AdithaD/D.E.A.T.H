@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Enemies/EnemyUnit.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/pixeloid font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/EnemyAbilities/EnemyMove.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Enemies/EnemyUI.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Sprites/body.png" type="Texture" id=11]
 
@@ -47,10 +48,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="EnemyUnit" type="Node2D" groups=[
-"damageable",
-"enemy",
-]]
+[node name="EnemyUnit" type="Node2D" groups=["damageable", "enemy"]]
 script = ExtResource( 1 )
 max_health = 5
 actions_points_per_turn = 2
@@ -63,15 +61,22 @@ script = ExtResource( 3 )
 voice_lines = [ "Get them!", "Don't let anyone escape.", "No one makes it out of here alive!" ]
 
 [node name="EnemyUI" type="Control" parent="."]
-margin_left = -3.8147e-06
+margin_left = -50.0
 margin_top = -63.0
-margin_right = 100.0
-margin_bottom = -43.0
+margin_right = 50.0
+margin_bottom = -1.0
 rect_scale = Vector2( 0.998463, 0.996449 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="HitChanceLabel" type="Label" parent="EnemyUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+valign = 1
 
 [node name="DisplayText" type="Label" parent="EnemyUI"]
 anchor_right = 1.0
@@ -86,8 +91,10 @@ valign = 1
 
 [node name="VoiceLine" type="Label" parent="EnemyUI"]
 modulate = Color( 1, 1, 1, 0.9 )
-margin_right = 40.0
-margin_bottom = 15.0
+margin_left = 30.0462
+margin_top = 2.00713
+margin_right = 70.0462
+margin_bottom = 17.0071
 custom_fonts/font = ExtResource( 2 )
 percent_visible = 0.0
 __meta__ = {

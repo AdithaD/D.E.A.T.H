@@ -12,6 +12,8 @@ export (int) var bullet_speed = 600
 export (float) var burst_delay = 0.05
 export (int) var bullet_length = 20
 
+export (int) var select_range = 10
+
 func _use_ability(source, target):
 	#randomize()
 	var god = get_node("/root/World")

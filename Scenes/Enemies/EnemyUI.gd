@@ -27,6 +27,12 @@ func display_ability_voice_line(ability):
 		var voice_line = ability.voice_lines[index]
 	
 		display_voice_line(voice_line)
+		
+func display_hit_chance(hit_chance):
+	$HitChanceLabel.text = String(hit_chance)
+
+func clear_hit_chance():
+	$HitChanceLabel.text = ""
 
 func _on_Unit_update_attr():
 	update_status_text()
