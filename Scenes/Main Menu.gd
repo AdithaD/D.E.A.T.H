@@ -2,6 +2,9 @@ extends Control
 
 export (PackedScene) var game
 
+func _ready():
+	SoundEngine.play_menu_music()
+
 func _on_Play_pressed():
 	get_tree().change_scene_to(game)
 
