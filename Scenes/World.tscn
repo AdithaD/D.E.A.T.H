@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Scenes/floortiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/buildings/buildingsss.tres" type="TileSet" id=2]
@@ -89,6 +89,34 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "fade in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -307,9 +335,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -35.0
+custom_fonts/font = ExtResource( 33 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/normal = ExtResource( 19 )
-custom_fonts/font = ExtResource( 33 )
 text = "Next Turn"
 
 [node name="Abilities Bar" type="HBoxContainer" parent="UI/HUD/Control"]
@@ -376,12 +404,12 @@ margin_left = 19.0
 margin_top = -72.0
 margin_right = -13.0
 margin_bottom = -33.0
+custom_fonts/font = ExtResource( 31 )
 custom_styles/hover = ExtResource( 32 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
-custom_fonts/font = ExtResource( 31 )
 text = "Confirm"
 
 [node name="Game Over" type="Control" parent="UI"]
@@ -443,12 +471,12 @@ margin_right = 576.0
 margin_bottom = 114.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 33 )
 custom_styles/hover = ExtResource( 32 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
-custom_fonts/font = ExtResource( 33 )
 text = "New Mission"
 
 [node name="ExitGameButton" type="Button" parent="UI/Game Over/VBoxContainer"]
@@ -457,12 +485,12 @@ margin_right = 576.0
 margin_bottom = 232.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 33 )
 custom_styles/hover = ExtResource( 32 )
 custom_styles/pressed = ExtResource( 32 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
-custom_fonts/font = ExtResource( 33 )
 text = "Leave the Battlefield"
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
@@ -495,6 +523,7 @@ expand = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade in"
 anims/RESET = SubResource( 4 )
+"anims/fade in" = SubResource( 6 )
 "anims/fade out" = SubResource( 5 )
 
 [connection signal="on_deselect" from="Selector" to="UI/HUD/Control/Abilities Bar" method="_on_Selector_on_deselect"]
