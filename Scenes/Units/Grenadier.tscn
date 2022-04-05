@@ -1,0 +1,94 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Explosives.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Units/PlayerUnit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren top left.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren top right.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom left.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom right.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/explosion.wav" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/Abilities/AoESelector.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Abilities/Grenade.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Abilities/Shoot.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 2.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/rocket.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/riflesfx.mp3" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/grenade.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 5.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 3.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 4.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 6.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 1.png" type="Texture" id=19]
+[ext_resource path="res://Scripts/Abilities/Blazing Glory.gd" type="Script" id=20]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 19 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "default",
+"speed": 7.0
+} ]
+
+[node name="Grenadier" instance=ExtResource( 2 )]
+max_health = 8
+tiles_per_turn = 10
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+position = Vector2( 2, -20 )
+frames = SubResource( 1 )
+
+[node name="Shoot" parent="Abilities" index="1" instance=ExtResource( 10 )]
+use_sound = ExtResource( 13 )
+
+[node name="RocketLauncher" type="Node" parent="Abilities" index="2"]
+script = ExtResource( 1 )
+ability_name = "Rocket Launcher"
+ability_description = "Destroy cover and deal damage in an area."
+icon = ExtResource( 12 )
+select_range = 18
+use_sound = ExtResource( 7 )
+voice_lines = [ "Watch the back blast!", "Going explosive", "Christmas is coming early..." ]
+action_cost = 2
+cooldown_duration = 3
+selector = ExtResource( 8 )
+target_type = 3
+area_of_effect = 2
+damage = 3
+
+[node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/RocketLauncher" index="0"]
+visible = false
+scale = Vector2( 4, 4 )
+frames = SubResource( 2 )
+frame = 1
+
+[node name="Grenade" parent="Abilities" index="3" instance=ExtResource( 9 )]
+icon = ExtResource( 14 )
+select_range = 10
+use_sound = ExtResource( 7 )
+
+[node name="ExplosionAnimation" type="AnimatedSprite" parent="Abilities/Grenade" index="0"]
+visible = false
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+frame = 1
+
+[node name="Blazing Glory" parent="Abilities" index="6"]
+script = ExtResource( 20 )
+ability_name = "Ability"
+ability_description = "Ability Description"
+icon = null
+select_range = 10
+use_sound = null
+voice_lines = [  ]
+selector = null
+target_type = 1
+area_of_effect = 1
+damage = 2

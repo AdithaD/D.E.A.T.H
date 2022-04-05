@@ -1,0 +1,39 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Explosives.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 6.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 5.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/explosion.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Sprites/Explosion/explosion 3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/ActionIcons/BlazingGlory.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Abilities/AoESelector.tscn" type="PackedScene" id=10]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "default",
+"speed": 7.0
+} ]
+
+[node name="Blazing Glory" type="Node"]
+script = ExtResource( 1 )
+ability_name = "Blazing Glory"
+ability_description = "Sacrifice yourself explosively"
+icon = ExtResource( 9 )
+select_range = 0
+use_sound = ExtResource( 7 )
+voice_lines = [ "Remember me....", "AAAAAHHHHH!!!" ]
+selector = ExtResource( 10 )
+target_type = 0
+area_of_effect = 2
+damage = 4
+
+[node name="ExplosionAnimation" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+frame = 1

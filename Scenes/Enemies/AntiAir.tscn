@@ -1,0 +1,42 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/Enemies/EnemyUnit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/EnemyScripts/EnemyAI/AntiAirAI.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Enemies/AntiAir/air bottom right.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Enemies/AntiAir/air top left.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Enemies/AntiAir/air top right.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Enemies/AntiAir/air bottom left.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/EnemyAbilities/EnemyShootAir.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Abilities/Tracer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Sounds/SFX/Weapon Sounds/snipersfx.mp3" type="AudioStream" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Frames",
+"speed": 5.0
+} ]
+
+[node name="AntiAir" instance=ExtResource( 1 )]
+difficulty = 5
+max_health = 6
+tiles_per_turn = 7
+
+[node name="AI" type="Node2D" parent="." index="0"]
+script = ExtResource( 2 )
+
+[node name="EnemyShootAir" type="Node" parent="Abilities" index="1"]
+script = ExtResource( 7 )
+select_range = 12
+use_sound = ExtResource( 9 )
+damage = 4
+tracer = ExtResource( 8 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
+position = Vector2( 0, -19 )
+frames = SubResource( 1 )
+animation = "Frames"
+
+[node name="HealthDisplay" parent="." index="5"]
+position = Vector2( -20, -35 )

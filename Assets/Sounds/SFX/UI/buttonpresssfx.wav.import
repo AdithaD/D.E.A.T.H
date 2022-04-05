@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/buttonpresssfx.wav-2ba7542681782f92af7b1b7e4b6f79e4.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/UI/buttonpresssfx.wav"
+dest_files=[ "res://.import/buttonpresssfx.wav-2ba7542681782f92af7b1b7e4b6f79e4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

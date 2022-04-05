@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/backgroung scene.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Cinematic/cinematic.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Cinematic/CinematicFadeInandout.tres" type="Animation" id=3]
+[ext_resource path="res://Scenes/Cinematic/CinematicStart.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Fonts/pixeloid cinematic.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Assets/Fonts/pixeloid font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=7]
+
+[node name="Opening Scene" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0588235, 0.0705882, 0.101961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 300.0
+margin_top = 94.0
+margin_right = -326.0
+margin_bottom = -253.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 32.5514
+margin_top = 25.8166
+margin_right = 795.551
+margin_bottom = 84.8166
+custom_fonts/font = ExtResource( 7 )
+text = "Press any keyboard button to skip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 75.0
+margin_top = 359.0
+margin_right = -119.0
+margin_bottom = -26.0
+custom_fonts/mono_font = ExtResource( 6 )
+custom_fonts/normal_font = ExtResource( 5 )
+visible_characters = 0
+percent_visible = 0.0
+text = "In a world ravaged by war, famine and destruction."
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 8.0
+one_shot = true
+autostart = true
+script = ExtResource( 2 )
+
+[node name="FadeToBlackRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+autoplay = "Fade in"
+"anims/Fade in" = ExtResource( 3 )

@@ -1,0 +1,181 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/Enemies/EnemyUnit.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/pixeloid font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/EnemyAbilities/EnemyMove.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Enemies/EnemyUI.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Resource/UnitDeath.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://Scenes/UI/HealthBar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Sprites/UI/marked icon.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "text float off"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("VoiceLine:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VoiceLine:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -10 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VoiceLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "text float off"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("MissText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.917647, 0.447059, 0.301961, 1 ), Color( 0.0901961, 0.0823529, 0.0823529, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MissText:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -6.00924, 23.082 ), Vector2( -8.01231, 17.0606 ), Vector2( -10.4867, 9.6224 ), Vector2( -14.0215, -1.00356 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MissText:percent_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="EnemyUnit" type="Node2D" groups=[
+"damageable",
+"enemy",
+]]
+script = ExtResource( 1 )
+max_health = 5
+actions_points_per_turn = 2
+tiles_per_turn = 8
+
+[node name="Abilities" type="Node2D" parent="."]
+
+[node name="EnemyMove" type="Node" parent="Abilities"]
+script = ExtResource( 3 )
+voice_lines = [ "Get them!", "Don't let anyone escape.", "No one makes it out of here alive!" ]
+
+[node name="EnemyUI" type="Control" parent="."]
+margin_left = -50.0
+margin_top = -63.0
+margin_right = 50.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.998463, 0.996449 )
+script = ExtResource( 4 )
+
+[node name="HitChanceLabel" type="Label" parent="EnemyUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+valign = 1
+
+[node name="DisplayText" type="Label" parent="EnemyUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.00307
+margin_top = 58.2067
+margin_right = 2.00307
+margin_bottom = 58.2067
+custom_fonts/font = ExtResource( 2 )
+align = 1
+valign = 1
+
+[node name="VoiceLine" type="Label" parent="EnemyUI"]
+modulate = Color( 1, 1, 1, 0.9 )
+margin_right = 40.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 2 )
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MissText" type="Label" parent="EnemyUI"]
+margin_left = -6.00924
+margin_top = 23.082
+margin_right = 35.9908
+margin_bottom = 38.082
+custom_fonts/font = ExtResource( 5 )
+text = "Miss!"
+percent_visible = 0.0
+
+[node name="VoiceLineTimer" type="Timer" parent="EnemyUI"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyUI"]
+"anims/text float off" = SubResource( 1 )
+
+[node name="MissTextAnimator" type="AnimationPlayer" parent="EnemyUI"]
+"anims/text float off" = SubResource( 2 )
+
+[node name="MarkedIcon" type="Sprite" parent="EnemyUI"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.862745 )
+position = Vector2( 50.077, 46 )
+texture = ExtResource( 8 )
+
+[node name="DeathSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = ExtResource( 6 )
+
+[node name="HealthDisplay" parent="." instance=ExtResource( 7 )]
+position = Vector2( -20, -45 )
+
+[node name="EnemySound" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="update_attr" from="." to="EnemyUI" method="_on_Unit_update_attr"]
+[connection signal="update_attr" from="." to="HealthDisplay" method="_on_Unit_update_attr"]

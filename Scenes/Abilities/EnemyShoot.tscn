@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/EnemyAbilities/EnemyShoot.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Abilities/Tracer.tscn" type="PackedScene" id=2]
+
+[node name="EnemyShoot" type="Node"]
+script = ExtResource( 1 )
+tracer = ExtResource( 2 )

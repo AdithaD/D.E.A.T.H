@@ -1,0 +1,180 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Mark/mark bottom left.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl bottom left.png" type="Texture" id=2]
+[ext_resource path="res://Assets/BACKGROUNMD.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Medic/medi bottom left.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Shinji/helen bottom left.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom left.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Cinematic/cinematic3.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Fonts/pixeloid cinematic smaller.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Fade in"
+length = 14.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("FadeToBlackRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 11.5, 14 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0.0588235, 0.0705882, 0.101961, 0 ), Color( 0.0588235, 0.0705882, 0.101961, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RichTextLabel:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0588235, 0.0705882, 0.101961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 267.385
+margin_top = 88.4099
+margin_right = -301.615
+margin_bottom = -244.59
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node" type="Node" parent="CanvasLayer"]
+
+[node name="Heli" type="TextureRect" parent="CanvasLayer/Node"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 195.283
+margin_top = -48.8802
+margin_right = -203.717
+margin_bottom = -282.88
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medi" type="TextureRect" parent="CanvasLayer/Node"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 375.28
+margin_top = 27.4149
+margin_right = -146.72
+margin_bottom = -278.585
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mark the Sniper" type="TextureRect" parent="CanvasLayer/Node"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 243.205
+margin_top = 14.5876
+margin_right = -211.795
+margin_bottom = -251.412
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fischl" type="TextureRect" parent="CanvasLayer/Node"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 199.714
+margin_top = 32.6215
+margin_right = -343.286
+margin_bottom = -285.379
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gren" type="TextureRect" parent="CanvasLayer/Node"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 112.385
+margin_top = 53.9809
+margin_right = -439.615
+margin_bottom = -270.019
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 34.0497
+margin_top = 24.3183
+margin_right = 797.049
+margin_bottom = 83.3183
+custom_fonts/font = ExtResource( 9 )
+text = "Press any keyboard button to skip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 43.6335
+margin_top = 384.67
+margin_right = 999.634
+margin_bottom = 574.67
+custom_fonts/normal_font = ExtResource( 8 )
+visible_characters = 0
+percent_visible = 0.0
+text = "Tasked with evacuating as many survivors as possible, the elite soldiers of D.E.A.T.H. must make their final stand. These four heroes must fight tooth and nail to secure as many lives as possible from the clutches of the enemy."
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 15.0
+one_shot = true
+autostart = true
+script = ExtResource( 7 )
+
+[node name="FadeToBlackRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+autoplay = "Fade in"
+"anims/Fade in" = SubResource( 1 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/riflesfx.mp3-f8412b663c221accfc324835beebcb65.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/Weapon Sounds/riflesfx.mp3"
+dest_files=[ "res://.import/riflesfx.mp3-f8412b663c221accfc324835beebcb65.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
