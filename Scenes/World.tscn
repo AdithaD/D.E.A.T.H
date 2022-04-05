@@ -270,6 +270,9 @@ big_view_zoom = 1.0
 default_zoom = 0.5
 focus_zoom = 0.3
 move_speed_scaling = 0.4
+max_zoom = 1.0
+min_zoom = 0.3
+zoom_per_event = 0.1
 
 [node name="Tween" type="Tween" parent="UserCamera"]
 

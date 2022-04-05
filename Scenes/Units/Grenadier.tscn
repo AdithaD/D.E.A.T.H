@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Explosives.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Units/PlayerUnit.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Assets/Sprites/Explosion/explosion 4.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Sprites/Explosion/explosion 6.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Sprites/Explosion/explosion 1.png" type="Texture" id=19]
+[ext_resource path="res://Scripts/Abilities/Blazing Glory.gd" type="Script" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -78,3 +79,16 @@ visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
 frame = 1
+
+[node name="Blazing Glory" parent="Abilities" index="6"]
+script = ExtResource( 20 )
+ability_name = "Ability"
+ability_description = "Ability Description"
+icon = null
+select_range = 10
+use_sound = null
+voice_lines = [  ]
+selector = null
+target_type = 1
+area_of_effect = 1
+damage = 2

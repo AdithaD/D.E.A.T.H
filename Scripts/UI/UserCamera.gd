@@ -6,6 +6,11 @@ export (float) var focus_zoom = 2.5;
 
 export (float) var move_speed_scaling
 
+export (float) var max_zoom
+export (float) var min_zoom
+
+export (float) var zoom_per_event
+ 
 var should_move = false
 var inputKey
 
@@ -30,7 +35,11 @@ func centre_zoom_out():
 func unfocus():
 	$Tween.interpolate_property(self, "zoom", self.zoom, Vector2(default_zoom,default_zoom), 0.4, Tween.TRANS_SINE, Tween.EASE_OUT)
 	$Tween.start()
-	
+
+func tween_to_zoom(value):
+	$Tween.interpolate_property(self, "zoom", self.zoom, Vector2(value,value), 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
+	$Tween.start()
+
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_action("move_camera"):
@@ -39,8 +48,16 @@ func _input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			else:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		elif event.is_action("zoom_in"):
+			print(clamp(zoom.x + zoom_per_event, min_zoom, max_zoom))
+			tween_to_zoom(clamp(zoom.x - zoom_per_event, min_zoom, max_zoom))
+		elif event.is_action("zoom_out"):
+			print(clamp(zoom.x + zoom_per_event, min_zoom, max_zoom))
+			tween_to_zoom(clamp(zoom.x + zoom_per_event, min_zoom, max_zoom))
 	if event is InputEventMouseMotion and should_move:
 		position += event.relative * move_speed_scaling
+		
+	
 		
 
 

@@ -34,8 +34,9 @@ scale = Vector2( 1.1, 1.1 )
 frames = SubResource( 1 )
 
 [node name="Move" parent="Abilities" index="0"]
-ability_description = "Fly your ass to target position"
-voice_lines = [ "In the pipe 5 by 5!", "Propellors engaged!", "Evasive maneuvers!" ]
+ability_name = "Fly"
+ability_description = "Move the helicopter to a square"
+voice_lines = [ "In the pipe 5 by 5", "Time to rotor" ]
 
 [node name="Shoot" parent="Abilities" index="1" instance=ExtResource( 8 )]
 ability_description = "Take aim from above and fire. Ignores cover."

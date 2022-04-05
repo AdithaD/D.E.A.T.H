@@ -33,8 +33,6 @@ func _use_ability(source, target):
 		if tiles_affected.find(entity.grid_position) != -1:
 			entity.take_damage(damage)
 	
-	source.take_damage(9999)
-	
 	for tile in tiles_affected:
 		if obstacle_tilemap.get_cellv(tile) != -1:
 			obstacle_tilemap.set_cellv(tile, obstacle_tilemap.tile_set.find_tile_by_name("rubble"))
