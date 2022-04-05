@@ -20,6 +20,8 @@ animations = [ {
 
 [node name="AntiAir" instance=ExtResource( 1 )]
 difficulty = 5
+max_health = 6
+tiles_per_turn = 7
 
 [node name="AI" type="Node2D" parent="." index="0"]
 script = ExtResource( 2 )

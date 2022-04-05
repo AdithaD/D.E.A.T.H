@@ -38,7 +38,7 @@ animations = [ {
 
 [node name="Grenadier" instance=ExtResource( 2 )]
 max_health = 8
-tiles_per_turn = 8
+tiles_per_turn = 10
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 position = Vector2( 2, -20 )

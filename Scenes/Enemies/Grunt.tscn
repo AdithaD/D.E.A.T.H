@@ -19,7 +19,6 @@ animations = [ {
 
 [node name="Grunt" instance=ExtResource( 1 )]
 difficulty = 3
-max_health = 6
 
 [node name="AI" type="Node2D" parent="." index="0"]
 script = ExtResource( 5 )
