@@ -89,7 +89,10 @@ tracks/2/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[node name="EnemyUnit" type="Node2D" groups=["damageable", "enemy"]]
+[node name="EnemyUnit" type="Node2D" groups=[
+"damageable",
+"enemy",
+]]
 script = ExtResource( 1 )
 max_health = 5
 actions_points_per_turn = 2
