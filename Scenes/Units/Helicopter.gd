@@ -37,6 +37,7 @@ func on_end_turn():
 		for civilian in loaded_civilians:
 			god.evacuate_civilian(civilian)
 		
+		loaded_civilians.clear()
 		get_node("/root/World/UserCamera").focus_on(global_position)
 		$PlayerUI.display_voice_line("Let's get out of here!")
 		yield(get_tree().create_timer(1), "timeout")

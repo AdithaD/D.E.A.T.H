@@ -16,20 +16,22 @@ var difficulty_dictionary = Dictionary()
 
 var spawn_points
 
+var difficulties = []
+
 var aoe = preload("res://Scripts/AoE.gd")
 
 func _ready():
 	spawn_points = $"Spawn Points".get_children()
 	
 	for e in enemies:
-		enemy_inst.append(e.instance())
+		difficulties.append(e.instance().difficulty)
 	
-	for i in range(0, enemy_inst.size()):
-		var difficulty = enemy_inst[i].difficulty
+	for i in range(0, difficulties.size()):
+		var difficulty = difficulties[i]
 		if difficulty_dictionary.has(difficulty):
-			difficulty_dictionary[difficulty].append(enemy_inst[i])
+			difficulty_dictionary[difficulty].append(enemies[i])
 		else:
-			difficulty_dictionary[difficulty] = [enemy_inst[i]]
+			difficulty_dictionary[difficulty] = [enemies[i]]
 func spawn(turn):
 	if turn_spawn_period == 0:
 		force_spawn(turn)
@@ -53,10 +55,10 @@ func force_spawn(turn):
 		var free_tiles = aoe.get_free_tiles_in_AoE(spawn_point, 1, god)
 		
 		var spawn_grid = free_tiles[randi() % free_tiles.size()]
-		var enemy_inst = enemies[enemy_inst.find(enemy)].instance()
-		enemy_inst.position = god.grid_to_world(spawn_grid)
-		god.init_entity(enemy_inst)
-		spawn_node.add_child(enemy_inst)
+		var enemy_instance = enemy.instance()
+		enemy_instance.position = god.grid_to_world(spawn_grid)
+		god.init_entity(enemy_instance)
+		spawn_node.add_child(enemy_instance)
 		
 		
 		
