@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/menu.png" type="Texture" id=1]
 [ext_resource path="res://Assets/play button.png" type="Texture" id=2]
@@ -13,14 +13,28 @@
 [ext_resource path="res://Assets/Sprites/exit_button.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Instructions button.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sprites/back_button.png" type="Texture" id=13]
+[ext_resource path="res://Assets/BACKGROUNMD.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=15]
+[ext_resource path="res://Assets/Fonts/pixeloid cinematic smaller.tres" type="DynamicFont" id=16]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gunner/fischl bottom left.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Mark/mark bottom right.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/Civilians/evacuation_area.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Shinji/helen bottom right.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom right.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/Civilians/civi bottom right.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/PlayerUnits/Medi/medi bottom left.png" type="Texture" id=23]
 
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 game = ExtResource( 10 )
 
 [node name="Profiles" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -37,7 +51,7 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 24.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 texture = ExtResource( 5 )
@@ -48,7 +62,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 24.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 texture = ExtResource( 9 )
@@ -59,7 +73,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 24.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 texture = ExtResource( 8 )
@@ -70,7 +84,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 24.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 texture = ExtResource( 7 )
@@ -81,7 +95,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 24.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 texture = ExtResource( 6 )
@@ -94,9 +108,11 @@ texture_normal = ExtResource( 13 )
 expand = true
 
 [node name="Main" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="Main"]
 anchor_right = 1.0
@@ -170,16 +186,180 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 12 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Instructions" type="Control" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1040.0
+margin_bottom = 660.0
+texture = ExtResource( 14 )
+expand = true
 
 [node name="Back2" type="TextureButton" parent="Instructions"]
 margin_right = 116.0
 margin_bottom = 48.0
 texture_normal = ExtResource( 13 )
 expand = true
+
+[node name="Instructions Head" type="RichTextLabel" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 184.385
+margin_top = 15.5132
+margin_right = 564.385
+margin_bottom = 15.5132
+custom_fonts/normal_font = ExtResource( 16 )
+text = "Instructions"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions Body" type="RichTextLabel" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 287.355
+margin_top = 82.1885
+margin_right = 948.355
+margin_bottom = 538.188
+custom_fonts/normal_font = ExtResource( 15 )
+text = "You are D.E.A.T.H., an elite band of soldiers tasked with saving as many lives as possible.
+
+To do so, you must fight your way to civilians by moving from cover to cover and shooting any enemies who get in your way.
+
+Each hero has a variety of weapons at your disposal.
+
+To select a hero, left-click them. To deselect at any time, use right-click. To move your camera, hold middle-mouse and drag.
+
+To move, or fire your weapons, click the ability icon, then click a target, then click confirm.
+
+Don't forget to use cover to your advantage! 
+
+The cover system is based on line-of-sight. The more cover in-between you and your enemy, the less chance you have of hitting each other. 
+
+Certain weapons (both heroes and enemies) have penetration. These weapons ignore a certain amount of cover, increasing your chance to hit.
+
+IT IS RECOMMENDED TO MOVE OUT OF COVER BEFORE SHOOTING, THEN MOVING BACK INTO COVER AFTERWARDS.
+
+The enemies are trying to kill you and the civilians and come with a variety of weapons.
+
+Make sure you protect civilians and bring them to the EVAC point by using 'FOLLOW' or 'STAY'' commands.
+
+When all is lost, you can sacrifice your hero to do a massive explosion, taking everyone around them with them.
+"
+fit_content_height = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Venti" type="TextureRect" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 115.939
+margin_top = 365.424
+margin_right = 210.939
+margin_bottom = 497.424
+texture = ExtResource( 22 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medi2" type="TextureRect" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0812
+margin_top = 314.97
+margin_right = 156.081
+margin_bottom = 421.97
+texture = ExtResource( 18 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Evac Area" type="TextureRect" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 96.4611
+margin_top = 354.936
+margin_right = 191.461
+margin_bottom = 486.936
+texture = ExtResource( 19 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heli" type="TextureRect" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 54.5118
+margin_top = 119.6
+margin_right = 237.512
+margin_bottom = 364.6
+texture = ExtResource( 20 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gunner" type="TextureRect" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 192.353
+margin_top = 295.003
+margin_right = 287.353
+margin_bottom = 427.003
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gren" type="TextureRect" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 27.5389
+margin_top = 321.973
+margin_right = 122.539
+margin_bottom = 453.973
+texture = ExtResource( 21 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medi" type="TextureRect" parent="Instructions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 156.495
+margin_top = 292.495
+margin_right = 232.495
+margin_bottom = 399.495
+texture = ExtResource( 23 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="Profiles/Back" to="." method="_on_Profiles_Back_pressed"]
 [connection signal="pressed" from="Main/Exit" to="." method="_on_Exit_pressed"]

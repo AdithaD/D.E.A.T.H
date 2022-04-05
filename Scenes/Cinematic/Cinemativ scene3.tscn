@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Shinji/helen bottom left.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/PlayerUnits/Gren/gren bottom left.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Cinematic/cinematic3.gd" type="Script" id=7]
-[ext_resource path="res://Assets/Fonts/pixeloid cinematic.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Assets/Fonts/pixeloid cinematic smaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Assets/Fonts/pixeloid bold.tres" type="DynamicFont" id=9]
 
 [sub_resource type="Animation" id=1]
@@ -43,20 +43,22 @@ tracks/1/keys = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-margin_right = 1920.0
-margin_bottom = 1080.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.0588235, 0.0705882, 0.101961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="background" type="TextureRect" parent="CanvasLayer"]
-margin_left = 460.854
-margin_top = 142.551
-margin_right = 700.854
-margin_bottom = 277.551
-rect_scale = Vector2( 0.5, 0.5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 267.385
+margin_top = 88.4099
+margin_right = -301.615
+margin_bottom = -244.59
 texture = ExtResource( 3 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -64,65 +66,80 @@ __meta__ = {
 [node name="Node" type="Node" parent="CanvasLayer"]
 
 [node name="Heli" type="TextureRect" parent="CanvasLayer/Node"]
-margin_left = 796.31
-margin_top = -53.3531
-margin_right = 836.31
-margin_bottom = 10.6469
-rect_scale = Vector2( 8, 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 195.283
+margin_top = -48.8802
+margin_right = -203.717
+margin_bottom = -282.88
 texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Medi" type="TextureRect" parent="CanvasLayer/Node"]
-margin_left = 501.143
-margin_top = 166.898
-margin_right = 541.143
-margin_bottom = 230.898
-rect_scale = Vector2( 8, 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 375.28
+margin_top = 27.4149
+margin_right = -146.72
+margin_bottom = -278.585
 texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Mark the Sniper" type="TextureRect" parent="CanvasLayer/Node"]
-margin_left = 710.906
-margin_top = 168.396
-margin_right = 750.906
-margin_bottom = 232.396
-rect_scale = Vector2( 8, 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 243.205
+margin_top = 14.5876
+margin_right = -211.795
+margin_bottom = -251.412
 texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Fischl" type="TextureRect" parent="CanvasLayer/Node"]
-margin_left = 909.331
-margin_top = 167.546
-margin_right = 949.331
-margin_bottom = 231.546
-rect_scale = Vector2( 8, 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 199.714
+margin_top = 32.6215
+margin_right = -343.286
+margin_bottom = -285.379
 texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Gren" type="TextureRect" parent="CanvasLayer/Node"]
-margin_left = 1119.38
-margin_top = 174.39
-margin_right = 1159.38
-margin_bottom = 238.39
-rect_scale = Vector2( 8, 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 112.385
+margin_top = 53.9809
+margin_right = -439.615
+margin_bottom = -270.019
 texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-margin_left = 32.5514
-margin_top = 25.8166
-margin_right = 795.551
-margin_bottom = 84.8166
+margin_left = 34.0497
+margin_top = 24.3183
+margin_right = 797.049
+margin_bottom = 83.3183
 custom_fonts/font = ExtResource( 9 )
 text = "Press any keyboard button to skip"
 __meta__ = {
@@ -130,14 +147,16 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-margin_left = 201.0
-margin_top = 725.0
-margin_right = 1822.0
-margin_bottom = 1203.0
+margin_left = 43.6335
+margin_top = 384.67
+margin_right = 999.634
+margin_bottom = 574.67
 custom_fonts/normal_font = ExtResource( 8 )
 visible_characters = 0
 percent_visible = 0.0
 text = "Tasked with evacuating as many survivors as possible, the elite soldiers of D.E.A.T.H. must make their final stand. These four heroes must fight tooth and nail to secure as many lives as possible from the clutches of the enemy."
+scroll_active = false
+scroll_following = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -149,8 +168,8 @@ autostart = true
 script = ExtResource( 7 )
 
 [node name="FadeToBlackRect" type="ColorRect" parent="CanvasLayer"]
-margin_right = 1920.0
-margin_bottom = 1080.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false

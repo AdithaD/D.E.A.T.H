@@ -38,7 +38,7 @@ animations = [ {
 
 [node name="Marksman" instance=ExtResource( 1 )]
 max_health = 6
-tiles_per_turn = 8
+tiles_per_turn = 10
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 position = Vector2( 0, -17 )
@@ -49,16 +49,16 @@ script = ExtResource( 3 )
 ability_name = "Sniper Shot"
 ability_description = "Take aim and deliver a penetrating shot."
 icon = ExtResource( 5 )
-select_range = 80
+select_range = 30
 use_sound = ExtResource( 11 )
 voice_lines = [ "Taking za shot!", "I can see you!", "I've got you in my sights" ]
 selector = ExtResource( 6 )
 damage = 5
-penetration = 2
+penetration = 3
 tracer = ExtResource( 4 )
 burst_number = 1
 bullet_speed = 1800
-bullet_length = 40
+bullet_length = 50
 
 [node name="Grenade" parent="Abilities" index="2" instance=ExtResource( 10 )]
 icon = ExtResource( 12 )

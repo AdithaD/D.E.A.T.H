@@ -20,6 +20,8 @@ animations = [ {
 } ]
 
 [node name="Recon" instance=ExtResource( 1 )]
+max_health = 3
+tiles_per_turn = 12
 
 [node name="AI" type="Node2D" parent="." index="0"]
 script = ExtResource( 5 )
